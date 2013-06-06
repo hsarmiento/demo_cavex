@@ -40,7 +40,9 @@ require_once($aRoutes['paths']['config'].'st_model.php');
 	      title: {
 	          text: 'Status1'
 	      },
-	      
+	      exporting:{
+	          enabled: false
+	        },
 	      pane: {
 	          startAngle: -150,
 	          endAngle: 150,
@@ -94,9 +96,9 @@ require_once($aRoutes['paths']['config'].'st_model.php');
 	              step: 2,
 	              rotation: 'auto'
 	          },
-	          title: {
-	              text: 'km/h'
-	          },
+	          // title: {
+	          //     text: 'km/h'
+	          // },
 	          plotBands: [{
 	              from: 0,
 	              to: 3,
@@ -113,10 +115,10 @@ require_once($aRoutes['paths']['config'].'st_model.php');
 	      },
 	  
 	      series: [{
-	          name: 'Speed',
+	          // name: 'Speed',
 	          data: [0],
 	          tooltip: {
-	              valueSuffix: ' km/h'
+	              valueSuffix: ' '
 	          }
 	      }]
 	  
@@ -174,7 +176,9 @@ $(function () {
 	      title: {
 	          text: 'Status2'
 	      },
-	      
+	      exporting:{
+	          enabled: false
+	        },
 	      pane: {
 	          startAngle: -150,
 	          endAngle: 150,
@@ -228,9 +232,9 @@ $(function () {
 	              step: 2,
 	              rotation: 'auto'
 	          },
-	          title: {
-	              text: 'km/h'
-	          },
+	          // title: {
+	          //     text: 'km/h'
+	          // },
 	          plotBands: [{
 	              from: 0,
 	              to: 3,
@@ -247,10 +251,10 @@ $(function () {
 	      },
 	  
 	      series: [{
-	          name: 'Speed',
+	          // name: 'Speed',
 	          data: [0],
 	          tooltip: {
-	              valueSuffix: ' km/h'
+	              valueSuffix: ' '
 	          }
 	      }]
 	  
@@ -305,7 +309,9 @@ $(function () {
 	      title: {
 	          text: 'Status3'
 	      },
-	      
+	      exporting:{
+	          enabled: false
+	        },
 	      pane: {
 	          startAngle: -150,
 	          endAngle: 150,
@@ -359,9 +365,9 @@ $(function () {
 	              step: 2,
 	              rotation: 'auto'
 	          },
-	          title: {
-	              text: 'km/h'
-	          },
+	          // title: {
+	          //     text: 'km/h'
+	          // },
 	          plotBands: [{
 	              from: 0,
 	              to: 3,
@@ -378,10 +384,10 @@ $(function () {
 	      },
 	  
 	      series: [{
-	          name: 'Speed',
+	          // name: 'Speed',
 	          data: [0],
 	          tooltip: {
-	              valueSuffix: ' km/h'
+	              valueSuffix: ' '
 	          }
 	      }]
 	  
@@ -436,7 +442,9 @@ $(function () {
 	      title: {
 	          text: 'Status4'
 	      },
-	      
+	      exporting:{
+	          enabled: false
+	        },
 	      pane: {
 	          startAngle: -150,
 	          endAngle: 150,
@@ -490,9 +498,9 @@ $(function () {
 	              step: 2,
 	              rotation: 'auto'
 	          },
-	          title: {
-	              text: 'km/h'
-	          },
+	          // title: {
+	          //     text: 'km/h'
+	          // },
 	          plotBands: [{
 	              from: 0,
 	              to: 3,
@@ -509,12 +517,12 @@ $(function () {
 	      },
 	  
 	      series: [{
-	          name: 'Speed',
-	          data: [0],
-	          tooltip: {
-	              valueSuffix: ' km/h'
-	          }
-	      }]
+	      	          // name: 'Speed',
+	      	          data: [0],
+	      	          tooltip: {
+	      	              valueSuffix: ' '
+	      	          }
+  	      }]
 	  
 	  }, 
 	  // Add some life
@@ -567,7 +575,9 @@ $(function () {
 	      title: {
 	          text: 'Status5'
 	      },
-	      
+	      exporting:{
+	          enabled: false
+	        },
 	      pane: {
 	          startAngle: -150,
 	          endAngle: 150,
@@ -621,9 +631,9 @@ $(function () {
 	              step: 2,
 	              rotation: 'auto'
 	          },
-	          title: {
-	              text: 'km/h'
-	          },
+	          // title: {
+	          //     text: 'km/h'
+	          // },
 	          plotBands: [{
 	              from: 0,
 	              to: 3,
@@ -640,10 +650,10 @@ $(function () {
 	      },
 	  
 	      series: [{
-	          name: 'Speed',
+	          // name: 'Speed',
 	          data: [0],
 	          tooltip: {
-	              valueSuffix: ' km/h'
+	              valueSuffix: ' '
 	          }
 	      }]
 	  
@@ -695,6 +705,9 @@ $(function () {
 	      credits:{
                 enabled: false
               },
+          exporting:{
+	          enabled: false
+	        },
 	      title: {
 	          text: 'Status6'
 	      },
@@ -752,9 +765,9 @@ $(function () {
 	              step: 2,
 	              rotation: 'auto'
 	          },
-	          title: {
-	              text: 'km/h'
-	          },
+	          // title: {
+	          //     text: 'km/h'
+	          // },
 	          plotBands: [{
 	              from: 0,
 	              to: 3,
@@ -771,10 +784,10 @@ $(function () {
 	      },
 	  
 	      series: [{
-	          name: 'Speed',
+	          // name: 'Speed',
 	          data: [0],
 	          tooltip: {
-	              valueSuffix: ' km/h'
+	              valueSuffix: ' '
 	          }
 	      }]
 	  

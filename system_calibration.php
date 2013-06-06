@@ -50,13 +50,6 @@ if(!empty($form)){
 				<p>
 					<input type="text" class="calibration" name="rms" value="<?=$aParametros[0]['rms']?>">
 				</p>
-				<!-- <p>
-					Segundos para promediar y calcular standard: 
-				</p>
-				<p>
-					<input type="text" class="calibration" name="quantity" min="1" value="10" step="1">
-				</p> -->
-				
 				<p>
 					<strong>Mínimo valor desviación standard: </strong>
 				</p>

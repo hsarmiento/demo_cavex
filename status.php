@@ -56,7 +56,7 @@ require_once($aRoutes['paths']['config'].'st_model.php');
                           var series = this.series[0];
                           setInterval(function() {
                               var json = $.ajax({
-                               url: 'json_calibration.php', // make this url point to the data file
+                               url: 'json_status.php', // make this url point to the data file
                                dataType: 'json',
                                async: false
                               }).responseText;
@@ -145,6 +145,9 @@ require_once($aRoutes['paths']['config'].'st_model.php');
             plotBackgroundImage: null,
             plotBorderWidth: 0,
             plotShadow: false
+        },
+        exporting:{
+          enabled: false
         },
         credits:{
           enabled: false
@@ -238,7 +241,7 @@ require_once($aRoutes['paths']['config'].'st_model.php');
       if (!chart.renderer.forExport) {
           setInterval(function () {
               var json = $.ajax({
-               url: 'json_calibration.php', // make this url point to the data file
+               url: 'json_status.php', // make this url point to the data file
                dataType: 'json',
                async: false
               }).responseText;

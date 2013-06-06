@@ -10,7 +10,7 @@ class STConnection extends PDO
 
 	// private $m_strDNS = "mysql";
 	// private $m_strHostname = "localhost";
-	// private $m_strDatabase = "demo_cavex";
+	// private $m_strDatabase = "imatic_demo_cavex";
 	// private $m_strUsername = "imatic";
 	// private $m_strPassword = "JAplOt2OUv8R";
 		
