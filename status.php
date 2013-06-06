@@ -84,6 +84,8 @@ require_once($aRoutes['paths']['config'].'st_model.php');
                   title: {
                       text: 'Value'
                   },
+                  min: 0,
+                  max: 1024,
                   plotLines: [{
                       value: 0,
                       width: 1,

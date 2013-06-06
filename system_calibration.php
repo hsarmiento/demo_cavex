@@ -11,20 +11,24 @@ $aParametros = $oModel->Select($query);
 $form = $_POST;
 if(!empty($form)){
 	$oModel = new STModel();
+	$oAlarms = new STModel();
 	if (!isset($form['rms'])){
 		$value_rms = 0;
 	}else{
 		$value_rms = $form['rms'];
+		$query_alarms = "INSERT INTO eventos_alarmas(texto)VALUES('Se fija RMS en ".$value_rms."');";
+		$oAlarms->Select($query_alarms);
 	}
 	if (!isset($form['desviacion_standard'])){
 		$value_desviacion = 0;
 	}else{
 		$value_desviacion = $form['desviacion_standard'];
+		$query_alarms = "INSERT INTO eventos_alarmas(texto)VALUES('Se fija Desviación Standard en ".$value_desviacion."');";
+		$oAlarms->Select($query_alarms);
 	}
 
-	$query_save = "insert into parametros(rms,desviacion_standard)
-	values(".$value_rms.",".$value_desviacion.");";
-	echo $query_save;
+	$query_save = "INSERT INTO parametros(rms,desviacion_standard)
+	VALUES(".$value_rms.",".$value_desviacion.");";
 	$oModel->Select($query_save);
 }
 
