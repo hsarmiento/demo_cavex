@@ -4,9 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 // require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 require_once($aRoutes['paths']['config'].'st_model.php');
 
-$oModel = new STModel();
-$query = "SELECT * FROM parametros order by id desc limit 1;";
-$aParametros = $oModel->Select($query);
+
 
 $form = $_POST;
 if(!empty($form)){
@@ -27,10 +25,19 @@ if(!empty($form)){
 		$oAlarms->Select($query_alarms);
 	}
 
-	$query_save = "INSERT INTO parametros(rms,desviacion_standard)
-	VALUES(".$value_rms.",".$value_desviacion.");";
-	$oModel->Select($query_save);
+	if(!isset($form['porcentaje'])){
+		$query_save = "INSERT INTO parametros(rms,desviacion_standard)VALUES(".$value_rms.",".$value_desviacion.");";
+		$oModel->Select($query_save);
+	}else{
+		$value_porcentaje = $form['porcentaje'];
+		$query_save = "INSERT INTO parametros(rms,desviacion_standard, porcentaje)VALUES(".$value_rms.",".$value_desviacion.",".$value_porcentaje.");";
+		$oModel->Select($query_save);
+	}	
 }
+
+$oModel = new STModel();
+$query = "SELECT * FROM parametros order by id desc limit 1;";
+$aParametros = $oModel->Select($query);
 
 ?>
 
@@ -44,25 +51,39 @@ if(!empty($form)){
 			<p>
 				<strong>Valor actual rms</strong> 
 			</p>		
-			<span id="rms_calibration"></span></div>
-		<div class="span6">
-		</br>
-			<form name="set_parametros" action="system_calibration.php" id="set_parametros" method="post" enctype="multipart/form-data">
-				<p>
-					<strong>Mínimo valor rms: </strong> 
-				</p>
-				<p>
-					<input type="text" class="calibration" name="rms" value="<?=$aParametros[0]['rms']?>">
-				</p>
-				<p>
-					<strong>Mínimo valor desviación standard: </strong>
-				</p>
-			  	<p>  		
-					<input type="text" class="calibration" name="desviacion_standard" value="<?=$aParametros[0]['desviacion_standard']?>"
-			  	</p>
-			  <input type="submit" value="Guardar" class="btn btn-primary btn-large">
-			</form>
+			<span id="rms_calibration"></span>
 		</div>
+		
+		<form name="set_parametros" action="system_calibration.php" id="set_parametros" method="post" enctype="multipart/form-data">
+			<div class="span6">
+				<div class="span3">
+					</br>
+					
+					<p>
+						<strong>Mínimo valor rms: </strong> 
+					</p>
+					<p>
+						<input type="text" class="calibration" name="rms" value="<?=$aParametros[0]['rms']?>">
+					</p>
+					<p>
+						<strong>Mínimo valor desviación standard: </strong>
+					</p>
+				  	<p>  		
+						<input type="text" class="calibration" name="desviacion_standard" value="<?=$aParametros[0]['desviacion_standard']?>">
+				  	</p>
+				</div>
+				<div class="span2">
+					</br>
+					<p>
+						<strong>Máxima variación(%)</strong>
+					</p>
+					<p>
+						<input type="text" class="calibration" name="porcentaje" value="<?=$aParametros[0]['porcentaje']?>">
+					</p>
+				</div>
+			</div>
+			<input style="margin-left:260px;" type="submit" value="Guardar" class="btn btn-primary btn-large">
+		</form>
 	</div>
 </div>
 
@@ -83,7 +104,7 @@ if(!empty($form)){
 	          y_data = y_data; 
           	$('#rms_calibration').text(y_data);
              // console.log(y_data);
-	      }, 3000);
+	      }, 1000);
       });
   });
 

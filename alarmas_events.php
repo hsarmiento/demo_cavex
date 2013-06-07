@@ -4,6 +4,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 // require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 require_once($aRoutes['paths']['config'].'st_model.php');
 
+$oModel = new STModel();
+$query = "SELECT * FROM eventos_alarmas order by id desc;";
+$aEvents = $oModel->Select($query);
+
 ?>
 
 <div class="container container-body">
@@ -17,18 +21,13 @@ require_once($aRoutes['paths']['config'].'st_model.php');
 			    </tr>
 			</thead>
 			<tbody>
-			    <tr>
-			      <td>Se fija desviación standard en 0.004</td>
-			      <td>Martes 15 de Mayo 2013 a las 18:20:09 hrs </td>
-			    </tr>
-			    <tr>
-			      <td>Se ha superado el actual límite de la desviación standard</td>
-			      <td>Jueves 17 de Mayo 2013 a las 10:30:09 hrs</td>
-			    </tr>
-			    <tr>
-			      <td>Un hidrociclon entro en semi-ropping</td>
-			      <td>Domingo 20 de Mayo 2013 a las 10:30:09 hrs</td>
-			    </tr>
+				<?php foreach ($aEvents as $value) { ?>
+					<tr>
+				      <td><?=$value['texto']?></td>
+				      <?php $datetime = strtotime($value['fecha_hora']);?>
+				      <td><?=date("l m/d/Y H:m:s", $datetime);?></td>
+				    </tr>
+				<?php } ?>
 		  </tbody>
 		</table>
 	</div>

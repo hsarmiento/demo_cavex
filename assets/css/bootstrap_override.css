@@ -201,3 +201,29 @@ h2{
     top: 460px;
     right: 380px;
 }
+
+.menu{
+    width: 100%;
+    height: 30px;
+    background-color: black;
+}
+
+.pull-center {
+        text-align: center;
+
+}
+.pull-center > .nav {
+    float:none;
+    display:inline-block;
+    *display: inline; *zoom: 1;
+    height: 32px;
+}
+
+.nav a{
+    color: white;
+}
+
+.nav a:hover{
+    background-color: transparent !important;
+    color: #F4F29D;
+}

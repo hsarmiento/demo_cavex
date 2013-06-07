@@ -26,5 +26,16 @@ require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 			</div>
 			<div id="sub-nav">
 				<div id="middle-sub-nav"></div>
+			</div>
+			<div class="menu">
+				<div class="pull-center">
+					<ul class="nav nav-pills">
+					  <li><a href="/demo_cavex">Home</a></li>
+					  <li><a href="/demo_cavex/system_calibration.php">System calibration</a></li>
+					  <li><a href="/demo_cavex/overview.php">Overview</a></li>
+					  <li><a href="/demo_cavex/status.php">Status</a></li>
+					  <li><a href="/demo_cavex/alarmas_events.php">Alarms & events</a></li>
+					</ul>
+				</div>
 			</div>	
 		</header>
