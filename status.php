@@ -10,7 +10,7 @@ $query = "SELECT * FROM parametros order by id desc limit 1;";
 $aParametros = $oModel->Select($query);
 
 $rms = $aParametros[0]['rms'];
-$limite = ($rms)*(1+$aParametros[0]['porcentaje']/100);
+$limite = ($rms)*(1+$aParametros[0]['porcentaje_rms']/100);
 
 
 
