@@ -12,13 +12,18 @@ $aParametros = $oModel->Select($query);
 $rms = $aParametros[0]['rms'];
 $limite = ($rms)*(1+$aParametros[0]['porcentaje']/100);
 
-echo $limite;
 
 
 ?>
 
 <div class="container container-body">		
 	<h2>Status</h2>
+    <div class="alert alert-error" id="error" style="display:none">
+      Warning! Hydrocyclone 1 is roping
+  </div>
+  <div class="alert alert-success" id="success" style="display:none">
+    Hydrocyclone 1 working in normal conditions
+  </div>
   <div class="row">
       <h3>R.M.S</h3>
       <div class="span3">
@@ -233,13 +238,15 @@ echo $limite;
             // },
             plotBands: [{
                 from: 0,
-                to: <?php echo $rms;?>,
+                to: <?php echo $limite;?>,
                 color: '#55BF3B' // green
-            }, {
-                from: <?php echo $rms;?>,
-                to: <?php echo $limite?>,
-                color: '#DDDF0D' // yellow
-            }, {
+            }, 
+            // {
+            //     from: <?php echo $rms;?>,
+            //     to: <?php echo $limite?>,
+            //     color: '#DDDF0D' // yellow
+            // }, 
+            {
                 from: <?php echo $limite?>,
                 to:  1024,
                 color: '#DF5353' // red
@@ -270,14 +277,13 @@ echo $limite;
                 
                  y_data = dataJson[i].value;                         
               }
-              if ((y_data > <?php echo $rms;?>) && (y_data <= <?php echo $limite;?>)){
-                    $("#status").text('splash').css("color","yellow").show();
-                }else if(y_data > <?php echo $limite;?>){
-                    console.log('roping');
-                    $("#status").hide();
-                    $("#status").text('roping').css("color","red").show();
+              if (y_data > <?php echo $limite;?>){
+                    // $("#status").text('splash').css("color","yellow").show();
+                    $('#error').show();
+                    $('#success').hide();
                 }else{
-                    $("#status").text('normal').css("color","green").show();
+                    $('#error').hide();
+                    $('#success').show();
                 }  
               var point = chart.series[0].points[0],
                   newVal,
@@ -350,7 +356,7 @@ echo $limite;
                       text: 'Value'
                   },
                   min: 0,
-                  max: 0.05,
+                  max: 50,
                   plotLines: [{
                       value: 0,
                       width: 1,
@@ -459,7 +465,7 @@ echo $limite;
         // the value axis
         yAxis: {
             min: 0,
-            max: <?php echo 1024;?>,
+            max: 50,
             
             minorTickInterval: 'auto',
             minorTickWidth: 1,
@@ -481,15 +487,17 @@ echo $limite;
             // },
             plotBands: [{
                 from: 0,
-                to: <?php echo 500;?>,
+                to: 10,
                 color: '#55BF3B' // green
-            }, {
-                from: 500,
-                to: 550,
-                color: '#DDDF0D' // yellow
-            }, {
-                from: 550,
-                to:  1024,
+            }, 
+            // {
+            //     from: 500,
+            //     to: 550,
+            //     color: '#DDDF0D' // yellow
+            // }, 
+            {
+                from: 10,
+                to:  50,
                 color: '#DF5353' // red
             }]        
         },
