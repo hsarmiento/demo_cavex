@@ -49,7 +49,7 @@ $aParametros = $oModel->Select($query);
 <div class="container container-body">
 	<?php if($is_save == 1){ ?>
 		<div class="alert alert-success" id="success">
-		    Hydrocyclone 1 working in normal conditions
+		    Hydrocyclone 1 configuration saved
 		</div>
 	<?php } ?>
 	<h2>System Calibration</h2>

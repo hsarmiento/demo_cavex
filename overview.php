@@ -49,7 +49,7 @@ $limite = ($rms)*(1+$aParametros[0]['porcentaje']/100);
           enabled: false
         },
         title: {
-            text: 'Status1'
+            text: 'Gauge_1'
         },
         
         pane: {
@@ -176,7 +176,7 @@ $(function () {
                 enabled: false
               },
 	      title: {
-	          text: 'Status2'
+	          text: 'Gauge_2'
 	      },
 	      exporting:{
 	          enabled: false
@@ -309,7 +309,7 @@ $(function () {
                 enabled: false
           },
 	      title: {
-	          text: 'Status3'
+	          text: 'Gauge_3'
 	      },
 	      exporting:{
 	          enabled: false
@@ -442,7 +442,7 @@ $(function () {
                 enabled: false
           },
 	      title: {
-	          text: 'Status4'
+	          text: 'Gauge_4'
 	      },
 	      exporting:{
 	          enabled: false
@@ -575,7 +575,7 @@ $(function () {
                 enabled: false
           },
 	      title: {
-	          text: 'Status5'
+	          text: 'Gauge_5'
 	      },
 	      exporting:{
 	          enabled: false
@@ -711,7 +711,7 @@ $(function () {
 	          enabled: false
 	        },
 	      title: {
-	          text: 'Status6'
+	          text: 'Gauge_6'
 	      },
 	      
 	      pane: {
