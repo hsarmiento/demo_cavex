@@ -54,7 +54,7 @@ $aParametros = $oModel->Select($query);
 	<?php } ?>
 	<h2>System Calibration</h2>
 	<div class="row">
-		<div class="span4"><div class="offset1"><img src="assets/img/bomba.png"></div></div>
+		<div class="span5"><img src="assets/img/Setting.png"></div>
 		<div class="span2">
 			</br>
 			<p>
@@ -64,8 +64,8 @@ $aParametros = $oModel->Select($query);
 		</div>
 		
 		<form name="set_parametros" action="system_calibration.php" id="set_parametros" method="post" enctype="multipart/form-data">
-			<div class="span6">
-				<div class="span3">
+			<div class="span5">
+				<div class="span2">
 					</br>
 					
 					<p>
@@ -97,6 +97,7 @@ $aParametros = $oModel->Select($query);
 					</p> -->
 				</div>
 			</div>
+		</br>
 			<input style="margin-left:260px;" type="submit" value="Save" class="btn btn-primary btn-large">
 		</form>
 	</div>

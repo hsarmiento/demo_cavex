@@ -266,7 +266,7 @@ $(function () {
 	    if (!chart.renderer.forExport) {
 	        setInterval(function () {
 	            var json = $.ajax({
-	             url: 'json_status.php', // make this url point to the data file
+	             url: 'json_status_rms.php', // make this url point to the data file
 	             dataType: 'json',
 	             async: false
 	            }).responseText;
@@ -399,7 +399,7 @@ $(function () {
 	    if (!chart.renderer.forExport) {
 	        setInterval(function () {
 	            var json = $.ajax({
-	             url: 'json_status.php', // make this url point to the data file
+	             url: 'json_status_rms.php', // make this url point to the data file
 	             dataType: 'json',
 	             async: false
 	            }).responseText;
@@ -532,7 +532,7 @@ $(function () {
 	    if (!chart.renderer.forExport) {
 	        setInterval(function () {
 	            var json = $.ajax({
-	             url: 'json_status.php', // make this url point to the data file
+	             url: 'json_status_rms.php', // make this url point to the data file
 	             dataType: 'json',
 	             async: false
 	            }).responseText;
@@ -665,7 +665,7 @@ $(function () {
 	    if (!chart.renderer.forExport) {
 	        setInterval(function () {
 	            var json = $.ajax({
-	             url: 'json_status.php', // make this url point to the data file
+	             url: 'json_status_rms.php', // make this url point to the data file
 	             dataType: 'json',
 	             async: false
 	            }).responseText;
@@ -799,7 +799,7 @@ $(function () {
 	    if (!chart.renderer.forExport) {
 	        setInterval(function () {
 	            var json = $.ajax({
-	             url: 'json_status.php', // make this url point to the data file
+	             url: 'json_status_rms.php', // make this url point to the data file
 	             dataType: 'json',
 	             async: false
 	            }).responseText;
