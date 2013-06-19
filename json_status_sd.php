@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
-require_once($aRoutes['paths']['config'].'st_model.php');
-$oModel = new STModel();
+require_once($aRoutes['paths']['config'].'bs_model.php');
+$oModel = new BSModel();
 $query = "SELECT * FROM desviacion_standard order by id desc limit 1;";
 $aPrueba = $oModel->Select($query);
 

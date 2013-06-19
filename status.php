@@ -3,9 +3,9 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 // require_once($aRoutes['paths']['config'].'st_functions_generals.php');
-require_once($aRoutes['paths']['config'].'st_model.php');
+require_once($aRoutes['paths']['config'].'bs_model.php');
 
-$oModel = new STModel();
+$oModel = new BSModel();
 $query = "SELECT * FROM parametros order by id desc limit 1;";
 $aParametros = $oModel->Select($query);
 
@@ -18,8 +18,8 @@ $limite = ($rms)*(1+$aParametros[0]['porcentaje_rms']/100);
 
 <div class="container container-body">		
 	<h2>Status</h2>
-    <div class="alert alert-error" id="error" style="display:none">
-      Warning! Hydrocyclone 1 is roping
+  <div class="alert alert-error" id="error" style="display:none">
+    Warning! Hydrocyclone 1 is roping
   </div>
   <div class="alert alert-success" id="success" style="display:none">
     Hydrocyclone 1 working in normal conditions
@@ -106,8 +106,8 @@ $limite = ($rms)*(1+$aParametros[0]['porcentaje_rms']/100);
                   title: {
                       text: 'Value'
                   },
-                  min: 0,
-                  max: 1024,
+                  min: 350,
+                  max: 850,
                   plotLines: [{
                       value: 0,
                       width: 1,

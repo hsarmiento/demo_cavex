@@ -1,6 +1,9 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
-require_once($aRoutes['paths']['config'].'st_functions_generals.php');
+require_once($aRoutes['paths']['config'].'bs_functions_generals.php');
+require_once($aRoutes['paths']['config'].'bs_login.php');
+$oLogin = new BSLogin();
+$oLogin->ExistAnySession();
 
 ?>
 
@@ -30,11 +33,12 @@ require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 			<div class="menu">
 				<div class="pull-center">
 					<ul class="nav nav-pills">
-					  <li><a href="/demo_cavex">Home</a></li>
+					  <li><a href="/demo_cavex/home.php">Home</a></li>
 					  <li><a href="/demo_cavex/system_calibration.php">System calibration</a></li>
 					  <li><a href="/demo_cavex/overview.php">Overview</a></li>
 					  <li><a href="/demo_cavex/status.php">Status</a></li>
 					  <li><a href="/demo_cavex/alarmas_events.php">Alarms & events</a></li>
+					  <li><a href="/demo_cavex/logout.php">Logout</a></li>
 					</ul>
 				</div>
 			</div>	

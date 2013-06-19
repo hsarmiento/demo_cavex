@@ -3,9 +3,9 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 // require_once($aRoutes['paths']['config'].'st_functions_generals.php');
-require_once($aRoutes['paths']['config'].'st_model.php');
+require_once($aRoutes['paths']['config'].'bs_model.php');
 
-$oModel = new STModel();
+$oModel = new BSModel();
 $query = "SELECT * FROM parametros order by id desc limit 1;";
 $aParametros = $oModel->Select($query);
 
