@@ -230,7 +230,7 @@ h2{
 
 
 .container-login {
-  margin: 80px auto;
+  margin: 40px auto;
   width: 480px;
 }
  
@@ -291,4 +291,66 @@ h2{
     text-align: center;
     /*max-height : 50%;*/
     /*overflow   : auto;*/
+}
+
+.caret{
+    border-top: 4px solid white;
+}
+
+.nav-pills .open .dropdown-toggle{
+    padding-bottom: 5px !important;
+}
+
+.dropdown-menu > li > a:hover{
+    background-color: #1E1A95;
+    background-image: -moz-linear-gradient(top, #1E1A95, #1E1A95);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#1E1A95), to(#1E1A95));
+    background-image: -webkit-linear-gradient(top, #1E1A95, #1E1A95);
+    background-image: -o-linear-gradient(top, #1E1A95, #1E1A95);
+    background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+    background-repeat: repeat-x;
+}
+
+.control{
+    margin-bottom: 20px;
+}
+
+.controls-row [class*="span"]{
+    margin-left: 10px;
+}
+
+label.right-label{
+    margin-left: 60px;
+}
+
+div.error{
+    margin-left: 8px;
+    color: red;
+}
+
+.save-user{
+    margin-top: 20px;
+    text-align: center;
+    margin-left: 50px;
+}
+
+hr{
+    margin-top: -15px;
+    width: 60%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+
+.center-table
+{
+  margin: 0 auto !important;
+  float: none !important;
+}
+
+.edit_div{
+    float: left;
+    width: 30px;
+    height: 30px;
+    padding-right: 30px;
 }

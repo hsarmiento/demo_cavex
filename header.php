@@ -17,6 +17,8 @@ $oLogin->ExistAnySession();
 		<link rel="stylesheet" href="<? echo $aRoutes['paths']['css']?>bootstrap_override.css">
 		<script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>jquery-ui-1.10.1.custom.min.js"></script>
+		<script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>bootstrap.js"></script>
+		<script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>jquery.validate.js"></script>
 	</head>
 	<body>
 		<header>
@@ -38,7 +40,20 @@ $oLogin->ExistAnySession();
 					  <li><a href="/demo_cavex/overview.php">Overview</a></li>
 					  <li><a href="/demo_cavex/status.php">Status</a></li>
 					  <li><a href="/demo_cavex/alarmas_events.php">Alarms & events</a></li>
-					  <li><a href="/demo_cavex/logout.php">Logout</a></li>
+					  <li class="dropdown">
+					  	<a class="dropdown-toggle" data-toggle="dropdown" href="#">User accounts <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="create_user.php">Create user</a></li>
+							<li><a href="users.php">View all users</a></li>
+					  	</ul> 
+					  </li>
+					  <li class="dropdown">
+					  	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><?=$_SESSION['username']?><b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Change Password</a></li>
+							<li><a href="/demo_cavex/logout.php">Logout</a></li>
+					  	</ul> 
+					  </li>
 					</ul>
 				</div>
 			</div>	
