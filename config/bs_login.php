@@ -11,7 +11,7 @@ class BSLogin
 	private $sUserPass;
 	private $iUserId;
 	// private $iUserType;
-	// private $aPermisos;
+	private $aPermisos;
 
 	public function __construct()
 	{
@@ -20,7 +20,7 @@ class BSLogin
 		$this->sUserPass = "";
 		$this->iUserId = "";
 		// $this->iUserTipo = "";
-		// $this->aPermisos = array('admin' => -1, 'supervisor' => -1, 'representante' => -1);
+		$this->aPermisos = array('admin' => -1, 'supervisor' => -1);
 	}
 
 	//Funcion que logea a un usuario por username y password enviado por post
@@ -32,15 +32,28 @@ class BSLogin
 			$aPost = post_request();			
 			if ($this->Authenticate($aPost['username'], $aPost['password']))
 			{
+				$count = 0;
+				$oCount = new BSModel();
+				$query_count = "SELECT COUNT(*) as count from usuarios where permisos = 0 and estado_online = 1;";
+				$aCount = $oCount->Select($query_count);
+				$count = $aCount[0]['count'];
+
 				$oModel = new BSModel();		
 				$aUser = $oModel->Get('usuarios', array('username' => $aPost['username']));				
+				if($aUser[0]['permisos'] == 0 and $count >= 2){
+					return -2;
+				}
+
+				$query_update = "UPDATE usuarios set ultimo_acceso = '".date('Y-m-d H:i:s')."' where id = ".$aUser[0]['id']." and permisos = 0;";
+				$update = $oModel->Select($query_update);
 				$_SESSION['username'] = $aUser[0]['username'];
 				$_SESSION['user_nombres'] = $aUser[0]['nombres'];
 				$_SESSION['user_apellidos'] = $aUser[0]['apellidos'];
 				$_SESSION['user_password'] = $aUser[0]['password'];
 				$_SESSION['user_id'] = $aUser[0]['id'];
-				// $_SESSION['usertype'] = $aUser[0]['tipo'];
+				$_SESSION['usertype'] = $aUser[0]['permisos'];
 
+				require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'log_entry_website.php');
 				header('Location: home.php');
 			}
 			else
@@ -58,19 +71,15 @@ class BSLogin
 	}
 
 	//funcion verifica si existe algun usuario logeado, sino redirecciona al index
-	public function IsLogged($insAdmin = "", $insSuper = "", $insRep = "")
+	public function IsLogged($insAdmin = "", $insSuper = "")
 	{
 		if (!empty($insAdmin))
 		{
-			$this->aPermisos['admin'] = 0;
+			$this->aPermisos['admin'] = 1;
 		}
 		if (!empty($insSuper))
 		{
-			$this->aPermisos['supervisor'] = 1;
-		}
-		if (!empty($insRep))
-		{
-			$this->aPermisos['representante'] = 2;
+			$this->aPermisos['supervisor'] = 0;
 		}
 		if (isset($_SESSION['usertype']))
 		{
@@ -78,11 +87,8 @@ class BSLogin
 			{
 				if ($_SESSION['usertype'] != $this->aPermisos['supervisor'])
 				{
-					if ($_SESSION['usertype'] != $this->aPermisos['representante'])
-					{
-						$this->Logout();
-						header('Location: index.php');
-					}
+					// $this->Logout();
+					header('Location: home.php');
 				}
 				
 			}

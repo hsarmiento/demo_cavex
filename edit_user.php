@@ -4,6 +4,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 // require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 require_once($aRoutes['paths']['config'].'bs_model.php');
 require_once($aRoutes['paths']['config'].'bs_crypt.php');
+$oLogin = new BSLogin();
+$oLogin->IsLogged("admin");
 
 $is_update = 0;
 
@@ -92,6 +94,11 @@ $aUser = $oModel->Select($query);
 	</form>
 
 </div>
+
+<?php 
+require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
+
+?>
 
 <script type="text/javascript">
 	$("#username, #name, #last_name, #email, #phone, #rut, #charge").blur(function(){

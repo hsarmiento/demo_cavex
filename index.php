@@ -3,11 +3,15 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
 // require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 // require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 
-// require_once($aRoutes['paths']['config'].'bs_model.php');
+require_once($aRoutes['paths']['config'].'bs_model.php');
 require_once($aRoutes['paths']['config'].'bs_login.php');
 
+if(!empty($_SESSION['username'])){
+	header("Location: home.php");
+}
+
 $oLogin = new BSLogin();
-$incorrecto = $oLogin->Login();
+$msg = $oLogin->Login();
 
 ?>
 
@@ -41,9 +45,14 @@ $incorrecto = $oLogin->Login();
 
 
 		<div class="container container-body">
-			<?php if($incorrecto == -1) { ?>
+			<?php if($msg == -1) { ?>
 				<div class="alert alert-error alert-fixed" id="error">
 			    	Invalid username or password
+			  	</div>
+			<?php } ?>
+			<?php if($msg == -2) { ?>
+				<div class="alert alert-error alert-fixed" id="error">
+			    	System is full. Try later
 			  	</div>
 			<?php } ?>
 			<div class="container-login">

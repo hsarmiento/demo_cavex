@@ -4,6 +4,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 // require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 require_once($aRoutes['paths']['config'].'bs_model.php');
 require_once($aRoutes['paths']['config'].'bs_crypt.php');
+$oLogin = new BSLogin();
+$oLogin->IsLogged("admin");
 
 $is_save = 0;
 
@@ -15,7 +17,7 @@ if(!empty($form)){
 	$pass = $crypt->GetCryptPassword($form['password'], $form['rut']);
 	$query_new_user = "INSERT INTO usuarios(username,password,nombres,apellidos,email,telefono,rut,permisos,cargo)VALUES('".$form['username']."','".$pass."','".$form['name']."','".$form['last_name']."', '".$form['email']."', '".$form['phone']."', '".$form['rut']."', 0, '".$form['charge']."');";
 	$oUser->Select($query_new_user);
-	$is_save = true;
+	header("Location: users.php?save_user=true");
 }
 
 ?>
@@ -27,9 +29,9 @@ if(!empty($form)){
 	  <div class="control">    
 	    <div class="controls controls-row">
 	    	<label class="control-label" for="username">Username</label>
-	      	<input type="text" class="span2" name="username" id="username">
-	      	<label class="control-label right-label" for="password">Password</label>
-	      	<input type="password" class="span2" id="password" name="password">
+      	<input type="text" class="span2" name="username" id="username">
+      	<label class="control-label right-label" for="password">Password</label>
+      	<input type="password" class="span2" id="password" name="password">
 	    </div>
 	  </div>
 	  <div class="control">   
@@ -64,6 +66,10 @@ if(!empty($form)){
 	</form>
 
 </div>
+<?php 
+require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
+
+?>
 
 <script type="text/javascript">
 	$("#username, #password, #name, #last_name, #email, #phone, #rut, #charge").blur(function(){
@@ -139,5 +145,4 @@ if(!empty($form)){
         }
 
   	});
-
 </script>

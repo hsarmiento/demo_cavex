@@ -3,6 +3,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 // require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 require_once($aRoutes['paths']['config'].'bs_model.php');
+$oLogin = new BSLogin();
+$oLogin->IsLogged("admin","supervisor");
 
 ?>
 
@@ -12,10 +14,12 @@ require_once($aRoutes['paths']['config'].'bs_model.php');
 		<div class="span6">
 			</br>
 			</br>
-			<p>
-			  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/demo_cavex/system_calibration.php'">System Calibration</button>
-			</p>
-			</br>
+			<?php if($_SESSION['usertype'] == 1){?>
+				<p>
+				  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/demo_cavex/system_calibration.php'">System Calibration</button>
+				</p>
+				</br>
+			<?php } ?>
 			<p>
 			  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/demo_cavex/overview.php'">Overview</button>
 			</p>
@@ -32,7 +36,10 @@ require_once($aRoutes['paths']['config'].'bs_model.php');
 	</div>
 </div>
 
+<?php 
+require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 
+?>
 
 <script type="text/javascript">
 // $(document).ready(function(){

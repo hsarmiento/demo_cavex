@@ -1,5 +1,5 @@
 .container-body{
-	padding-top: 30px !important;
+    padding-top: 30px !important;
     margin-bottom: 50px;
 }
 
@@ -11,7 +11,7 @@
 }
  
 #bar-one {
-	margin-left: 200px;
+    margin-left: 200px;
     width: 3.5%;
     height: 100%;
     position: absolute;
@@ -21,7 +21,7 @@
 }
 
 #bar-two {
-	margin-left: 540px;
+    margin-left: 540px;
     width: 1.5%;
     height: 100%;
     position: absolute;
@@ -31,7 +31,7 @@
 }
 
 #bar-three {
-	margin-left: 580px;
+    margin-left: 580px;
     width: 0.2%;
     height: 100%;
     position: absolute;
@@ -41,7 +41,7 @@
 }
 
 #bar-four{
-	margin-left: 590px;
+    margin-left: 590px;
     width: 0.1%;
     height: 100%;
     position: absolute;
@@ -51,12 +51,12 @@
 }
 
 #title-nav{
-	position: absolute;
-	margin-left: 270px;
-	padding-top: 20px;
-	color:white;
-	font-size: 24px;
-	font-weight: bold;
+    position: absolute;
+    margin-left: 270px;
+    padding-top: 20px;
+    color:white;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 #title-nav a{
@@ -64,12 +64,12 @@
 }
 
 #date-nav{
-	position: absolute;
-	margin-left: 620px;
-	padding-top: 20px;
-	color:white;
-	font-size: 24px;
-	font-weight: bold;
+    position: absolute;
+    margin-left: 620px;
+    padding-top: 20px;
+    color:white;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 #sub-nav {
@@ -80,11 +80,11 @@
 }
 
 #middle-sub-nav{
-	/*position: absolute;*/
-	width: 50%;
-	margin: 0 auto;
-	background-color: #EBCD46;
-	height: 100%;
+    /*position: absolute;*/
+    width: 50%;
+    margin: 0 auto;
+    background-color: #EBCD46;
+    height: 100%;
 }
 
 #footer {
@@ -315,6 +315,7 @@ h2{
     margin-bottom: 20px;
 }
 
+
 .controls-row [class*="span"]{
     margin-left: 10px;
 }
@@ -353,4 +354,8 @@ hr{
     width: 30px;
     height: 30px;
     padding-right: 30px;
+}
+
+.save_user_online{
+    margin-left: 80px !important;
 }

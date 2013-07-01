@@ -1,9 +1,11 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
+// require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
 require_once($aRoutes['paths']['config'].'bs_functions_generals.php');
 require_once($aRoutes['paths']['config'].'bs_login.php');
 $oLogin = new BSLogin();
 $oLogin->ExistAnySession();
+
+
 
 ?>
 
@@ -14,7 +16,7 @@ $oLogin->ExistAnySession();
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 		<title>Demo</title>
 		<link rel="stylesheet" href="<? echo $aRoutes['paths']['css']?>bootstrap.css">
-		<link rel="stylesheet" href="<? echo $aRoutes['paths']['css']?>bootstrap_override.css">
+		<link rel="stylesheet" href="assets/css/bootstrap_override.css" type="text/css" media="all">
 		<script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>jquery-ui-1.10.1.custom.min.js"></script>
 		<script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>bootstrap.js"></script>
@@ -36,17 +38,22 @@ $oLogin->ExistAnySession();
 				<div class="pull-center">
 					<ul class="nav nav-pills">
 					  <li><a href="/demo_cavex/home.php">Home</a></li>
-					  <li><a href="/demo_cavex/system_calibration.php">System calibration</a></li>
+					  <?php if($_SESSION['usertype'] == 1){?>
+						<li><a href="/demo_cavex/system_calibration.php">System calibration</a></li>
+					  <?php } ?>
+					  
 					  <li><a href="/demo_cavex/overview.php">Overview</a></li>
 					  <li><a href="/demo_cavex/status.php">Status</a></li>
 					  <li><a href="/demo_cavex/alarmas_events.php">Alarms & events</a></li>
-					  <li class="dropdown">
-					  	<a class="dropdown-toggle" data-toggle="dropdown" href="#">User accounts <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="create_user.php">Create user</a></li>
-							<li><a href="users.php">View all users</a></li>
-					  	</ul> 
-					  </li>
+					  <?php if($_SESSION['usertype'] == 1){?>
+						  <li class="dropdown">
+						  	<a class="dropdown-toggle" data-toggle="dropdown" href="#">User accounts <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="create_user.php">Create user</a></li>
+								<li><a href="users.php">User Management</a></li>
+						  	</ul> 
+						  </li>
+					  <?php } ?>
 					  <li class="dropdown">
 					  	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><?=$_SESSION['username']?><b class="caret"></b></a>
 						<ul class="dropdown-menu">
@@ -56,5 +63,19 @@ $oLogin->ExistAnySession();
 					  </li>
 					</ul>
 				</div>
-			</div>	
+			</div>
+
+			<script type="text/javascript">
+
+				$(document).ready(function()
+				{
+				    setInterval( function() 
+				    {	
+						$.ajax({
+						type: "GET",
+						url: "ajax_update_timestamp_online.php?user_id=<?=$_SESSION['user_id']?>"
+						});
+				    }, 15000);
+				});
+			</script>
 		</header>

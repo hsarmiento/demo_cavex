@@ -3,7 +3,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 // require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 require_once($aRoutes['paths']['config'].'bs_model.php');
-
+$oLogin = new BSLogin();
+$oLogin->IsLogged("admin","supervisor");
 $oModel = new BSModel();
 $query = "SELECT * FROM eventos_alarmas order by id desc;";
 $aEvents = $oModel->Select($query);
@@ -25,7 +26,7 @@ $aEvents = $oModel->Select($query);
 					<tr>
 				      <td><?=$value['texto']?></td>
 				      <?php $datetime = strtotime($value['fecha_hora']);?>
-				      <td><?=date("l m/d/Y H:m:s", $datetime);?></td>
+				      <td><?=date("l m/d/Y H:i:s", $datetime);?></td>
 				    </tr>
 				<?php } ?>
 		  </tbody>
