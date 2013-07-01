@@ -6,9 +6,16 @@ require_once($aRoutes['paths']['config'].'bs_model.php');
 $oLogin = new BSLogin();
 $oLogin->IsLogged("admin","supervisor");
 
+$save_password = $_GET['save_password'];
+
 ?>
 
 <div class="container container-body">
+	<?php if($save_password === 'true') { ?>
+		<div class="alert alert-success" style="text-align:center;">
+	    	Successful change password
+	  	</div>
+	<?php } ?>
 	<div class="row">
 		<div class="span6"><div class="offset1"><img src="assets/img/bomba.png"></div></div>
 		<div class="span6">

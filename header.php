@@ -5,8 +5,6 @@ require_once($aRoutes['paths']['config'].'bs_login.php');
 $oLogin = new BSLogin();
 $oLogin->ExistAnySession();
 
-
-
 ?>
 
 <!DOCTYPE HTML>
@@ -57,7 +55,7 @@ $oLogin->ExistAnySession();
 					  <li class="dropdown">
 					  	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><?=$_SESSION['username']?><b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Change Password</a></li>
+							<li><a href="change_password.php?user_id=<?=$_SESSION['user_id']?>">Change Password</a></li>
 							<li><a href="/demo_cavex/logout.php">Logout</a></li>
 					  	</ul> 
 					  </li>
