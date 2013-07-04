@@ -18,12 +18,16 @@ $save_password = $_GET['save_password'];
 	<?php } ?>
 	<div class="row">
 		<div class="span6"><div class="offset1"><img src="assets/img/bomba.png"></div></div>
-		<div class="span6">
+		<div class="span6 menu-buttons">
 			</br>
 			</br>
 			<?php if($_SESSION['usertype'] == 1){?>
 				<p>
 				  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/demo_cavex/system_calibration.php'">System Calibration</button>
+				</p>
+				</br>
+				<p>
+				  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/demo_cavex/radios.php'">Radios</button>
 				</p>
 				</br>
 			<?php } ?>

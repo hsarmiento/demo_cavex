@@ -56,51 +56,21 @@ $aParametros = $oModel->Select($query);
 	<h2>System Calibration</h2>
 	<div class="row">
 		<div class="span5"><img src="assets/img/Setting.png"></div>
-		<div class="span2">
-			</br>
-			<p>
-				<strong>Current rms value </strong> 
-			</p>		
-			<strong><span id="rms_calibration"></span></strong>
-		</div>
-		
-		<form name="set_parametros" action="system_calibration.php" id="set_parametros" method="post" enctype="multipart/form-data">
-			<div class="span5">
-				<div class="span2">
-					</br>
-					
-					<p>
-						<strong>Min rms value</strong> 
-					</p>
-					<p>
-						<input type="text" class="calibration" name="rms" value="<?=$aParametros[0]['rms']?>">
-					</p>
-					<!-- <p>
-						<strong>Min value standard desviation: </strong>
-					</p>
-				  	<p>  		
-						<input type="text" class="calibration" name="desviacion_standard" value="<?=$aParametros[0]['desviacion_standard']?>">
-				  	</p> -->
-				</div>
-				<div class="span2">
-					</br>
-					<p>
-						<strong>Max rms value(%)</strong>
-					</p>
-					<p>
-						<input type="text" class="calibration" name="porcentaje_rms" value="<?=$aParametros[0]['porcentaje_rms']?>">
-					</p>
-					<!-- <p>
-						<strong>Max value SD(%)</strong>
-					</p>
-					<p>
-						<input type="text" class="calibration" name="porcentaje_sd" value="<?=$aParametros[0]['porcentaje']?>">
-					</p> -->
-				</div>
+		<div class="span7">
+			<form name="set_parametros" action="system_calibration.php" id="set_parametros" method="post" enctype="multipart/form-data">
+			<div class="controls controls-row">
+			    <label class="span2" ><span><strong>Current rms value</strong></span></label>
+			    <label class="span2 offset1" ><span><strong>Min rms value</strong></span></label>
+			    <label class="span2 offset1"><span><strong>Max rms value(%)</strong></span></label>
 			</div>
-		</br>
-			<input style="margin-left:260px;" type="submit" value="Save" class="btn btn-primary btn-large">
-		</form>
+			<div class="controls controls-row">
+			    <strong><span class="span2" id="rms_calibration"></span></strong>
+			    <input type="text" class="span2 offset2" class="calibration" name="rms" value="<?=$aParametros[0]['rms']?>"/>
+			    <input type="text" class="span2 offset2" class="calibration" name="porcentaje_rms" value="<?=$aParametros[0]['porcentaje_rms']?>"/>
+			</div>
+				<input style="margin-left:260px; margin-top:10px;" type="submit" value="Save" class="btn btn-primary btn-large">
+			</form>
+		</div>	
 	</div>
 </div>
 

@@ -1,7 +1,13 @@
+
+/* BODY */
+
 .container-body{
     padding-top: 30px !important;
     margin-bottom: 50px;
 }
+
+
+/* HEADER */
 
 #nav-header {
     width: 100%;
@@ -87,6 +93,27 @@
     height: 100%;
 }
 
+.caret{
+    border-top: 4px solid white;
+}
+
+.nav-pills .open .dropdown-toggle{
+    padding-bottom: 5px !important;
+}
+
+.dropdown-menu > li > a:hover{
+    background-color: #1E1A95;
+    background-image: -moz-linear-gradient(top, #1E1A95, #1E1A95);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#1E1A95), to(#1E1A95));
+    background-image: -webkit-linear-gradient(top, #1E1A95, #1E1A95);
+    background-image: -o-linear-gradient(top, #1E1A95, #1E1A95);
+    background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+    background-repeat: repeat-x;
+}
+
+
+/* FOOTER */
+
 #footer {
     position: fixed;
     width:100%;
@@ -127,6 +154,9 @@
     background-color: #EBCD46;
 }
 
+
+/* BTN MENU BODY */
+
 .btn-L{
     padding: 11px 80px !important;
     font-size: 20px;
@@ -141,6 +171,7 @@
 
 .btn-primary{
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#1E1A95), to(#0044cc));
+    font-size: 16px;
 }
 
 h2{
@@ -163,6 +194,9 @@ h2{
     height: 400px;
     margin: 0 auto ;
 }
+
+
+/* OVERVIEW */
 
 .gauge{
     /*border: solid green;*/
@@ -202,6 +236,9 @@ h2{
     right: 380px;
 }
 
+
+/* MENU */
+
 .menu{
     width: 100%;
     height: 30px;
@@ -228,6 +265,9 @@ h2{
     color: #F4F29D;
 }
 
+
+
+/* LOGIN */
 
 .container-login {
   margin: 40px auto;
@@ -293,23 +333,7 @@ h2{
     /*overflow   : auto;*/
 }
 
-.caret{
-    border-top: 4px solid white;
-}
 
-.nav-pills .open .dropdown-toggle{
-    padding-bottom: 5px !important;
-}
-
-.dropdown-menu > li > a:hover{
-    background-color: #1E1A95;
-    background-image: -moz-linear-gradient(top, #1E1A95, #1E1A95);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#1E1A95), to(#1E1A95));
-    background-image: -webkit-linear-gradient(top, #1E1A95, #1E1A95);
-    background-image: -o-linear-gradient(top, #1E1A95, #1E1A95);
-    background-image: linear-gradient(to bottom, #0088cc, #0077b3);
-    background-repeat: repeat-x;
-}
 
 .control{
     margin-bottom: 20px;
@@ -358,6 +382,51 @@ hr{
 
 .save_user_online{
     margin-left: 80px !important;
+}
+
+#add_radio_form b{
+    font-size: 18px;
+    margin-left: 1px;
+}
+
+.container-form-radio{
+    padding-top: 20px;
+    padding-left: 10px;
+    width: 60%;
+    margin: auto;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    height: 100px;
+    background: #eeeeee; /* Old browsers */
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#eeeeee), to(#cccccc));
+    background: -webkit-linear-gradient(#eeeeee 0%, #cccccc 100%);
+    background: -moz-linear-gradient(#eeeeee 0%, #cccccc 100%);
+    background: -o-linear-gradient(#eeeeee 0%, #cccccc 100%);
+    background: linear-gradient(#eeeeee 0%, #cccccc 100%); /* FF3.6+ */ /* Chrome,Safari4+ */ /* Chrome10+,Safari5.1+ */ /* Opera 11.10+ */ /* IE10+ */ /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+
+}
+
+.form-div-radio{
+    margin-left: 50px;
+}
+
+#save-radio{
+    margin-top:20px;
+    margin-left: 250px;
+}
+
+.add-radio-text{
+    margin-left: 240px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 150px;
+}
+
+.menu-buttons{
+    margin-top: -10px;
 }
 
 /*#save_password{

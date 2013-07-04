@@ -38,6 +38,7 @@ $oLogin->ExistAnySession();
 					  <li><a href="/demo_cavex/home.php">Home</a></li>
 					  <?php if($_SESSION['usertype'] == 1){?>
 						<li><a href="/demo_cavex/system_calibration.php">System calibration</a></li>
+					  	<li><a href="/demo_cavex/radios.php">Radios</a></li>
 					  <?php } ?>
 					  
 					  <li><a href="/demo_cavex/overview.php">Overview</a></li>
