@@ -347,6 +347,9 @@ h2{
     /*max-height : 50%;*/
     /*overflow   : auto;*/
 }
+
+
+
 .control{
     margin-bottom: 20px;
 }
@@ -427,4 +430,59 @@ hr{
 #save-radio{
     margin-top:20px;
     margin-left: 250px;
+}
+
+.add-radio-text{
+    margin-left: 240px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 150px;
+}
+
+.menu-buttons{
+    margin-top: -10px;
+}
+
+
+.data-type{
+    margin-bottom: 10px;
+}
+
+.current-value{
+    padding-right: 50px;
+    margin-left: 15px;
+}
+
+.first-input{
+    margin-left: 140px;
+}
+
+.second-input{
+    margin-left: 80px;
+}
+
+.third-input{
+    margin-left: 85px;
+}
+
+.contenedor{
+     /*border: solid blue;*/
+     margin-bottom: 50px !important;
+}
+
+input[type="text"].error{
+    border: solid red 1px !important;
+}
+
+.div-save-calibration{
+    position: relative;
+    margin-left: 800px;
+    bottom: 0;
+    padding-top: 20px;
+}
+
+
+.calibration-radio{
+    margin-bottom: 50px;
 }
