@@ -4,7 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 require_once($aRoutes['paths']['config'].'bs_model.php');
 $oLogin = new BSLogin();
 $oLogin->IsLogged("admin");
-
+$is_save = 0;
 
 $form = $_POST['radio'];
 if(!empty($_POST['save'])){
@@ -14,6 +14,7 @@ if(!empty($_POST['save'])){
 		// echo $query_save;
 		$oParametros->Select($query_save);
 	}
+	$is_save = 1;	
 }
 
 // echo '<pre>';
@@ -82,20 +83,3 @@ $aRadios = $oRadios->Select($query_radios);
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 
 ?>
-
-<script type="text/javascript">
-	    $('#set_parametros_form').validate({
-	    	invalidHandler: function(form){
-				alert('Red inputs are empty'); // for demo
-            	return false; // for demo
-			},
-	        highlight: function(element, errorClass, validClass) {
-			    $(element).addClass(errorClass).removeClass(validClass);
-			  },
-			 unhighlight: function(element, errorClass, validClass) {
-			    $(element).removeClass(errorClass).addClass(validClass);
-			  },
-			  errorPlacement: function(error, element) {      
-        	}
-	    });
-</script>
