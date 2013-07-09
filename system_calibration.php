@@ -1,135 +1,101 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
-// require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 require_once($aRoutes['paths']['config'].'bs_model.php');
 $oLogin = new BSLogin();
 $oLogin->IsLogged("admin");
-$is_save = 0;
 
-$form = $_POST;
-if(!empty($form)){
-	$oModel = new BSModel();
-	$oAlarms = new BSModel();
-	if (!isset($form['rms'])){
-		$value_rms = 0;
-	}else{
-		$value_rms = $form['rms'];
-		$query_alarms = "INSERT INTO eventos_alarmas(texto)VALUES('Set rms value ".$value_rms."');";
-		$oAlarms->Select($query_alarms);
-	}
-	if (!isset($form['desviacion_standard'])){
-		$value_desviacion = 0;
-	}else{
-		$value_desviacion = $form['desviacion_standard'];
-		$query_alarms = "INSERT INTO eventos_alarmas(texto)VALUES('Set standard desviation value ".$value_desviacion."');";
-		$oAlarms->Select($query_alarms);
-	}
 
-	if(!isset($form['porcentaje_rms'])){
-		$query_save = "INSERT INTO parametros(rms,desviacion_standard)VALUES(".$value_rms.",".$value_desviacion.");";
-		$oModel->Select($query_save);
-	}else{
-		$value_porcentaje = $form['porcentaje_rms'];
-		$query_alarms = "INSERT INTO eventos_alarmas(texto)VALUES('Set min rms value ".$value_porcentaje." %');";
-		$oAlarms->Select($query_alarms);
-		$query_save = "INSERT INTO parametros(rms,desviacion_standard, porcentaje_rms)VALUES(".$value_rms.",".$value_desviacion.",".$value_porcentaje.");";
-		$oModel->Select($query_save);
+$form = $_POST['radio'];
+if(!empty($_POST['save'])){
+	$oParametros = new BSModel();
+	foreach ($form as $value) {
+		$query_save = "INSERT INTO parametros(rms,porcentaje_rms,desviacion_standard, porcentaje_sd, radio_id)values(".$value['rms_normal'].",".$value['rms_max_normal'].", ".$value['sd_normal'].", ".$value['sd_max_normal'].", ".$value['radio_id'].") on duplicate key update rms=".$value['rms_normal'].", porcentaje_rms=".$value['rms_max_normal'].", desviacion_standard=".$value['sd_normal'].", porcentaje_sd=".$value['sd_max_normal'].";";
+		// echo $query_save;
+		$oParametros->Select($query_save);
 	}
-	$is_save = 1;	
 }
 
-$oModel = new BSModel();
-$query = "SELECT * FROM parametros order by id desc limit 1;";
-$aParametros = $oModel->Select($query);
-
+// echo '<pre>';
+// print_r($_POST);
+// echo '</pre>';
+$oRadios = new BSModel();
+$query_radios = "SELECT * from radios where estado = 1;";
+$aRadios = $oRadios->Select($query_radios);
 
 ?>
 
 
-<div class="container container-body">
-	<?php if($is_save == 1){ ?>
-		<div class="alert alert-success" id="success">
-		    Hydrocyclone 1 configuration saved
-		</div>
-	<?php } ?>
-	<h2>System Calibration</h2>
-	<div class="row">
-		<div class="span5"><img src="assets/img/Setting.png"></div>
-		<div class="span2">
-			</br>
-			<p>
-				<strong>Current rms value </strong> 
-			</p>		
-			<strong><span id="rms_calibration"></span></strong>
-		</div>
-		
-		<form name="set_parametros" action="system_calibration.php" id="set_parametros" method="post" enctype="multipart/form-data">
-			<div class="span5">
-				<div class="span2">
-					</br>
-					
-					<p>
-						<strong>Min rms value</strong> 
-					</p>
-					<p>
-						<input type="text" class="calibration" name="rms" value="<?=$aParametros[0]['rms']?>">
-					</p>
-					<!-- <p>
-						<strong>Min value standard desviation: </strong>
-					</p>
-				  	<p>  		
-						<input type="text" class="calibration" name="desviacion_standard" value="<?=$aParametros[0]['desviacion_standard']?>">
-				  	</p> -->
-				</div>
-				<div class="span2">
-					</br>
-					<p>
-						<strong>Max rms value(%)</strong>
-					</p>
-					<p>
-						<input type="text" class="calibration" name="porcentaje_rms" value="<?=$aParametros[0]['porcentaje_rms']?>">
-					</p>
-					<!-- <p>
-						<strong>Max value SD(%)</strong>
-					</p>
-					<p>
-						<input type="text" class="calibration" name="porcentaje_sd" value="<?=$aParametros[0]['porcentaje']?>">
-					</p> -->
-				</div>
-			</div>
-		</br>
-			<input style="margin-left:260px;" type="submit" value="Save" class="btn btn-primary btn-large">
-		</form>
-	</div>
+<div class="container-body container-calibration">
+  <h2>System Calibration</h2>
+  	  <div class="span11 contenedor">
+  	  	<?php if(count($aRadios) > 0) {?>
+	  	  	<form name="set_parametros" action="system_calibration.php" id="set_parametros_form" method="post" enctype="multipart/form-data">
+		  	  	<?php foreach ($aRadios as $i=>$radio) { ?>
+		  	  		<input type="hidden" value="<?=$radio['id']?>" name="radio[<?=$i?>][radio_id]">
+		  	  		<div class="span10 offset1 calibration-radio" >
+				    	<span style="font-size:18px;"><strong>Radio <?=$i+1?> - <?=$radio['mac']?></strong></span></br></br>
+				    	<div class="span1 data-type"><strong>RMS</strong></div>
+				    	<div class="span9">	
+							<div class="controls controls-row">
+							    <label class="span2 offset1" ><span><strong>Current rms value</strong></span></label>
+							    <label class="span2 offset1" ><span><strong>Normal rms value</strong></span></label>
+							    <label class="span2 offset1"><span><strong>Max rms  normal value(%)</strong></span></label>
+							     <label class="span2 offset1"><span><strong>Ropping value(%)</strong></span></label>
+							</div>
+							<div class="controls controls-row">
+							    <strong><span id="rms_calibration<?=$i?>" class="current-value" ></span></strong>
+							    <input type="text" class="calibration first-input required" name="radio[<?=$i?>][rms_normal]"/>
+							    <input type="text" class="calibration second-input required" name="radio[<?=$i?>][rms_max_normal]" />
+							    <input type="text" class="calibration third-input required" name="radio[<?=$i?>][rms_ropping]" />
+							</div>    		
+				    	</div>
+
+				    	<div class="span1 data-type"><strong>Standard Deviation</strong></div>
+				    	<div class="span9">
+							<div class="controls controls-row">
+							    <label class="span2 offset1" ><span><strong>Current rms value</strong></span></label>
+							    <label class="span2 offset1" ><span><strong>Min rms value</strong></span></label>
+							    <label class="span2 offset1"><span><strong>Max rms value(%)</strong></span></label>
+							     <label class="span2 offset1"><span><strong>Max rms value(%)</strong></span></label>
+							</div>
+							<div class="controls controls-row">
+							    <strong><span id="rms_calibration<?=$id?>" class="current-value" ></span></strong>
+							    <input type="text" class="calibration first-input required" name="radio[<?=$i?>][sd_normal]" value="<?=$aParametros[0]['rms']?>"/>
+							    <input type="text" class="calibration second-input required" name="radio[<?=$i?>][sd_max_normal]" value="<?=$aParametros[0]['porcentaje_rms']?>"/>
+							    <input type="text" class="calibration third-input required" name="radio[<?=$i?>][sd_ropping]" value="<?=$aParametros[0]['porcentaje_rms']?>"/>
+							</div>						   		
+				    	</div>
+					</div>	
+		  	  	<?php } ?>
+		  	  <div class="div-save-calibration">
+		  	  	<input type="submit" value="Save" class="btn btn-primary btn-large" name="save" id="save-calibration">
+		  	  </div>
+		  	  	
+		     </form>	 
+	    <?php  }?>   	
 </div>
-
-<script type="text/javascript">
-	$(function () {
-      $(document).ready(function() {
-      	setInterval(function() {
-	          var json = $.ajax({
-	           url: 'json_calibration.php', // make this url point to the data file
-	           dataType: 'json',
-	           async: false
-	          }).responseText;
-
-	          var dataJson = eval(json);
-	          for (var i in dataJson){
-	             y_data = dataJson[i].value;                            
-	          }
-	          y_data = y_data; 
-          	$('#rms_calibration').text(y_data);
-             // console.log(y_data);
-	      }, 1000);
-      });
-  });
-
-
-</script>
+</div>
 
 
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 
 ?>
+
+<script type="text/javascript">
+	    $('#set_parametros_form').validate({
+	    	invalidHandler: function(form){
+				alert('Red inputs are empty'); // for demo
+            	return false; // for demo
+			},
+	        highlight: function(element, errorClass, validClass) {
+			    $(element).addClass(errorClass).removeClass(validClass);
+			  },
+			 unhighlight: function(element, errorClass, validClass) {
+			    $(element).removeClass(errorClass).addClass(validClass);
+			  },
+			  errorPlacement: function(error, element) {      
+        	}
+	    });
+</script>
