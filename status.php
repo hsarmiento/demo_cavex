@@ -13,6 +13,7 @@ $aParametros = $oModel->Select($query);
 $rms = $aParametros[0]['rms'];
 $limite = ($rms)*(1+$aParametros[0]['porcentaje_rms']/100);
 
+$radio_id = $_GET['radio_id'];
 
 
 ?>
@@ -80,7 +81,7 @@ $limite = ($rms)*(1+$aParametros[0]['porcentaje_rms']/100);
                           var series = this.series[0];
                           setInterval(function() {
                               var json = $.ajax({
-                               url: 'json_status_rms.php', // make this url point to the data file
+                               url: 'json_rms_value.php?radio_id=<?=$radio_id?>', // make this url point to the data file
                                dataType: 'json',
                                async: false
                               }).responseText;
@@ -136,7 +137,7 @@ $limite = ($rms)*(1+$aParametros[0]['porcentaje_rms']/100);
                           time = (new Date()).getTime(),
                           i;
                       var json = $.ajax({
-                               url: 'json_status_rms.php', // make this url point to the data file
+                               url: 'json_rms_value.php?radio_id=<?=$radio_id?>', // make this url point to the data file
                                dataType: 'json',
                                async: false
                               }).responseText;
@@ -268,7 +269,7 @@ $limite = ($rms)*(1+$aParametros[0]['porcentaje_rms']/100);
       if (!chart.renderer.forExport) {
           setInterval(function () {
               var json = $.ajax({
-               url: 'json_status_rms.php', // make this url point to the data file
+               url: 'json_rms_value.php?radio_id=<?=$radio_id?>', // make this url point to the data file
                dataType: 'json',
                async: false
               }).responseText;
@@ -329,7 +330,7 @@ $limite = ($rms)*(1+$aParametros[0]['porcentaje_rms']/100);
                           var series = this.series[0];
                           setInterval(function() {
                               var json = $.ajax({
-                               url: 'json_status_sd.php', // make this url point to the data file
+                               url: 'json_sd_value.php?radio_id=<?=$radio_id?>', // make this url point to the data file
                                dataType: 'json',
                                async: false
                               }).responseText;
@@ -385,7 +386,7 @@ $limite = ($rms)*(1+$aParametros[0]['porcentaje_rms']/100);
                           time = (new Date()).getTime(),
                           i;
                       var json = $.ajax({
-                               url: 'json_status_sd.php', // make this url point to the data file
+                               url: 'json_sd_value.php?radio_id=<?=$radio_id?>', // make this url point to the data file
                                dataType: 'json',
                                async: false
                               }).responseText;
@@ -517,7 +518,7 @@ $limite = ($rms)*(1+$aParametros[0]['porcentaje_rms']/100);
       if (!chart.renderer.forExport) {
           setInterval(function () {
               var json = $.ajax({
-               url: 'json_status_sd.php', // make this url point to the data file
+               url: 'json_sd_value.php?radio_id=<?=$radio_id?>', // make this url point to the data file
                dataType: 'json',
                async: false
               }).responseText;

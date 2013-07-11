@@ -28,6 +28,7 @@ $oLogin->ExistAnySession();
 			    <div id="bar-two"></div>
 			    <div id="bar-three"></div>
 			    <div id="date-nav"><?=date('F /d/Y')?></div>
+			    <!-- <div class="logo_imatic"><img src="assets/img/imatic.png"></div> -->
 			</div>
 			<div id="sub-nav">
 				<div id="middle-sub-nav"></div>
@@ -39,10 +40,8 @@ $oLogin->ExistAnySession();
 					  <?php if($_SESSION['usertype'] == 1){?>
 						<li><a href="/demo_cavex/system_calibration.php">System calibration</a></li>
 					  	<li><a href="/demo_cavex/radios.php">Radios</a></li>
-					  <?php } ?>
-					  
+					  <?php } ?>				  
 					  <li><a href="/demo_cavex/overview.php">Overview</a></li>
-					  <li><a href="/demo_cavex/status.php">Status</a></li>
 					  <li><a href="/demo_cavex/alarmas_events.php">Alarms & events</a></li>
 					  <?php if($_SESSION['usertype'] == 1){?>
 						  <li class="dropdown">

@@ -126,6 +126,12 @@
     background-repeat: repeat-x;
 }
 
+.logo_imatic{
+    width: 280px;
+    right: 0px;
+    position: absolute;
+}
+
 
 /* FOOTER */
 
@@ -221,14 +227,34 @@ h2{
     /*float: inherit;*/
 }
 
+.link-status{
+    width: 100px;
+    height: 20px;
+    position: absolute;
+    /*border: solid green;*/
+}
+
 #gauge1{
     top: 120px;
     left: 380px;
 }
 
+#link-status1{
+   top: 255px;
+   left: 420px; 
+   display: none;
+}
+
+
 #gauge2{
     top: 120px;
     right: 380px;
+}
+
+#link-status2{
+   top: 255px;
+   right: 385px; 
+   display: none;
 }
 
 #gauge3{
@@ -236,19 +262,43 @@ h2{
     left: 300px;
 }
 
+#link-status3{
+   top: 455px;
+   left: 335px; 
+   display: none;
+}
+
 #gauge4{
     top: 320px;
     right: 300px;
 }
 
+#link-status4{
+   top: 455px;
+   right: 310px; 
+   display: none;
+}
+
 #gauge5{
-    top: 460px;
+    top: 480px;
     left: 380px;
 }
 
+#link-status5{
+   top: 615px;
+   left: 420px; 
+   display: none;
+}
+
 #gauge6{   
-    top: 460px;
+    top: 480px;
     right: 380px;
+}
+
+#link-status6{
+   top: 615px;
+   right: 390px; 
+   display: none;
 }
 
 
@@ -448,15 +498,20 @@ hr{
 .data-type{
     margin-bottom: 10px;
     font-size: 15px;
+    margin-top: 20px;
 }
 
 .current-value{
-    padding-right: 50px;
+    /*padding-right: 30px;*/
+    margin-top: 0px;
     margin-left: 15px;
+    width: 30px;
+    position: absolute;
+    font-weight: bold;
 }
 
 .first-input{
-    margin-left: 140px;
+    margin-left: 210px;
 }
 
 .second-input{
@@ -496,4 +551,9 @@ input[type="text"].error{
 
 .calibration-radio label{
     color: #484848;
+    font-weight: bold;
+}
+
+.data-container{
+    margin-top:20px;
 }

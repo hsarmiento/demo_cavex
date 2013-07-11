@@ -16,19 +16,40 @@
 	$count_rms = count($aRms);
 ?>
 
-<div class="container container-body">
+<div class="container container-body contenedor">
 	<h2>Overview</h2>
 	<div class="hidrociclon"><img height="400" width="400" src="assets/img/Overview_2.png"></div>
 
 	<div id="gauge1" class="gauge"></div>
+    <div id="link-status1" class="link-status">
+    	<a href="status.php?radio_id=<?=$aRms[0]['radio_id']?>">Show status</a></div>
+    </div>
 	<div id="gauge2" class="gauge"></div>
+	<div id="link-status2" class="link-status">
+    	<a href="status.php?radio_id=<?=$aRms[1]['radio_id']?>">Show status</a></div>
+    </div>
 	<div id="gauge3" class="gauge"></div>
+	<div id="link-status3" class="link-status">
+    	<a href="status.php?radio_id=<?=$aRms[2]['radio_id']?>">Show status</a></div>
+    </div>
 	<div id="gauge4" class="gauge"></div>
+	<div id="link-status4" class="link-status">
+    	<a href="status.php?radio_id=<?=$aRms[3]['radio_id']?>">Show status</a></div>
+    </div>
 	<div id="gauge5" class="gauge"></div>
+	<div id="link-status5" class="link-status">
+    	<a href="status.php?radio_id=<?=$aRms[4]['radio_id']?>">Show status</a></div>
+    </div>
 	<div id="gauge6" class="gauge"></div>
+	<div id="link-status6" class="link-status">
+    	<a href="status.php?radio_id=<?=$aRms[5]['radio_id']?>">Show status</a></div>
+    </div>
 </div>
 
+<?php 
+require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 
+?>
 
 <script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>highcharts.js"></script>
 <script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>/modules/exporting.js"></script>
@@ -36,7 +57,9 @@
 
 <script type="text/javascript">
 	<?php if($count_rms > 0){?>
+		
 		$(function () {
+			  $('#link-status1').show();
 		      $('#gauge1').highcharts({
 		    
 		        chart: {
@@ -168,6 +191,7 @@
 	
 	<?php if($count_rms > 1){?>
 		$(function () {
+			  $('#link-status2').show();
 		      $('#gauge2').highcharts({
 		    
 		        chart: {
@@ -300,6 +324,7 @@
 
 	<?php if($count_rms > 2){?>
 		$(function () {
+			  $('#link-status3').show();
 		      $('#gauge3').highcharts({
 		    
 		        chart: {
@@ -432,6 +457,7 @@
 
 	<?php if($count_rms > 3){?>
 		$(function () {
+			  $('#link-status4').show();	
 		      $('#gauge4').highcharts({
 		    
 		        chart: {
@@ -564,6 +590,7 @@
 
 	<?php if($count_rms > 4){?>
 		$(function () {
+			  $('#link-status5').show();
 		      $('#gauge5').highcharts({
 		    
 		        chart: {
@@ -697,6 +724,7 @@
 
 	<?php if($count_rms > 5){?>
 		$(function () {
+			  $('#link-status6').show();
 		      $('#gauge6').highcharts({
 		    
 		        chart: {
