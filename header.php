@@ -28,7 +28,7 @@ $oLogin->ExistAnySession();
 			    <div id="bar-two"></div>
 			    <div id="bar-three"></div>
 			    <div id="date-nav"><?=date('F /d/Y')?></div>
-			    <!-- <div class="logo_imatic"><img src="assets/img/imatic.png"></div> -->
+			    <div class="logo_weir"><img src="assets/img/WeirMinerals.png"></div>
 			</div>
 			<div id="sub-nav">
 				<div id="middle-sub-nav"></div>

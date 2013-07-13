@@ -3,17 +3,24 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 	require_once($aRoutes['paths']['config'].'bs_model.php');
 	$oModel = new BSModel();
-	$query_radios = "SELECT id from radios;";
+	$query_radios = "SELECT id from radios where estado = 1 order by id asc;";
 	$aRadios = $oModel->Select($query_radios);
 	$aRms = array();
+	$aParametros = array();
 	foreach ($aRadios as $radios) {
-		$query_rms = "SELECT valor from rms where radio_id = ".$radios['id'].";";
+		$query_rms = "SELECT valor from rms where radio_id = ".$radios['id']." order by id asc;";
 		$rms = $oModel->Select($query_rms);
 		$aRms[] = array('radio_id' => $radios['id'],
 						'valor' => $rms[0]['valor']
 					);
+		$query_parametros = "SELECT * from parametros where radio_id = ".$radios['id'].";";
+		$par = $oModel->Select($query_parametros);
+		$aParametros[] = array('rms_max_normal' => $par[0]['rms_normal'],
+							   'rms_semi_ropping' => ($par[0]['rms_normal'])*(1+$par[0]['rms_max_normal_porcentaje']/100),
+							   'rms_ropping' => ($par[0]['rms_normal'])*(1+$par[0]['rms_ropping_porcentaje']/100)
+							);
 	}
-	$count_rms = count($aRms);
+	$count_radios = count($aRms);
 ?>
 
 <div class="container container-body contenedor">
@@ -22,27 +29,27 @@
 
 	<div id="gauge1" class="gauge"></div>
     <div id="link-status1" class="link-status">
-    	<a href="status.php?radio_id=<?=$aRms[0]['radio_id']?>">Show status</a></div>
+    	<a href="status.php?radio_id=<?=$aRms[0]['radio_id']?>&n_radio=1">Show status</a></div>
     </div>
 	<div id="gauge2" class="gauge"></div>
 	<div id="link-status2" class="link-status">
-    	<a href="status.php?radio_id=<?=$aRms[1]['radio_id']?>">Show status</a></div>
+    	<a href="status.php?radio_id=<?=$aRms[1]['radio_id']?>&n_radio=2">Show status</a></div>
     </div>
 	<div id="gauge3" class="gauge"></div>
 	<div id="link-status3" class="link-status">
-    	<a href="status.php?radio_id=<?=$aRms[2]['radio_id']?>">Show status</a></div>
+    	<a href="status.php?radio_id=<?=$aRms[2]['radio_id']?>&n_radio=3">Show status</a></div>
     </div>
 	<div id="gauge4" class="gauge"></div>
 	<div id="link-status4" class="link-status">
-    	<a href="status.php?radio_id=<?=$aRms[3]['radio_id']?>">Show status</a></div>
+    	<a href="status.php?radio_id=<?=$aRms[3]['radio_id']?>&n_radio=4">Show status</a></div>
     </div>
 	<div id="gauge5" class="gauge"></div>
 	<div id="link-status5" class="link-status">
-    	<a href="status.php?radio_id=<?=$aRms[4]['radio_id']?>">Show status</a></div>
+    	<a href="status.php?radio_id=<?=$aRms[4]['radio_id']?>&n_radio=5">Show status</a></div>
     </div>
 	<div id="gauge6" class="gauge"></div>
 	<div id="link-status6" class="link-status">
-    	<a href="status.php?radio_id=<?=$aRms[5]['radio_id']?>">Show status</a></div>
+    	<a href="status.php?radio_id=<?=$aRms[5]['radio_id']?>&n_radio=6">Show status</a></div>
     </div>
 </div>
 
@@ -56,7 +63,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 <script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>highcharts-more.js"></script>
 
 <script type="text/javascript">
-	<?php if($count_rms > 0){?>
+	<?php if($count_radios > 0){?>
 		
 		$(function () {
 			  $('#link-status1').show();
@@ -76,7 +83,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Gauge_1'
+		            text: 'Radio 1'
 		        },
 		        
 		        pane: {
@@ -137,16 +144,16 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            // },
 		            plotBands: [{
 		                from: 0,
-		                to: 610,
+		                to: <?=$aParametros[0]['rms_semi_ropping']?>,
 		                color: '#55BF3B' // green
 		            }, 
-		            // {
-		            //     from: <?php echo $rms;?>,
-		            //     to: <?php echo $limite?>,
-		            //     color: '#DDDF0D' // yellow
-		            // }, 
 		            {
-		                from: 610,
+		                from: <?=$aParametros[0]['rms_semi_ropping']?>,
+		                to: <?=$aParametros[0]['rms_ropping']?>,
+		                color: '#DDDF0D' // yellow
+		            }, 
+		            {
+		                from: <?=$aParametros[0]['rms_ropping']?>,
 		                to:  1024,
 		                color: '#DF5353' // red
 		            }]        
@@ -189,7 +196,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		  });
 	<?php } ?>	
 	
-	<?php if($count_rms > 1){?>
+	<?php if($count_radios > 1){?>
 		$(function () {
 			  $('#link-status2').show();
 		      $('#gauge2').highcharts({
@@ -208,7 +215,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Gauge_2'
+		            text: 'Radio 2'
 		        },
 		        
 		        pane: {
@@ -267,18 +274,18 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            // title: {
 		            //     text: 'km/h'
 		            // },
-		            plotBands: [{
+		           plotBands: [{
 		                from: 0,
-		                to: 610,
+		                to: <?=$aParametros[1]['rms_semi_ropping']?>,
 		                color: '#55BF3B' // green
 		            }, 
-		            // {
-		            //     from: <?php echo $rms;?>,
-		            //     to: <?php echo $limite?>,
-		            //     color: '#DDDF0D' // yellow
-		            // }, 
 		            {
-		                from: 610,
+		                from: <?=$aParametros[1]['rms_semi_ropping']?>,
+		                to: <?=$aParametros[1]['rms_ropping']?>,
+		                color: '#DDDF0D' // yellow
+		            }, 
+		            {
+		                from: <?=$aParametros[1]['rms_ropping']?>,
 		                to:  1024,
 		                color: '#DF5353' // red
 		            }]        
@@ -322,7 +329,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 
 	<?php } ?>
 
-	<?php if($count_rms > 2){?>
+	<?php if($count_radios > 2){?>
 		$(function () {
 			  $('#link-status3').show();
 		      $('#gauge3').highcharts({
@@ -341,7 +348,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Gauge_3'
+		            text: 'Radio 3'
 		        },
 		        
 		        pane: {
@@ -402,16 +409,16 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            // },
 		            plotBands: [{
 		                from: 0,
-		                to: 610,
+		                to: <?=$aParametros[2]['rms_semi_ropping']?>,
 		                color: '#55BF3B' // green
 		            }, 
-		            // {
-		            //     from: <?php echo $rms;?>,
-		            //     to: <?php echo $limite?>,
-		            //     color: '#DDDF0D' // yellow
-		            // }, 
 		            {
-		                from: 610,
+		                from: <?=$aParametros[2]['rms_semi_ropping']?>,
+		                to: <?=$aParametros[2]['rms_ropping']?>,
+		                color: '#DDDF0D' // yellow
+		            }, 
+		            {
+		                from: <?=$aParametros[2]['rms_ropping']?>,
 		                to:  1024,
 		                color: '#DF5353' // red
 		            }]        
@@ -455,7 +462,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 
 	<?php } ?>
 
-	<?php if($count_rms > 3){?>
+	<?php if($count_radios > 3){?>
 		$(function () {
 			  $('#link-status4').show();	
 		      $('#gauge4').highcharts({
@@ -474,7 +481,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Gauge_4'
+		            text: 'Radio 4'
 		        },
 		        
 		        pane: {
@@ -535,16 +542,16 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            // },
 		            plotBands: [{
 		                from: 0,
-		                to: 610,
+		                to: <?=$aParametros[3]['rms_semi_ropping']?>,
 		                color: '#55BF3B' // green
 		            }, 
-		            // {
-		            //     from: <?php echo $rms;?>,
-		            //     to: <?php echo $limite?>,
-		            //     color: '#DDDF0D' // yellow
-		            // }, 
 		            {
-		                from: 610,
+		                from: <?=$aParametros[3]['rms_semi_ropping']?>,
+		                to: <?=$aParametros[3]['rms_ropping']?>,
+		                color: '#DDDF0D' // yellow
+		            }, 
+		            {
+		                from: <?=$aParametros[3]['rms_ropping']?>,
 		                to:  1024,
 		                color: '#DF5353' // red
 		            }]        
@@ -588,7 +595,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 
 	<?php } ?>
 
-	<?php if($count_rms > 4){?>
+	<?php if($count_radios > 4){?>
 		$(function () {
 			  $('#link-status5').show();
 		      $('#gauge5').highcharts({
@@ -607,7 +614,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Gauge_5'
+		            text: 'Radio 5'
 		        },
 		        
 		        pane: {
@@ -668,16 +675,16 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            // },
 		            plotBands: [{
 		                from: 0,
-		                to: 610,
+		                to: <?=$aParametros[4]['rms_semi_ropping']?>,
 		                color: '#55BF3B' // green
 		            }, 
-		            // {
-		            //     from: <?php echo $rms;?>,
-		            //     to: <?php echo $limite?>,
-		            //     color: '#DDDF0D' // yellow
-		            // }, 
 		            {
-		                from: 610,
+		                from: <?=$aParametros[4]['rms_semi_ropping']?>,
+		                to: <?=$aParametros[4]['rms_ropping']?>,
+		                color: '#DDDF0D' // yellow
+		            }, 
+		            {
+		                from: <?=$aParametros[4]['rms_ropping']?>,
 		                to:  1024,
 		                color: '#DF5353' // red
 		            }]        
@@ -722,7 +729,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 
 	<?php } ?>
 
-	<?php if($count_rms > 5){?>
+	<?php if($count_radios > 5){?>
 		$(function () {
 			  $('#link-status6').show();
 		      $('#gauge6').highcharts({
@@ -741,7 +748,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Gauge_6'
+		            text: 'Radio 6'
 		        },
 		        
 		        pane: {
@@ -802,16 +809,16 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            // },
 		            plotBands: [{
 		                from: 0,
-		                to: 610,
+		                to: <?=$aParametros[5]['rms_semi_ropping']?>,
 		                color: '#55BF3B' // green
 		            }, 
-		            // {
-		            //     from: <?php echo $rms;?>,
-		            //     to: <?php echo $limite?>,
-		            //     color: '#DDDF0D' // yellow
-		            // }, 
 		            {
-		                from: 610,
+		                from: <?=$aParametros[5]['rms_semi_ropping']?>,
+		                to: <?=$aParametros[5]['rms_ropping']?>,
+		                color: '#DDDF0D' // yellow
+		            }, 
+		            {
+		                from: <?=$aParametros[5]['rms_ropping']?>,
 		                to:  1024,
 		                color: '#DF5353' // red
 		            }]        

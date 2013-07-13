@@ -4,29 +4,46 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 // require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 require_once($aRoutes['paths']['config'].'bs_model.php');
+
+$radio_id = $_GET['radio_id'];
+if(empty($radio_id)){
+  header("Location: home.php");
+}
+
+$n_radio = $_GET['n_radio'];
+if(empty($n_radio)){
+  header("Location: home.php");
+}
+
 $oLogin = new BSLogin();
 $oLogin->IsLogged("admin","supervisor");
 $oModel = new BSModel();
-$query = "SELECT * FROM parametros order by id desc limit 1;";
+$query = "SELECT * FROM parametros where radio_id = ".$radio_id.";";
 $aParametros = $oModel->Select($query);
 
-$rms = $aParametros[0]['rms'];
-$limite = ($rms)*(1+$aParametros[0]['porcentaje_rms']/100);
+$rms = $aParametros[0]['rms_normal'];
+$semi_ropping= ($rms)*(1+$aParametros[0]['rms_max_normal_porcentaje']/100);
+$ropping = ($rms)*(1+$aParametros[0]['rms_ropping_porcentaje']/100);
 
-$radio_id = $_GET['radio_id'];
+// echo $semi_ropping;
+// echo $ropping;
+
 
 
 ?>
 
-<div class="container container-body">		
-	<h2>Status</h2>
-  <div class="alert alert-error" id="error" style="display:none">
-    Warning! Hydrocyclone 1 is roping
+<div class="container container-body contenedor">		
+	<h2>Radios <?=$n_radio?> Status</h2>
+  <div class="alert alert-success" id="normal" style="display:none">
+    Hydrocyclone <?=$n_radio?> working in normal conditions
   </div>
-  <div class="alert alert-success" id="success" style="display:none">
-    Hydrocyclone 1 working in normal conditions
+  <div class="alert alert-warning" id="semiropping" style="display:none">
+    Warning! Hydrocyclone <?=$n_radio?> is semi roping
   </div>
-  <div class="row">
+  <div class="alert alert-error" id="ropping" style="display:none">
+    Warning! Hydrocyclone <?=$n_radio?> is roping
+  </div>  
+  <div class="row status-chart">
       <h3>R.M.S</h3>
       <div class="span3">
         <div id="gauge_rms" style="width: 300px; height: 200px; margin: 0 auto"></div>
@@ -35,8 +52,8 @@ $radio_id = $_GET['radio_id'];
       <div class="span6"><div id="line_rms" class="offset1" style="width: 500px; height: 400px; margin-bottom: 100px;"></div>
       </div>
   </div>
-  <div class="row">
-      <h3>Standard Desviation</h3>
+  <div class="row status-chart">
+      <h3>Standard Deviation</h3>
       <div class="span3">
         <div id="gauge_sd" style="width: 300px; height: 200px; margin: 0 auto"></div>
         <span id="status"></span>
@@ -50,9 +67,6 @@ $radio_id = $_GET['radio_id'];
 <script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>highcharts.js"></script>
 <script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>/modules/exporting.js"></script>
 <script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>highcharts-more.js"></script>
-
-<!-- <script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script> -->
 
 
 <script type="text/javascript">
@@ -106,7 +120,7 @@ $radio_id = $_GET['radio_id'];
               },
               yAxis: {
                   title: {
-                      text: 'Value'
+                      text: 'R.M.S Value'
                   },
                   min: 350,
                   max: 850,
@@ -130,7 +144,7 @@ $radio_id = $_GET['radio_id'];
                   enabled: false
               },
               series: [{
-                  name: 'Random data',
+                  name: 'R.M.S Value',
                   data: (function() {
                       // generate an array of random data
                       var data = [],
@@ -170,7 +184,8 @@ $radio_id = $_GET['radio_id'];
             plotBackgroundColor: null,
             plotBackgroundImage: null,
             plotBorderWidth: 0,
-            plotShadow: false
+            plotShadow: false,
+            backgroundColor:'transparent'
         },
         exporting:{
           enabled: false
@@ -208,7 +223,7 @@ $radio_id = $_GET['radio_id'];
             }, {
                 // default background
             }, {
-                backgroundColor: '#DDD',
+                backgroundColor: '#f5f5f5',
                 borderWidth: 0,
                 outerRadius: '105%',
                 innerRadius: '103%'
@@ -240,16 +255,16 @@ $radio_id = $_GET['radio_id'];
             // },
             plotBands: [{
                 from: 0,
-                to: <?php echo $limite;?>,
+                to: <?php echo $semi_ropping;?>,
                 color: '#55BF3B' // green
             }, 
-            // {
-            //     from: <?php echo $rms;?>,
-            //     to: <?php echo $limite?>,
-            //     color: '#DDDF0D' // yellow
-            // }, 
             {
-                from: <?php echo $limite?>,
+                from: <?php echo $semi_ropping;?>,
+                to: <?php echo $ropping;?>,
+                color: '#DDDF0D' // yellow
+            }, 
+            {
+                from: <?php echo $ropping;?>,
                 to:  1024,
                 color: '#DF5353' // red
             }]        
@@ -279,13 +294,19 @@ $radio_id = $_GET['radio_id'];
                 
                  y_data = dataJson[i].value;                         
               }
-              if (y_data > <?php echo $limite;?>){
+              if(y_data < <?php echo $semi_ropping;?>){
+                  $('#semiropping').hide();
+                  $('#ropping').hide();
+                  $('#normal').show();
+              }else if (y_data >= <?php echo $semi_ropping;?> && y_data < <?php echo $ropping;?>){
                     // $("#status").text('splash').css("color","yellow").show();
-                    $('#error').show();
-                    $('#success').hide();
-                }else{
-                    $('#error').hide();
-                    $('#success').show();
+                    $('#semiropping').show();
+                    $('#ropping').hide();
+                    $('#normal').hide();
+                }else if(y_data >= <?php echo $ropping;?>){
+                  $('#semiropping').hide();
+                  $('#ropping').show();
+                  $('#normal').hide();
                 }  
               var point = chart.series[0].points[0],
                   newVal,
@@ -355,7 +376,7 @@ $radio_id = $_GET['radio_id'];
               },
               yAxis: {
                   title: {
-                      text: 'Value'
+                      text: 'SD Value'
                   },
                   min: 0,
                   max: 50,
@@ -379,7 +400,7 @@ $radio_id = $_GET['radio_id'];
                   enabled: false
               },
               series: [{
-                  name: 'Random data',
+                  name: 'SD Value',
                   data: (function() {
                       // generate an array of random data
                       var data = [],
@@ -419,7 +440,8 @@ $radio_id = $_GET['radio_id'];
             plotBackgroundColor: null,
             plotBackgroundImage: null,
             plotBorderWidth: 0,
-            plotShadow: false
+            plotShadow: false,
+            backgroundColor:'transparent'
         },
         exporting:{
           enabled: false

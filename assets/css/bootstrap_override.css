@@ -126,11 +126,29 @@
     background-repeat: repeat-x;
 }
 
-.logo_imatic{
+.logo_weir{
     width: 280px;
-    right: 0px;
+    height: 50px;
+    left: 30px;
+    padding-top: 5px;
     position: absolute;
 }
+
+.logo_weir img{
+    height: 50px;
+}
+
+/*.logo_imatic{
+    width: 280px;
+    height: 50px;
+    right: 30px;
+    padding-top: 5px;
+    position: absolute;
+}
+
+.logo_weir img{
+    height: 50px;
+}*/
 
 
 /* FOOTER */
@@ -557,3 +575,33 @@ input[type="text"].error{
 .data-container{
     margin-top:20px;
 }
+
+
+.status-chart{
+    padding: 20px 0 20px 20px;
+    margin-bottom: 50px;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border: 1px solid #b0b0b0;
+    background-color: #f5f5f5;
+}
+
+#normal{
+    height: 50px;
+    vertical-align: middle;
+    line-height: 50px; 
+}
+
+#semiropping{
+    height: 50px;
+    vertical-align: middle;
+    line-height: 50px; 
+}
+
+#ropping{
+    height: 50px;
+    vertical-align: middle;
+    line-height: 50px; 
+}
+

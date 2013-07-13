@@ -5,12 +5,11 @@ require_once($aRoutes['paths']['config'].'bs_model.php');
 $oLogin = new BSLogin();
 $oLogin->IsLogged("admin");
 $save = false;
-
 $form = $_POST['radio'];
 if(!empty($_POST['save'])){
 	$oParametros = new BSModel();
 	foreach ($form as $value) {
-		$query_save = "INSERT INTO parametros(rms,porcentaje_rms,desviacion_standard, porcentaje_sd, radio_id)values(".$value['rms_normal'].",".$value['rms_max_normal'].", ".$value['sd_normal'].", ".$value['sd_max_normal'].", ".$value['radio_id'].") on duplicate key update rms=".$value['rms_normal'].", porcentaje_rms=".$value['rms_max_normal'].", desviacion_standard=".$value['sd_normal'].", porcentaje_sd=".$value['sd_max_normal']." order by radios.id asc;";
+		$query_save = "INSERT INTO parametros(rms_normal,rms_max_normal_porcentaje,rms_ropping_porcentaje, sd_normal, sd_max_normal_porcentaje, sd_ropping_porcentaje,radio_id)values(".$value['rms_normal'].",".$value['rms_max_normal'].", ".$value['rms_ropping'].", ".$value['sd_normal'].", ".$value['sd_max_normal'].", ".$value['sd_ropping'].", ".$value['radio_id'].") on duplicate key update rms_normal=".$value['rms_normal'].", rms_max_normal_porcentaje=".$value['rms_max_normal'].", rms_ropping_porcentaje=".$value['rms_ropping'].", sd_normal=".$value['sd_normal'].", sd_max_normal_porcentaje=".$value['sd_max_normal'].", sd_ropping_porcentaje=".$value['sd_ropping'].";";
 		// echo $query_save;
 		$oParametros->Select($query_save);
 		$save = true;
@@ -18,8 +17,15 @@ if(!empty($_POST['save'])){
 }
 
 $oRadios = new BSModel();
-$query_radios = "select radios.id as radio_id, radios.mac as mac, parametros.rms as rms, parametros.porcentaje_rms as porcentaje_rms, parametros.desviacion_standard as desviacion_standard, parametros.porcentaje_sd as porcentaje_sd from radios left join parametros on radios.id = parametros.radio_id where radios.estado = 1;";
+$query_radios = "select radios.id as radio_id, radios.mac as mac, parametros.rms_normal as rms, 
+parametros.rms_max_normal_porcentaje as rms_max_normal,
+parametros.rms_ropping_porcentaje as rms_ropping, 
+parametros.sd_normal as sd_normal, parametros.sd_max_normal_porcentaje as sd_max_normal, 
+parametros.sd_ropping_porcentaje as sd_ropping
+from radios left join parametros on radios.id = parametros.radio_id where radios.estado = 1 order by radios.id asc;";
+// echo $query_radios;
 $aRadios = $oRadios->Select($query_radios);
+
 
 ?>
 
@@ -49,8 +55,8 @@ $aRadios = $oRadios->Select($query_radios);
 							<div class="controls controls-row">
 							    <div id="rms_calibration<?=$i?>" class="current-value" ></div>
 							    <input type="text" id="radio[<?=$i?>][rms_normal]" class="calibration first-input required" name="radio[<?=$i?>][rms_normal]" value="<?=$radio['rms']?>"/>
-							    <input type="text" class="calibration second-input required" name="radio[<?=$i?>][rms_max_normal]" value="<?=$radio['porcentaje_rms']?>" id="radio[<?=$i?>][rms_max_normal]"/>
-							    <input type="text" class="calibration third-input required" name="radio[<?=$i?>][rms_ropping]" id="radio[<?=$i?>][rms_ropping]"/>
+							    <input type="text" class="calibration second-input required" name="radio[<?=$i?>][rms_max_normal]" value="<?=$radio['rms_max_normal']?>" id="radio[<?=$i?>][rms_max_normal]"/>
+							    <input type="text" class="calibration third-input required" name="radio[<?=$i?>][rms_ropping]" id="radio[<?=$i?>][rms_ropping]" value="<?=$radio['rms_ropping']?>"/>
 							</div>    		
 				    	</div>
 
@@ -64,9 +70,9 @@ $aRadios = $oRadios->Select($query_radios);
 							</div>
 							<div class="controls controls-row">
 							    <div id="sd_calibration<?=$i?>" class="current-value" ></div>
-							    <input type="text" class="calibration first-input required" name="radio[<?=$i?>][sd_normal]" value="<?=$radio['desviacion_standard']?>" id="radio[<?=$i?>][sd_normal]"/>
-							    <input type="text" class="calibration second-input required" name="radio[<?=$i?>][sd_max_normal]" value="<?=$radio['porcentaje_sd']?>" id="radio[<?=$i?>][sd_max_normal]"/>
-							    <input type="text" class="calibration third-input required" name="radio[<?=$i?>][sd_ropping]" value="<?=$aParametros[0]['porcentaje_rms']?>" id="radio[<?=$i?>][sd_ropping]"/>
+							    <input type="text" class="calibration first-input required" name="radio[<?=$i?>][sd_normal]" value="<?=$radio['sd_normal']?>" id="radio[<?=$i?>][sd_normal]"/>
+							    <input type="text" class="calibration second-input required" name="radio[<?=$i?>][sd_max_normal]" value="<?=$radio['sd_max_normal']?>" id="radio[<?=$i?>][sd_max_normal]"/>
+							    <input type="text" class="calibration third-input required" name="radio[<?=$i?>][sd_ropping]" value="<?=$radio['sd_ropping']?>" id="radio[<?=$i?>][sd_ropping]"/>
 							</div>						   		
 				    	</div>
 					</div>	
