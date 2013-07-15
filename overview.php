@@ -29,27 +29,27 @@
 
 	<div id="gauge1" class="gauge"></div>
     <div id="link-status1" class="link-status">
-    	<a href="status.php?radio_id=<?=$aRms[0]['radio_id']?>&n_radio=1">Show status</a></div>
+    	<a href="status.php?radio_id=<?=$aRms[0]['radio_id']?>&n_radio=1">Show live status</a></div>
     </div>
 	<div id="gauge2" class="gauge"></div>
 	<div id="link-status2" class="link-status">
-    	<a href="status.php?radio_id=<?=$aRms[1]['radio_id']?>&n_radio=2">Show status</a></div>
+    	<a href="status.php?radio_id=<?=$aRms[1]['radio_id']?>&n_radio=2">Show live status</a></div>
     </div>
 	<div id="gauge3" class="gauge"></div>
 	<div id="link-status3" class="link-status">
-    	<a href="status.php?radio_id=<?=$aRms[2]['radio_id']?>&n_radio=3">Show status</a></div>
+    	<a href="status.php?radio_id=<?=$aRms[2]['radio_id']?>&n_radio=3">Show live status</a></div>
     </div>
 	<div id="gauge4" class="gauge"></div>
 	<div id="link-status4" class="link-status">
-    	<a href="status.php?radio_id=<?=$aRms[3]['radio_id']?>&n_radio=4">Show status</a></div>
+    	<a href="status.php?radio_id=<?=$aRms[3]['radio_id']?>&n_radio=4">Show live status</a></div>
     </div>
 	<div id="gauge5" class="gauge"></div>
 	<div id="link-status5" class="link-status">
-    	<a href="status.php?radio_id=<?=$aRms[4]['radio_id']?>&n_radio=5">Show status</a></div>
+    	<a href="status.php?radio_id=<?=$aRms[4]['radio_id']?>&n_radio=5">Show live status</a></div>
     </div>
 	<div id="gauge6" class="gauge"></div>
 	<div id="link-status6" class="link-status">
-    	<a href="status.php?radio_id=<?=$aRms[5]['radio_id']?>&n_radio=6">Show status</a></div>
+    	<a href="status.php?radio_id=<?=$aRms[5]['radio_id']?>&n_radio=6">Show live status</a></div>
     </div>
 </div>
 

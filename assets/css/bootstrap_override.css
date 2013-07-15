@@ -246,7 +246,7 @@ h2{
 }
 
 .link-status{
-    width: 100px;
+    width: 150px;
     height: 20px;
     position: absolute;
     /*border: solid green;*/
@@ -259,7 +259,7 @@ h2{
 
 #link-status1{
    top: 255px;
-   left: 420px; 
+   left: 400px; 
    display: none;
 }
 
@@ -271,7 +271,7 @@ h2{
 
 #link-status2{
    top: 255px;
-   right: 385px; 
+   right: 355px; 
    display: none;
 }
 
@@ -282,7 +282,7 @@ h2{
 
 #link-status3{
    top: 455px;
-   left: 335px; 
+   left: 320px; 
    display: none;
 }
 
@@ -293,7 +293,7 @@ h2{
 
 #link-status4{
    top: 455px;
-   right: 310px; 
+   right: 275px; 
    display: none;
 }
 
@@ -304,7 +304,7 @@ h2{
 
 #link-status5{
    top: 615px;
-   left: 420px; 
+   left: 405px; 
    display: none;
 }
 
@@ -315,7 +315,7 @@ h2{
 
 #link-status6{
    top: 615px;
-   right: 390px; 
+   right: 355px; 
    display: none;
 }
 
