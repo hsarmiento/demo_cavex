@@ -13,10 +13,13 @@ $oLogin->ExistAnySession();
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 		<title>Demo</title>
+		  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
 		<link rel="stylesheet" href="<? echo $aRoutes['paths']['css']?>bootstrap.css">
 		<link rel="stylesheet" href="assets/css/bootstrap_override.css" type="text/css" media="all">
 		<script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>jquery-1.9.1.js"></script>
-		<script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>jquery-ui-1.10.1.custom.min.js"></script>
+		<script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>jquery-ui-1.10.3.custom.js"></script>
+		<script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>jquery-ui-1.10.3.custom.min.js"></script>
 		<script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>bootstrap.js"></script>
 		<script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>jquery.validate.js"></script>
 	</head>
@@ -39,7 +42,13 @@ $oLogin->ExistAnySession();
 					  <li><a href="/demo_cavex/home.php">Home</a></li>
 					  <?php if($_SESSION['usertype'] == 1){?>
 						<li><a href="/demo_cavex/system_calibration.php">System calibration</a></li>
-					  	<li><a href="/demo_cavex/radios.php">Radios</a></li>
+					  	<li class="dropdown">
+						  	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Radios<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/demo_cavex/add_radio.php">Add radio</a></li>
+								<li><a href="/demo_cavex/radios.php">View radios</a></li>
+						  	</ul> 
+					  </li>
 					  <?php } ?>				  
 					  <li><a href="/demo_cavex/overview.php">Overview</a></li>
 					  <li><a href="/demo_cavex/alarmas_events.php">Alarms & events</a></li>

@@ -605,3 +605,55 @@ input[type="text"].error{
     line-height: 50px; 
 }
 
+#help{
+    position: fixed;
+    width: 30px;
+    height: 180px;
+    /*border: solid red 2px;*/
+    border-radius: 2px;
+    right: 0px;
+    text-align: center;
+    background: #1E1A95; /* Old browsers */
+
+    border: 1px solid #b0b0b0;
+    color: white;
+}
+
+#help:hover{
+    background-color: #3934CE;
+}
+
+
+
+#wrapper-help{
+    position: fixed;
+    width: 600px;
+    height: 350px;
+    /*border: red solid 2px;*/
+    right: 34px;
+    top: 180px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /*display: none;*/
+    border-radius: 4px;
+}
+
+#container-help{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    border: black solid 1px;
+    position: absolute;
+    display: none;
+    background-color: #E3E0E0;
+    /*border-radius: 10px;*/
+
+}
+
+#chart-help{
+    margin: 10px auto;
+    height: 50%;
+    width: 80%;
+    border: blue solid 2px;
+}
+

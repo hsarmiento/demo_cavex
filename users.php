@@ -23,20 +23,6 @@ if($_GET['save_user'] == 'true'){
 	  	</div>
 	<?php } ?>
 	<h2>Users Management</h2>
-<!-- 	<div class="row">
-		<div class="span5 offset4">
-			<form class="form-horizontal" id="save_user_online_form" method="post" action="users.php" enctype="multipart/form-data">
-				<div class="control-group">
-				    <label class="control-label" for="number_users"><strong>Users online</strong></label>
-				    <div class="controls">
-				      <input type="text" id="number_users" name="number_users" class="span1">
-				    </div>
-			  	</div>
-			  	<input type="submit" class="btn btn-primary save_user_online" value="Save" id="save_user_online">	
-			</form>
-		</div>
-	</div>
-</br> -->
 	<div class="row">
   		<table class="table table-hover table-bordered span9 center-table">
 			<thead>
