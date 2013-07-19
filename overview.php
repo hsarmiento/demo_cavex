@@ -21,6 +21,10 @@
 							);
 	}
 	$count_radios = count($aRms);
+	$query_limite_gauge = "SELECT * from grafico_rms order by id desc limit 1;";
+	$aLimiteGauge = $oModel->Select($query_limite_gauge);
+	$gauge_minimo = $aLimiteGauge[0]['valor_minimo'];
+	$gauge_maximo = $aLimiteGauge[0]['valor_maximo'];
 ?>
 
 <div class="container container-body contenedor">
@@ -121,8 +125,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		           
 		        // the value axis
 		        yAxis: {
-		            min: 0,
-		            max: <?php echo 1024;?>,
+		        	min: <?=$gauge_minimo?>,
+		            max: <?=$gauge_maximo?>,
+		            // min: <?=$gauge_minimo?>,
+		            // max: <?=$gauge_maximo?>,
 		            
 		            minorTickInterval: 'auto',
 		            minorTickWidth: 1,
@@ -143,7 +149,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            //     text: 'km/h'
 		            // },
 		            plotBands: [{
-		                from: 0,
+		                from: <?=$gauge_minimo?>,
 		                to: <?=$aParametros[0]['rms_semi_ropping']?>,
 		                color: '#55BF3B' // green
 		            }, 
@@ -154,7 +160,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            }, 
 		            {
 		                from: <?=$aParametros[0]['rms_ropping']?>,
-		                to:  1024,
+		                to:  <?=$gauge_maximo?>,
 		                color: '#DF5353' // red
 		            }]        
 		        },
@@ -253,8 +259,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		           
 		        // the value axis
 		        yAxis: {
-		            min: 0,
-		            max: <?php echo 1024;?>,
+		            min: <?=$gauge_minimo?>,
+		            max: <?=$gauge_maximo?>,
 		            
 		            minorTickInterval: 'auto',
 		            minorTickWidth: 1,
@@ -275,7 +281,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            //     text: 'km/h'
 		            // },
 		           plotBands: [{
-		                from: 0,
+		                from: <?=$gauge_minimo?>,
 		                to: <?=$aParametros[1]['rms_semi_ropping']?>,
 		                color: '#55BF3B' // green
 		            }, 
@@ -286,7 +292,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            }, 
 		            {
 		                from: <?=$aParametros[1]['rms_ropping']?>,
-		                to:  1024,
+		                to:  <?=$gauge_maximo?>,
 		                color: '#DF5353' // red
 		            }]        
 		        },
@@ -386,8 +392,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		           
 		        // the value axis
 		        yAxis: {
-		            min: 0,
-		            max: <?php echo 1024;?>,
+		            min: <?=$gauge_minimo?>,
+		            max: <?=$gauge_maximo?>,
 		            
 		            minorTickInterval: 'auto',
 		            minorTickWidth: 1,
@@ -408,7 +414,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            //     text: 'km/h'
 		            // },
 		            plotBands: [{
-		                from: 0,
+		                from: <?=$gauge_minimo?>,
 		                to: <?=$aParametros[2]['rms_semi_ropping']?>,
 		                color: '#55BF3B' // green
 		            }, 
@@ -419,7 +425,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            }, 
 		            {
 		                from: <?=$aParametros[2]['rms_ropping']?>,
-		                to:  1024,
+		                to:  <?=$gauge_maximo?>,
 		                color: '#DF5353' // red
 		            }]        
 		        },
@@ -519,8 +525,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		           
 		        // the value axis
 		        yAxis: {
-		            min: 0,
-		            max: <?php echo 1024;?>,
+		            min: <?=$gauge_minimo?>,
+		            max: <?=$gauge_maximo?>,
 		            
 		            minorTickInterval: 'auto',
 		            minorTickWidth: 1,
@@ -541,7 +547,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            //     text: 'km/h'
 		            // },
 		            plotBands: [{
-		                from: 0,
+		                from: <?=$gauge_minimo?>,
 		                to: <?=$aParametros[3]['rms_semi_ropping']?>,
 		                color: '#55BF3B' // green
 		            }, 
@@ -552,7 +558,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            }, 
 		            {
 		                from: <?=$aParametros[3]['rms_ropping']?>,
-		                to:  1024,
+		                to:  <?=$gauge_maximo?>,
 		                color: '#DF5353' // red
 		            }]        
 		        },
@@ -652,8 +658,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		           
 		        // the value axis
 		        yAxis: {
-		            min: 0,
-		            max: <?php echo 1024;?>,
+		            min: <?=$gauge_minimo?>,
+		            max: <?=$gauge_maximo?>,
 		            
 		            minorTickInterval: 'auto',
 		            minorTickWidth: 1,
@@ -674,7 +680,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            //     text: 'km/h'
 		            // },
 		            plotBands: [{
-		                from: 0,
+		                from: <?=$gauge_minimo?>,
 		                to: <?=$aParametros[4]['rms_semi_ropping']?>,
 		                color: '#55BF3B' // green
 		            }, 
@@ -685,7 +691,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            }, 
 		            {
 		                from: <?=$aParametros[4]['rms_ropping']?>,
-		                to:  1024,
+		                to:  <?=$gauge_maximo?>,
 		                color: '#DF5353' // red
 		            }]        
 		        },
@@ -786,8 +792,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		           
 		        // the value axis
 		        yAxis: {
-		            min: 0,
-		            max: <?php echo 1024;?>,
+		            min: <?=$gauge_minimo?>,
+		            max: <?=$gauge_maximo?>,
 		            
 		            minorTickInterval: 'auto',
 		            minorTickWidth: 1,
@@ -808,7 +814,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            //     text: 'km/h'
 		            // },
 		            plotBands: [{
-		                from: 0,
+		                from: <?=$gauge_minimo?>,
 		                to: <?=$aParametros[5]['rms_semi_ropping']?>,
 		                color: '#55BF3B' // green
 		            }, 
@@ -819,7 +825,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		            }, 
 		            {
 		                from: <?=$aParametros[5]['rms_ropping']?>,
-		                to:  1024,
+		                to:  <?=$gauge_maximo?>,
 		                color: '#DF5353' // red
 		            }]        
 		        },
