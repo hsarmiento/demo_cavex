@@ -13,8 +13,6 @@ $oLogin->ExistAnySession();
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 		<title>Demo</title>
-		  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-
 		<link rel="stylesheet" href="<? echo $aRoutes['paths']['css']?>bootstrap.css">
 		<link rel="stylesheet" href="assets/css/bootstrap_override.css" type="text/css" media="all">
 		<script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>jquery-1.9.1.js"></script>

@@ -605,6 +605,39 @@ input[type="text"].error{
     line-height: 50px; 
 }
 
+.gauge-status{
+    width: 300px; 
+    height: 200px; 
+    margin: 0 auto;
+}
+
+.line-status{
+    width: 500px; 
+    height: 400px; 
+    margin-bottom: 100px;
+}
+
+.form-chart{
+    border: #E3E0E0 solid 1px;
+    /*margin-top: 25px;*/
+    margin-top: 5px;
+    padding-left: 30px;
+    padding-top: 10px;
+}
+
+.form-chart h4{
+    padding: 5px auto;
+    margin: 5px auto;
+    text-align: left; 
+    color: #4E4E4E;
+}
+
+.save_chart_settings{
+    margin-top: 5px;
+    margin-left: 115px;
+}
+
+
 #help{
     position: fixed;
     width: 30px;

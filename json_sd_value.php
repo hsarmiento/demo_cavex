@@ -7,16 +7,16 @@ $radio_id = $_GET['radio_id'];
 
 $oModel = new BSModel();
 $query = "SELECT * FROM desviacion_standard where radio_id = ".$radio_id." order by fecha_hora limit 1;";
-$aRms = $oModel->Select($query);
+$aSD = $oModel->Select($query);
 $valor = 0;
 
-foreach ($aRms as $rms) {
-	$valor= $rms['valor'];
+foreach ($aSD as $sd) {
+	$valor= $sd['valor'];
 }
 
 $arr = array(); 
 
-$arr[] = array('value' => $valor/1);
+$arr[] = array('value' => $valor/1.0);
 
 echo json_encode($arr);
 

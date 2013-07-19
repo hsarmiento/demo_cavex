@@ -2,7 +2,6 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
-// require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 require_once($aRoutes['paths']['config'].'bs_model.php');
 
 $radio_id = $_GET['radio_id'];
@@ -15,20 +14,54 @@ if(empty($n_radio)){
   header("Location: home.php");
 }
 
+
+$form = $_POST;
+// print_r($form);
+if($form['rms_save_chart_settings'] == 'Save'){
+    $oModel = new BSModel();
+    $query_chart = "INSERT INTO grafico_rms(valor_minimo, valor_maximo)values(".$form['rms_min_chart'].", ".$form['rms_max_chart'].");";
+    $oModel->Select($query_chart);
+    header("Location: status.php?radio_id=$radio_id&n_radio=$n_radio");  
+}
+
+if($form['sd_save_chart_settings'] == 'Save'){
+  $oModel = new BSModel();
+  $query_chart = "INSERT INTO grafico_sd(valor_minimo, valor_maximo)values(".$form['sd_min_chart'].", ".$form['sd_max_chart'].");";
+  $oModel->Select($query_chart);
+  header("Location: status.php?radio_id=$radio_id&n_radio=$n_radio"); 
+}
+
 $oLogin = new BSLogin();
 $oLogin->IsLogged("admin","supervisor");
 $oModel = new BSModel();
-$query = "SELECT * FROM parametros where radio_id = ".$radio_id.";";
-$aParametros = $oModel->Select($query);
+$query_parametro = "SELECT * FROM parametros where radio_id = ".$radio_id.";";
+$aParametros = $oModel->Select($query_parametro);
+$query_grafico_rms = "SELECT * FROM grafico_rms order by id desc limit 1;";
+$aGraficoRms = $oModel->Select($query_grafico_rms);
+$query_grafico_sd = "SELECT * FROM grafico_sd order by id desc limit 1;";
+$aGraficoSD = $oModel->Select($query_grafico_sd);
+
+if(empty($aGraficoRms)){
+  $aGraficoRms= array();
+  $aGraficoRms[0]['valor_minimo'] = 0;
+  $aGraficoRms[0]['valor_maximo'] = 1023;
+}
+
+if(empty($aGraficoSD)){
+  $aGraficoSD= array();
+  $aGraficoSD[0]['valor_minimo'] = 0;
+  $aGraficoSD[0]['valor_maximo'] = 10;
+}
 
 $rms = $aParametros[0]['rms_normal'];
-$semi_ropping= ($rms)*(1+$aParametros[0]['rms_max_normal_porcentaje']/100);
-$ropping = ($rms)*(1+$aParametros[0]['rms_ropping_porcentaje']/100);
+$rms_semi_ropping= ($rms)*(1+$aParametros[0]['rms_max_normal_porcentaje']/100);
+$rms_ropping = ($rms)*(1+$aParametros[0]['rms_ropping_porcentaje']/100);
 
-// echo $semi_ropping;
-// echo $ropping;
+$sd = $aParametros[0]['sd_normal'];
+$sd_semi_ropping = ($sd)*(1+$aParametros[0]['sd_max_normal_porcentaje']/100);
+$sd_ropping = ($sd)*(1+$aParametros[0]['sd_ropping_porcentaje']/100);
 
-
+// print_r($aParametros);
 
 ?>
 
@@ -46,19 +79,50 @@ $ropping = ($rms)*(1+$aParametros[0]['rms_ropping_porcentaje']/100);
   <div class="row status-chart">
       <h3>R.M.S</h3>
       <div class="span3">
-        <div id="gauge_rms" style="width: 300px; height: 200px; margin: 0 auto"></div>
-        <span id="status"></span>
+        <div id="gauge_rms" class="gauge-status"></div>
+        <div class="span3 form-chart">
+<!--           <div class="alert alert-warning">
+            Warning! Hydrocyclone
+          </div> -->
+          <h4>RMS chart configuration</h4>
+          <form  id="rms_set_chart" method="post" name="rms_set_chart" action="status.php?radio_id=<?=$radio_id?>&n_radio=<?=$n_radio?>" enctype="multipart/form-data">
+            <div class="controls controls-row">
+              <label class="span1" for="rms_min_chart">Min chart value</label>
+              <label class="span1 offset2" for="rms_max_chart">Max chart value</label>
+            </div>
+            <div class="controls controls-row">
+              <input type="text" class="span1" name="rms_min_chart" id="rms_min_chart" value="<?=$aGraficoRms[0]['valor_minimo']?>">
+              <input type="text" class="span1 offset2" name="rms_max_chart" id="rms_max_chart" value="<?=$aGraficoRms[0]['valor_maximo']?>">
+            </div> 
+            <input type="submit" value="Save" name="rms_save_chart_settings" class="btn btn-primary save_chart_settings" id="rms_save_chart_settings">
+          </form>
+        </div> 
       </div>
-      <div class="span6"><div id="line_rms" class="offset1" style="width: 500px; height: 400px; margin-bottom: 100px;"></div>
+
+      <div class="span7"><div id="line_rms" class="offset1 line-status"></div>
       </div>
+
   </div>
   <div class="row status-chart">
       <h3>Standard Deviation</h3>
       <div class="span3">
-        <div id="gauge_sd" style="width: 300px; height: 200px; margin: 0 auto"></div>
-        <span id="status"></span>
+        <div id="gauge_sd" class="gauge-status"></div>
+          <div class="span3 form-chart">
+            <h4>SD chart configuration</h4>
+            <form  id="sd_set_chart" method="post" name="sd_set_chart" action="status.php?radio_id=<?=$radio_id?>&n_radio=<?=$n_radio?>" enctype="multipart/form-data">
+              <div class="controls controls-row">
+                <label class="span1" for="sd_min_chart">Min chart value</label>
+                <label class="span1 offset2" for="sd_max_chart">Max chart value</label>
+              </div>
+              <div class="controls controls-row">
+                <input type="text" class="span1" name="sd_min_chart" id="sd_min_chart" value="<?=$aGraficoSD[0]['valor_minimo']?>">
+                <input type="text" class="span1 offset2" name="sd_max_chart" id="sd_max_chart" value="<?=$aGraficoSD[0]['valor_maximo']?>">
+              </div> 
+              <input type="submit" value="Save" name="sd_save_chart_settings" class="btn btn-primary save_chart_settings" id="sd_save_chart_settings">
+            </form>
+        </div> 
       </div>
-      <div class="span6"><div id="line_sd" class="offset1" style="width: 500px; height: 400px; margin-bottom: 100px;"></div>
+      <div class="span7"><div class="offset1 line-status" id="line_sd"></div>
       </div>
   </div>
 </div>
@@ -122,8 +186,8 @@ $ropping = ($rms)*(1+$aParametros[0]['rms_ropping_porcentaje']/100);
                   title: {
                       text: 'R.M.S Value'
                   },
-                  min: 350,
-                  max: 850,
+                  min: <?=$aGraficoRms[0]['valor_minimo']?>,
+                  max: <?=$aGraficoRms[0]['valor_maximo']?>,
                   plotLines: [{
                       value: 0,
                       width: 1,
@@ -232,8 +296,8 @@ $ropping = ($rms)*(1+$aParametros[0]['rms_ropping_porcentaje']/100);
            
         // the value axis
         yAxis: {
-            min: 0,
-            max: <?php echo 1024;?>,
+            min: <?=$aGraficoRms[0]['valor_minimo']?>,
+            max: <?=$aGraficoRms[0]['valor_maximo']?>,
             
             minorTickInterval: 'auto',
             minorTickWidth: 1,
@@ -254,18 +318,18 @@ $ropping = ($rms)*(1+$aParametros[0]['rms_ropping_porcentaje']/100);
             //     text: 'km/h'
             // },
             plotBands: [{
-                from: 0,
-                to: <?php echo $semi_ropping;?>,
+                from: <?=$aGraficoRms[0]['valor_minimo']?>,
+                to: <?php echo $rms_semi_ropping;?>,
                 color: '#55BF3B' // green
             }, 
             {
-                from: <?php echo $semi_ropping;?>,
-                to: <?php echo $ropping;?>,
+                from: <?php echo $rms_semi_ropping;?>,
+                to: <?php echo $rms_ropping;?>,
                 color: '#DDDF0D' // yellow
             }, 
             {
-                from: <?php echo $ropping;?>,
-                to:  1024,
+                from: <?php echo $rms_ropping;?>,
+                to:  <?=$aGraficoRms[0]['valor_maximo']?>,
                 color: '#DF5353' // red
             }]        
         },
@@ -294,16 +358,16 @@ $ropping = ($rms)*(1+$aParametros[0]['rms_ropping_porcentaje']/100);
                 
                  y_data = dataJson[i].value;                         
               }
-              if(y_data < <?php echo $semi_ropping;?>){
+              if(y_data < <?php echo $rms_semi_ropping;?>){
                   $('#semiropping').hide();
                   $('#ropping').hide();
                   $('#normal').show();
-              }else if (y_data >= <?php echo $semi_ropping;?> && y_data < <?php echo $ropping;?>){
+              }else if (y_data >= <?php echo $rms_semi_ropping;?> && y_data < <?php echo $rms_ropping;?>){
                     // $("#status").text('splash').css("color","yellow").show();
                     $('#semiropping').show();
                     $('#ropping').hide();
                     $('#normal').hide();
-                }else if(y_data >= <?php echo $ropping;?>){
+                }else if(y_data >= <?php echo $rms_ropping;?>){
                   $('#semiropping').hide();
                   $('#ropping').show();
                   $('#normal').hide();
@@ -378,8 +442,8 @@ $ropping = ($rms)*(1+$aParametros[0]['rms_ropping_porcentaje']/100);
                   title: {
                       text: 'SD Value'
                   },
-                  min: 0,
-                  max: 50,
+                  min: <?=$aGraficoSD[0]['valor_minimo']?>,
+                  max: <?=$aGraficoSD[0]['valor_maximo']?>,
                   plotLines: [{
                       value: 0,
                       width: 1,
@@ -488,8 +552,8 @@ $ropping = ($rms)*(1+$aParametros[0]['rms_ropping_porcentaje']/100);
            
         // the value axis
         yAxis: {
-            min: 0,
-            max: 50,
+            min: <?=$aGraficoSD[0]['valor_minimo']?>,
+            max: <?=$aGraficoSD[0]['valor_maximo']?>,
             
             minorTickInterval: 'auto',
             minorTickWidth: 1,
@@ -509,19 +573,19 @@ $ropping = ($rms)*(1+$aParametros[0]['rms_ropping_porcentaje']/100);
             // title: {
             //     text: 'km/h'
             // },
-            plotBands: [{
-                from: 0,
-                to: 10,
+             plotBands: [{
+                from: <?=$aGraficoSD[0]['valor_minimo']?>,
+                to: <?php echo $sd_semi_ropping;?>,
                 color: '#55BF3B' // green
             }, 
-            // {
-            //     from: 500,
-            //     to: 550,
-            //     color: '#DDDF0D' // yellow
-            // }, 
             {
-                from: 10,
-                to:  50,
+                from: <?php echo $sd_semi_ropping;?>,
+                to: <?php echo $sd_ropping;?>,
+                color: '#DDDF0D' // yellow
+            }, 
+            {
+                from: <?php echo $sd_ropping;?>,
+                to:  <?=$aGraficoSD[0]['valor_maximo']?>,
                 color: '#DF5353' // red
             }]        
         },
@@ -546,9 +610,9 @@ $ropping = ($rms)*(1+$aParametros[0]['rms_ropping_porcentaje']/100);
               }).responseText;
 
               var dataJson = eval(json);
-              for (var i in dataJson){
-                
+              for (var i in dataJson){             
                  y_data = dataJson[i].value;  
+                 console.log(y_data);
                                       
               } 
 
@@ -556,8 +620,7 @@ $ropping = ($rms)*(1+$aParametros[0]['rms_ropping_porcentaje']/100);
                   newVal,
                   inc = y_data;
               
-              newVal = inc;
-              
+              newVal = inc;           
               point.update(newVal);
               
           }, 1000);
