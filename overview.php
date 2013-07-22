@@ -32,10 +32,12 @@
 	<div class="hidrociclon"><img height="400" width="400" src="assets/img/Overview_2.png"></div>
 
 	<div id="gauge1" class="gauge"></div>
+	<div id="msg1" class="overview-msg calibrate">Calibrando</div>
     <div id="link-status1" class="link-status">
     	<a href="status.php?radio_id=<?=$aRms[0]['radio_id']?>&n_radio=1">Show live status</a></div>
     </div>
 	<div id="gauge2" class="gauge"></div>
+	<div id="msg2" class="overview-msg calibrate">Calibrando</div>
 	<div id="link-status2" class="link-status">
     	<a href="status.php?radio_id=<?=$aRms[1]['radio_id']?>&n_radio=2">Show live status</a></div>
     </div>
@@ -188,6 +190,26 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		                
 		                 y_data = dataJson[i].value;                         
 		              }
+		              if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
+		              	if($("#msg1").attr('class') == 'overview-msg calibrate'  || $("#msg1").attr('class') == 'overview-msg alert-warning' || $("#msg1").attr('class') == 'overview-msg alert-error'){
+	              			$("#msg1").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
+	              			$('#msg1').fadeOut(100);
+              				$('#msg1').text("Ideal").fadeIn(1000);
+              			}
+		              }else if(y_data > <?=$aParametros[0]['rms_semi_ropping']?> && y_data < <?=$aParametros[0]['rms_ropping']?>){
+	              		if($("#msg1").attr('class') == 'overview-msg calibrate'  || $("#msg1").attr('class') == 'overview-msg alert-error' || $("#msg1").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg1").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").addClass("alert-warning");	
+	              			$('#msg1').fadeOut(100);
+              				$('#msg1').text("Semiropping").fadeIn(1000);
+              			}     		
+		              }else if(y_data > <?=$aParametros[0]['rms_ropping']?>){
+	              		if($("#msg1").attr('class') == 'overview-msg calibrate'  || $("#msg1").attr('class') == 'overview-msg alert-warning' || $("#msg1").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg1").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-error");	
+	              			$('#msg1').fadeOut(100);
+              				$('#msg1').text("Ropping").fadeIn(1000);
+              			}
+		              }
+
 		              var point = chart.series[0].points[0],
 		                  newVal,
 		                  inc = y_data;
@@ -324,7 +346,25 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		              var point = chart.series[0].points[0],
 		                  newVal,
 		                  inc = y_data;
-		              
+		              if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
+		              	if($("#msg2").attr('class') == 'overview-msg calibrate'  || $("#msg2").attr('class') == 'overview-msg alert-warning' || $("#msg2").attr('class') == 'overview-msg alert-error'){
+	              			$("#msg2").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
+	              			$('#msg2').fadeOut(100);
+              				$('#msg2').text("Ideal").fadeIn(1000);
+              			}
+		              }else if(y_data > <?=$aParametros[0]['rms_semi_ropping']?> && y_data < <?=$aParametros[0]['rms_ropping']?>){
+	              		if($("#msg2").attr('class') == 'overview-msg calibrate'  || $("#msg2").attr('class') == 'overview-msg alert-error' || $("#msg2").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg2").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").addClass("alert-warning");	
+	              			$('#msg2').fadeOut(100);
+              				$('#msg2').text("Semiropping").fadeIn(1000);
+              			}     		
+		              }else if(y_data > <?=$aParametros[0]['rms_ropping']?>){
+	              		if($("#msg2").attr('class') == 'overview-msg calibrate'  || $("#msg2").attr('class') == 'overview-msg alert-warning' || $("#msg2").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg2").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-error");	
+	              			$('#msg2').fadeOut(100);
+              				$('#msg2').text("Ropping").fadeIn(1000);
+              			}
+		              }
 		              newVal = inc;	              
 		              point.update(newVal);
 		              

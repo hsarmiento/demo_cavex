@@ -180,14 +180,66 @@ $sd_ropping = ($sd)*(1+$aParametros[0]['sd_ropping_porcentaje']/100);
               },
               xAxis: {
                   type: 'datetime',
-                  tickPixelInterval: 150
+                  tickPixelInterval: 150,
+                  
               },
               yAxis: {
+                gridLineWidth: 0,
+                // minorGridLineWidth: 1,
                   title: {
                       text: 'R.M.S Value'
                   },
                   min: <?=$aGraficoRms[0]['valor_minimo']?>,
                   max: <?=$aGraficoRms[0]['valor_maximo']?>,
+                  plotBands: [{ // Light air
+                    from: <?php echo $rms_semi_ropping;?>,
+                    to: <?php echo $rms_semi_ropping+0.07;?>,
+                    color: '#FFFFFF',
+                    label: {
+                        // text: 'Ideal',
+                        align: 'left',
+                        // y: <?php echo $rms_semi_ropping;?>,
+                        rotation: -90,
+                        verticalAlign: 'bottom',
+                        style: {
+                            color: '#606060'
+                        },
+                      }
+                    }
+                  ,{
+                    gridLineWidth: 0,  
+                    from: <?php echo $rms_semi_ropping+0.15;?>,
+                    to: <?php echo $rms_semi_ropping+0.22?>,
+                    color: '#FFF300',
+                    label: {
+                        // text: 'Semiropping',
+                        align: 'left',
+                        verticalAlign: 'middle',
+                        // y: -<?php echo $rms_semi_ropping;?>,
+                        rotation: -90,
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                  }
+                  ,{
+                    gridLineWidth: 0,  
+                    from: <?php echo $rms_ropping;?>,
+                    to: <?php echo $rms_ropping+0.03;?>,
+                    color: '#E13100',
+                    label: {
+                        // text: 'Ropping',
+                        align: 'left',
+                        verticalAlign: 'top',
+                        // y: -40,
+                        rotation: -90,
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                  }
+                ]
+                ,
                   plotLines: [{
                       value: 0,
                       width: 1,

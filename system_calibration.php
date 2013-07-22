@@ -113,15 +113,20 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 
 <script type="text/javascript">
 		$('#help').click(function(){
+
 			console.log($("#help").attr('class'));
 			if($("#help").attr('class') == 'help'){
+				$('#wrapper-help').show();
+				$("#container-help").toggle("slide", {direction: "right"}, 500);	
 				$(this).removeClass("help").addClass("close-container");
 				$(this).html("<br /> <br /><strong> C <br />L <br />O <br />S <br />E </strong>");
 			}else if($("#help").attr('class') == 'close-container'){
 				$(this).removeClass("close-container").addClass("help");
 				$(this).html("<br /> <br /> <strong>H <br />E <br />L <br />P </strong>");
+				$("#container-help").toggle("slide", {direction: "right"}, 100);	
+				$('#wrapper-help').hide();
 			}
-			$("#container-help").toggle("slide", {direction: "right"}, 500);		
+				
 		});
 
 	    $('#set_parametros_form').validate({
