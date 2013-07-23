@@ -3,6 +3,17 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 	require_once($aRoutes['paths']['config'].'bs_model.php');
 	$oModel = new BSModel();
+
+	$form = $_POST;
+	if($form['rms_save_chart_settings'] == 'Save'){
+	    $oModel = new BSModel();
+	    $query_chart = "INSERT INTO grafico_rms(valor_minimo, valor_maximo)values(".$form['rms_min_chart'].", ".$form['rms_max_chart'].");";
+	    $oModel->Select($query_chart);
+	    header("Location: overview.php?");  
+	}
+
+	$query_form_gauge = "SELECT * from grafico_rms order by id desc limit 1;";
+	$aFormGauge = $oModel->Select($query_form_gauge);
 	$query_radios = "SELECT id from radios where estado = 1 order by id asc;";
 	$aRadios = $oModel->Select($query_radios);
 	$aRms = array();
@@ -61,6 +72,30 @@
 	<div id="link-status6" class="link-status">
     	<a href="status.php?radio_id=<?=$aRms[5]['radio_id']?>&n_radio=6">Show live status</a></div>
     </div>
+    <div id="help-overview" class="help">
+		<br /> <br /> 
+		<strong>
+			S<br /> C<br />A<br />L<br />E
+		</strong>	    
+	</div>
+	<div id="wrapper-help-overview">
+		<div id="container-help-overview">
+			<div class="span3 form-chart">
+	            <h4>Gauge configuration</h4>
+	            <form  id="rms_set_chart" method="post" name="rms_set_chart" action="overview.php" enctype="multipart/form-data">
+	              <div class="controls controls-row">
+	                <label class="span1" for="rms_min_chart">Min value</label>
+	                <label class="span1 offset2" for="rms_max_chart">Max value</label>
+	              </div>
+	              <div class="controls controls-row">
+	                <input type="text" class="span1" name="rms_min_chart" id="rms_min_chart" value="<?=$aFormGauge[0]['valor_minimo']?>">
+	                <input type="text" class="span1 offset2" name="rms_max_chart" id="rms_max_chart" value="<?=$aFormGauge[0]['valor_maximo']?>">
+	              </div> 
+	              <input type="submit" value="Save" name="rms_save_chart_settings" class="btn btn-primary save_chart_settings" id="rms_save_gauge_settings">
+	            </form>
+          	</div> 
+		</div>	
+	</div>
 </div>
 
 <?php 
@@ -73,6 +108,19 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 <script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>highcharts-more.js"></script>
 
 <script type="text/javascript">
+	$('#help-overview').click(function(){
+		if($("#help-overview").attr('class') == 'help'){
+			$('#wrapper-help-overview').show();
+			$("#container-help-overview").toggle("slide", {direction: "right"}, 500);	
+			$(this).removeClass("help").addClass("close-container");
+			$(this).html("<br /> <br /><strong> C <br />L <br />O <br />S <br />E </strong>");
+		}else if($("#help-overview").attr('class') == 'close-container'){
+			$(this).removeClass("close-container").addClass("help");
+			$(this).html("<br /> <br /> <strong>S <br />C <br />A<br />L<br />E </strong>");
+			$("#container-help-overview").toggle("slide", {direction: "right"}, 100);	
+			$('#wrapper-help-overview').fadeOut("fast");
+		}			
+		});
 	<?php if($count_radios > 0){?>
 		
 		$(function () {

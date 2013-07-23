@@ -120,8 +120,8 @@ $sd_ropping = ($sd)*(1+$aParametros[0]['sd_ropping_porcentaje']/100);
               </div> 
               <input type="submit" value="Save" name="sd_save_chart_settings" class="btn btn-primary save_chart_settings" id="sd_save_chart_settings">
             </form>
-        </div> 
-      </div>
+          </div> 
+        </div>
       <div class="span7"><div class="offset1 line-status" id="line_sd"></div>
       </div>
   </div>

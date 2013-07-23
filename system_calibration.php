@@ -87,22 +87,16 @@ $aRadios = $oRadios->Select($query_radios);
 		<br /> <br />
 		<strong>
 			H <br />E <br />L <br />P	
-		</strong>
-		    
+		</strong>	    
 	</div>
 	<div id="wrapper-help">
 		<div id="container-help">
-				<div id="chart-help"></div>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus elit ligula, faucibus quis nisl vitae, porttitor aliquet odio. Fusce fringilla orci sapien, et mollis dolor dictum sit amet. Ut magna massa, mattis quis lectus in, elementum volutpat nulla. Aliquam tempor aliquam sem, id ultricies dui auctor quis. Etiam rhoncus risus imperdiet leo tincidunt, vitae consectetur lectus eleifend. Nunc ut sollicitudin felis, id cursus risus. Vestibulum fringilla arcu molestie tempor sodales. Integer vehicula metus ut erat sodales, sit amet egestas odio auc
-
-
-
-				</p>
+			<div id="chart-help"></div>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus elit ligula, faucibus quis nisl vitae, porttitor aliquet odio. Fusce fringilla orci sapien, et mollis dolor dictum sit amet. Ut magna massa, mattis quis lectus in, elementum volutpat nulla. Aliquam tempor aliquam sem, id ultricies dui auctor quis. Etiam rhoncus risus imperdiet leo tincidunt, vitae consectetur lectus eleifend. Nunc ut sollicitudin felis, id cursus risus. Vestibulum fringilla arcu molestie tempor sodales. Integer vehicula metus ut erat sodales, sit amet egestas odio auc
+			</p>
 		</div>	
 	</div>
-	
-
 </div>
 
 
@@ -113,8 +107,6 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 
 <script type="text/javascript">
 		$('#help').click(function(){
-
-			console.log($("#help").attr('class'));
 			if($("#help").attr('class') == 'help'){
 				$('#wrapper-help').show();
 				$("#container-help").toggle("slide", {direction: "right"}, 500);	
@@ -124,9 +116,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 				$(this).removeClass("close-container").addClass("help");
 				$(this).html("<br /> <br /> <strong>H <br />E <br />L <br />P </strong>");
 				$("#container-help").toggle("slide", {direction: "right"}, 100);	
-				$('#wrapper-help').hide();
-			}
-				
+				$('#wrapper-help').fadeOut("fast");
+			}				
 		});
 
 	    $('#set_parametros_form').validate({
