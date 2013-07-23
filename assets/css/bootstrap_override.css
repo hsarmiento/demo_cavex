@@ -547,11 +547,12 @@ hr{
 
 .form-div-radio{
     margin-left: 50px;
+    padding-left: 50px;
 }
 
 #save-radio{
     margin-top:20px;
-    margin-left: 250px;
+    margin-left: 200px;
 }
 
 .add-radio-text{
