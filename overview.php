@@ -42,18 +42,22 @@
     	<a href="status.php?radio_id=<?=$aRms[1]['radio_id']?>&n_radio=2">Show live status</a></div>
     </div>
 	<div id="gauge3" class="gauge"></div>
+	<div id="msg3" class="overview-msg calibrate">Calibrando</div>
 	<div id="link-status3" class="link-status">
     	<a href="status.php?radio_id=<?=$aRms[2]['radio_id']?>&n_radio=3">Show live status</a></div>
     </div>
 	<div id="gauge4" class="gauge"></div>
+	<div id="msg4" class="overview-msg calibrate">Calibrando</div>
 	<div id="link-status4" class="link-status">
     	<a href="status.php?radio_id=<?=$aRms[3]['radio_id']?>&n_radio=4">Show live status</a></div>
     </div>
 	<div id="gauge5" class="gauge"></div>
+	<div id="msg5" class="overview-msg calibrate">Calibrando</div>
 	<div id="link-status5" class="link-status">
     	<a href="status.php?radio_id=<?=$aRms[4]['radio_id']?>&n_radio=5">Show live status</a></div>
     </div>
 	<div id="gauge6" class="gauge"></div>
+	<div id="msg6" class="overview-msg calibrate">Calibrando</div>
 	<div id="link-status6" class="link-status">
     	<a href="status.php?radio_id=<?=$aRms[5]['radio_id']?>&n_radio=6">Show live status</a></div>
     </div>
@@ -493,6 +497,27 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		                
 		                 y_data = dataJson[i].value;                         
 		              }
+
+	              	if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
+		              	if($("#msg3").attr('class') == 'overview-msg calibrate'  || $("#msg3").attr('class') == 'overview-msg alert-warning' || $("#msg3").attr('class') == 'overview-msg alert-error'){
+	              			$("#msg3").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
+	              			$('#msg3').fadeOut(100);
+              				$('#msg3').text("Ideal").fadeIn(1000);
+              			}
+		              }else if(y_data > <?=$aParametros[0]['rms_semi_ropping']?> && y_data < <?=$aParametros[0]['rms_ropping']?>){
+	              		if($("#msg3").attr('class') == 'overview-msg calibrate'  || $("#msg3").attr('class') == 'overview-msg alert-error' || $("#msg3").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg3").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").addClass("alert-warning");	
+	              			$('#msg3').fadeOut(100);
+              				$('#msg3').text("Semiropping").fadeIn(1000);
+              			}     		
+		              }else if(y_data > <?=$aParametros[0]['rms_ropping']?>){
+	              		if($("#msg3").attr('class') == 'overview-msg calibrate'  || $("#msg3").attr('class') == 'overview-msg alert-warning' || $("#msg3").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg3").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-error");	
+	              			$('#msg3').fadeOut(100);
+              				$('#msg3').text("Ropping").fadeIn(1000);
+              			}
+		              }
+
 		              var point = chart.series[0].points[0],
 		                  newVal,
 		                  inc = y_data;
@@ -626,6 +651,28 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		                
 		                 y_data = dataJson[i].value;                         
 		              }
+
+
+	              	if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
+		              	if($("#msg4").attr('class') == 'overview-msg calibrate'  || $("#msg4").attr('class') == 'overview-msg alert-warning' || $("#msg4").attr('class') == 'overview-msg alert-error'){
+	              			$("#msg4").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
+	              			$('#msg4').fadeOut(100);
+              				$('#msg4').text("Ideal").fadeIn(1000);
+              			}
+		              }else if(y_data > <?=$aParametros[0]['rms_semi_ropping']?> && y_data < <?=$aParametros[0]['rms_ropping']?>){
+	              		if($("#msg4").attr('class') == 'overview-msg calibrate'  || $("#msg4").attr('class') == 'overview-msg alert-error' || $("#msg4").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg4").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").addClass("alert-warning");	
+	              			$('#msg4').fadeOut(100);
+              				$('#msg4').text("Semiropping").fadeIn(1000);
+              			}     		
+		              }else if(y_data > <?=$aParametros[0]['rms_ropping']?>){
+	              		if($("#msg4").attr('class') == 'overview-msg calibrate'  || $("#msg4").attr('class') == 'overview-msg alert-warning' || $("#msg4").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg4").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-error");	
+	              			$('#msg4').fadeOut(100);
+              				$('#msg4').text("Ropping").fadeIn(1000);
+              			}
+		              }
+
 		              var point = chart.series[0].points[0],
 		                  newVal,
 		                  inc = y_data;
@@ -760,6 +807,28 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		                
 		                 y_data = dataJson[i].value;                         
 		              }
+
+
+	              	if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
+		              	if($("#msg5").attr('class') == 'overview-msg calibrate'  || $("#msg5").attr('class') == 'overview-msg alert-warning' || $("#msg5").attr('class') == 'overview-msg alert-error'){
+	              			$("#msg5").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
+	              			$('#msg5').fadeOut(100);
+              				$('#msg5').text("Ideal").fadeIn(1000);
+              			}
+		              }else if(y_data > <?=$aParametros[0]['rms_semi_ropping']?> && y_data < <?=$aParametros[0]['rms_ropping']?>){
+	              		if($("#msg5").attr('class') == 'overview-msg calibrate'  || $("#msg5").attr('class') == 'overview-msg alert-error' || $("#msg5").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg5").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").addClass("alert-warning");	
+	              			$('#msg5').fadeOut(100);
+              				$('#msg5').text("Semiropping").fadeIn(1000);
+              			}     		
+		              }else if(y_data > <?=$aParametros[0]['rms_ropping']?>){
+	              		if($("#msg5").attr('class') == 'overview-msg calibrate'  || $("#msg5").attr('class') == 'overview-msg alert-warning' || $("#msg5").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg5").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-error");	
+	              			$('#msg5').fadeOut(100);
+              				$('#msg5').text("Ropping").fadeIn(1000);
+              			}
+		              }
+
 		              var point = chart.series[0].points[0],
 		                  newVal,
 		                  inc = y_data;
@@ -893,6 +962,27 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		                
 		                 y_data = dataJson[i].value;                         
 		              }
+
+	              	if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
+		              	if($("#msg6").attr('class') == 'overview-msg calibrate'  || $("#msg6").attr('class') == 'overview-msg alert-warning' || $("#msg6").attr('class') == 'overview-msg alert-error'){
+	              			$("#msg6").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
+	              			$('#msg6').fadeOut(100);
+              				$('#msg6').text("Ideal").fadeIn(1000);
+              			}
+		              }else if(y_data > <?=$aParametros[0]['rms_semi_ropping']?> && y_data < <?=$aParametros[0]['rms_ropping']?>){
+	              		if($("#msg6").attr('class') == 'overview-msg calibrate'  || $("#msg6").attr('class') == 'overview-msg alert-error' || $("#msg6").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg6").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").addClass("alert-warning");	
+	              			$('#msg6').fadeOut(100);
+              				$('#msg6').text("Semiropping").fadeIn(1000);
+              			}     		
+		              }else if(y_data > <?=$aParametros[0]['rms_ropping']?>){
+	              		if($("#msg6").attr('class') == 'overview-msg calibrate'  || $("#msg6").attr('class') == 'overview-msg alert-warning' || $("#msg6").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg6").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-error");	
+	              			$('#msg6').fadeOut(100);
+              				$('#msg6').text("Ropping").fadeIn(1000);
+              			}
+		              }
+
 		              var point = chart.series[0].points[0],
 		                  newVal,
 		                  inc = y_data;

@@ -284,6 +284,7 @@ h2{
 #msg1{
     top:180px;
     left: 300px;
+    display: none;
 }
 
 
@@ -301,9 +302,8 @@ h2{
 #msg2{
     top:180px;
     right: 300px;
+    display: none;
 }
-
-
 
 #gauge3{
     top: 320px;
@@ -314,6 +314,12 @@ h2{
    top: 455px;
    left: 320px; 
    display: none;
+}
+
+#msg3{
+    top:390px;
+    left : 220px;
+    display: none;
 }
 
 #gauge4{
@@ -327,6 +333,12 @@ h2{
    display: none;
 }
 
+#msg4{
+    top:390px;
+    right : 220px;
+    display: none;
+}
+
 #gauge5{
     top: 480px;
     left: 380px;
@@ -338,6 +350,12 @@ h2{
    display: none;
 }
 
+#msg5{
+    top:550px;
+    left: 300px;
+    display: none;
+}
+
 #gauge6{   
     top: 480px;
     right: 380px;
@@ -347,6 +365,12 @@ h2{
    top: 615px;
    right: 355px; 
    display: none;
+}
+
+#msg6{
+    top:550px;
+    right: 300px;
+    display: none;
 }
 
 
