@@ -6,7 +6,7 @@ require_once($aRoutes['paths']['config'].'bs_model.php');
 $radio_id = $_GET['radio_id'];
 
 $oModel = new BSModel();
-$query = "SELECT * FROM desviacion_standard where radio_id = ".$radio_id." order by fecha_hora limit 1;";
+$query = "SELECT * FROM desviacion_standard where radio_id = ".$radio_id." order by fecha_hora desc limit 1;";
 $aSD = $oModel->Select($query);
 $valor = 0;
 
