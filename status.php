@@ -14,9 +14,7 @@ if(empty($n_radio)){
   header("Location: home.php");
 }
 
-
 $form = $_POST;
-// print_r($form);
 if($form['rms_save_chart_settings'] == 'Save'){
     $oModel = new BSModel();
     $query_chart = "INSERT INTO grafico_rms(valor_minimo, valor_maximo)values(".$form['rms_min_chart'].", ".$form['rms_max_chart'].");";
@@ -61,17 +59,15 @@ $sd = $aParametros[0]['sd_normal'];
 $sd_semi_ropping = ($sd)*(1+$aParametros[0]['sd_max_normal_porcentaje']/100);
 $sd_ropping = ($sd)*(1+$aParametros[0]['sd_ropping_porcentaje']/100);
 
-// print_r($aParametros);
-
 ?>
 
 <div class="container container-body contenedor">		
-	<h2>Radios <?=$n_radio?> Status</h2>
+	<h2>Hydrocyclone <?=$n_radio?> Status</h2>
   <div class="alert alert-success" id="normal" style="display:none">
-    Hydrocyclone <?=$n_radio?> working in normal conditions
+    Hydrocyclon <?=$n_radio?> working in normal conditions
   </div>
   <div class="alert alert-warning" id="semiropping" style="display:none">
-    Warning! Hydrocyclone <?=$n_radio?> is semi roping
+    Warning! Hydrocyclon <?=$n_radio?> is semi roping
   </div>
   <div class="alert alert-error" id="ropping" style="display:none">
     Warning! Hydrocyclone <?=$n_radio?> is roping
@@ -225,7 +221,7 @@ $sd_ropping = ($sd)*(1+$aParametros[0]['sd_ropping_porcentaje']/100);
                   ,{
                     gridLineWidth: 0,  
                     from: <?php echo $rms_ropping;?>,
-                    to: <?php echo $rms_ropping+0.03;?>,
+                    to: <?php echo $rms_ropping+0.05;?>,
                     color: '#E13100',
                     label: {
                         // text: 'Ropping',

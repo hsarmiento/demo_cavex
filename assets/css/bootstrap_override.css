@@ -645,19 +645,28 @@ input[type="text"].error{
 #normal{
     height: 50px;
     vertical-align: middle;
-    line-height: 50px; 
+    line-height: 50px;
+    font-size: 18px;
+    text-align: center; 
+    margin-bottom: 10px !important;
 }
 
 #semiropping{
     height: 50px;
     vertical-align: middle;
     line-height: 50px; 
+    font-size: 18px;
+    text-align: center; 
+    margin-bottom: 10px !important;
 }
 
 #ropping{
     height: 50px;
     vertical-align: middle;
     line-height: 50px; 
+    font-size: 18px;
+    text-align: center; 
+    margin-bottom: 10px !important;
 }
 
 .gauge-status{

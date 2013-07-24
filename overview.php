@@ -12,8 +12,9 @@
 	    header("Location: overview.php?");  
 	}
 
-	$query_form_gauge = "SELECT * from grafico_rms order by id desc limit 1;";
-	$aFormGauge = $oModel->Select($query_form_gauge);
+	// $query_form_gauge = "SELECT * from grafico_rms order by id desc limit 1;";
+	// $aFormGauge = $oModel->Select($query_form_gauge);
+	
 	$query_radios = "SELECT id from radios where estado = 1 order by id asc;";
 	$aRadios = $oModel->Select($query_radios);
 	$aRms = array();
@@ -34,8 +35,15 @@
 	$count_radios = count($aRms);
 	$query_limite_gauge = "SELECT * from grafico_rms order by id desc limit 1;";
 	$aLimiteGauge = $oModel->Select($query_limite_gauge);
+	if(empty($aLimiteGauge)){
+	  $aLimiteGauge= array();
+	  $aLimiteGauge[0]['valor_minimo'] = 0;
+	  $aLimiteGauge[0]['valor_maximo'] = 1023;
+	}
 	$gauge_minimo = $aLimiteGauge[0]['valor_minimo'];
 	$gauge_maximo = $aLimiteGauge[0]['valor_maximo'];
+
+	print_r($aFormGauge);
 ?>
 
 <div class="container container-body contenedor">
@@ -141,12 +149,12 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Radio 1'
+		            text: 'Hydrocyclone 1'
 		        },
 		        
 		        pane: {
-		            startAngle: -150,
-		            endAngle: 150,
+		            startAngle: -120,
+		            endAngle: 120,
 		            background: [{
 		                backgroundColor: {
 		                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
@@ -295,12 +303,12 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Radio 2'
+		            text: 'Hydrocyclone 2'
 		        },
 		        
 		        pane: {
-		            startAngle: -150,
-		            endAngle: 150,
+		            startAngle: -120,
+		            endAngle: 120,
 		            background: [{
 		                backgroundColor: {
 		                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
@@ -446,12 +454,12 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Radio 3'
+		            text: 'Hydrocyclone 3'
 		        },
 		        
 		        pane: {
-		            startAngle: -150,
-		            endAngle: 150,
+		            startAngle: -120,
+		            endAngle: 120,
 		            background: [{
 		                backgroundColor: {
 		                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
@@ -600,12 +608,12 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Radio 4'
+		            text: 'Hydrocyclone 4'
 		        },
 		        
 		        pane: {
-		            startAngle: -150,
-		            endAngle: 150,
+		            startAngle: -120,
+		            endAngle: 120,
 		            background: [{
 		                backgroundColor: {
 		                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
@@ -755,12 +763,12 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Radio 5'
+		            text: 'Hydrocyclone 5'
 		        },
 		        
 		        pane: {
-		            startAngle: -150,
-		            endAngle: 150,
+		            startAngle: -120,
+		            endAngle: 120,
 		            background: [{
 		                backgroundColor: {
 		                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
@@ -911,12 +919,12 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Radio 6'
+		            text: 'Hydrocyclone 6'
 		        },
 		        
 		        pane: {
-		            startAngle: -150,
-		            endAngle: 150,
+		            startAngle: -120,
+		            endAngle: 120,
 		            background: [{
 		                backgroundColor: {
 		                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
