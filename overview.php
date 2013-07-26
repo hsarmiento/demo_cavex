@@ -43,7 +43,6 @@
 	$gauge_minimo = $aLimiteGauge[0]['valor_minimo'];
 	$gauge_maximo = $aLimiteGauge[0]['valor_maximo'];
 
-	print_r($aFormGauge);
 ?>
 
 <div class="container container-body contenedor">
@@ -250,7 +249,14 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		                
 		                 y_data = dataJson[i].value;                         
 		              }
-		              if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
+
+		              if(y_data == -1){
+	              		if($("#msg1").attr('class') == 'overview-msg calibrate'  || $("#msg1").attr('class') == 'overview-msg alert-warning' || $("#msg1").attr('class') == 'overview-msg alert-error' || $("#msg1").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg1").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-disconnected");	
+	              			$('#msg1').fadeOut(100);
+              				$('#msg1').text("DESCONECTADO").fadeIn(1000);
+              			}	
+		              }else if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
 		              	if($("#msg1").attr('class') == 'overview-msg calibrate'  || $("#msg1").attr('class') == 'overview-msg alert-warning' || $("#msg1").attr('class') == 'overview-msg alert-error'){
 	              			$("#msg1").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
 	              			$('#msg1').fadeOut(100);
@@ -406,7 +412,13 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		              var point = chart.series[0].points[0],
 		                  newVal,
 		                  inc = y_data;
-		              if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
+		              if(y_data == -1){
+	              		if($("#msg2").attr('class') == 'overview-msg calibrate'  || $("#msg2").attr('class') == 'overview-msg alert-warning' || $("#msg2").attr('class') == 'overview-msg alert-error' || $("#msg2").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg2").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-disconnected");	
+	              			$('#msg2').fadeOut(100);
+              				$('#msg2').text("DESCONECTADO").fadeIn(1000);
+              			}	
+		              }else if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
 		              	if($("#msg2").attr('class') == 'overview-msg calibrate'  || $("#msg2").attr('class') == 'overview-msg alert-warning' || $("#msg2").attr('class') == 'overview-msg alert-error'){
 	              			$("#msg2").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
 	              			$('#msg2').fadeOut(100);
@@ -554,7 +566,13 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		                 y_data = dataJson[i].value;                         
 		              }
 
-	              	if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
+	              	if(y_data == -1){
+	              		if($("#msg3").attr('class') == 'overview-msg calibrate'  || $("#msg3").attr('class') == 'overview-msg alert-warning' || $("#msg3").attr('class') == 'overview-msg alert-error' || $("#msg3").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg3").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-disconnected");	
+	              			$('#msg3').fadeOut(100);
+              				$('#msg3').text("DESCONECTADO").fadeIn(1000);
+              			}	
+		              }else if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
 		              	if($("#msg3").attr('class') == 'overview-msg calibrate'  || $("#msg3").attr('class') == 'overview-msg alert-warning' || $("#msg3").attr('class') == 'overview-msg alert-error'){
 	              			$("#msg3").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
 	              			$('#msg3').fadeOut(100);
@@ -709,7 +727,13 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		              }
 
 
-	              	if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
+	              	if(y_data == -1){
+	              		if($("#msg4").attr('class') == 'overview-msg calibrate'  || $("#msg4").attr('class') == 'overview-msg alert-warning' || $("#msg4").attr('class') == 'overview-msg alert-error' || $("#msg4").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg4").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-disconnected");	
+	              			$('#msg4').fadeOut(100);
+              				$('#msg4').text("DESCONECTADO").fadeIn(1000);
+              			}	
+		              }else if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
 		              	if($("#msg4").attr('class') == 'overview-msg calibrate'  || $("#msg4").attr('class') == 'overview-msg alert-warning' || $("#msg4").attr('class') == 'overview-msg alert-error'){
 	              			$("#msg4").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
 	              			$('#msg4').fadeOut(100);
@@ -865,7 +889,13 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		              }
 
 
-	              	if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
+	              	if(y_data == -1){
+	              		if($("#msg5").attr('class') == 'overview-msg calibrate'  || $("#msg5").attr('class') == 'overview-msg alert-warning' || $("#msg5").attr('class') == 'overview-msg alert-error' || $("#msg5").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg5").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-disconnected");	
+	              			$('#msg5').fadeOut(100);
+              				$('#msg5').text("DESCONECTADO").fadeIn(1000);
+              			}	
+		              }else if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
 		              	if($("#msg5").attr('class') == 'overview-msg calibrate'  || $("#msg5").attr('class') == 'overview-msg alert-warning' || $("#msg5").attr('class') == 'overview-msg alert-error'){
 	              			$("#msg5").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
 	              			$('#msg5').fadeOut(100);
@@ -1019,7 +1049,13 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		                 y_data = dataJson[i].value;                         
 		              }
 
-	              	if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
+	              	if(y_data == -1){
+	              		if($("#msg6").attr('class') == 'overview-msg calibrate'  || $("#msg6").attr('class') == 'overview-msg alert-warning' || $("#msg6").attr('class') == 'overview-msg alert-error' || $("#msg6").attr('class') == 'overview-msg alert-success'){
+	              			$("#msg6").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-disconnected");	
+	              			$('#msg6').fadeOut(100);
+              				$('#msg6').text("DESCONECTADO").fadeIn(1000);
+              			}	
+		              }else if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
 		              	if($("#msg6").attr('class') == 'overview-msg calibrate'  || $("#msg6").attr('class') == 'overview-msg alert-warning' || $("#msg6").attr('class') == 'overview-msg alert-error'){
 	              			$("#msg6").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
 	              			$('#msg6').fadeOut(100);

@@ -4,17 +4,30 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 require_once($aRoutes['paths']['config'].'bs_model.php');
 
 $oModel = new BSModel();
-$query_rms = "SELECT valor, fecha_hora from rms where radio_id = 1 order by fecha_hora asc;";
+$query_rms = "SELECT valor, fecha_hora from rms where radio_id = 5 order by fecha_hora asc;";
 $aResult = $oModel->Select($query_rms);
+
+// print_r($aResult);
 
 $aRms = array();
 $aDatetime = array();
+$aTime = array();
 foreach ($aResult as $value) {
 	$aRms[] = $value['valor']/1;
-	$aDatetime[] = date("Y-m-d", strtotime($value['fecha_hora']));
+    $aTime[] = "[".(mktime(date("H", strtotime($value['fecha_hora'])), date("i", strtotime($value['fecha_hora'])), date("s", strtotime($value['fecha_hora'])), date("m", strtotime($value['fecha_hora'])), date("d", strtotime($value['fecha_hora'])), date("Y", strtotime($value['fecha_hora'])))*1000).",".$value['valor']."]";
+	$aDatetime[] = date("Y", strtotime($value['fecha_hora']));
 }
-echo $aDatetime[0];
-var_dump($aDatetime);
+
+// print_r($aRms);
+echo join($aTime, ",");
+
+print_r($aTime);
+// print_r($aDatetime);
+// echo mktime(0, 0, 0, 1, 22, 1985)*1000;
+
+$aData = "[Date.UTC(1970,  9, 27),0]";
+// echo $aDatetime[0];
+// var_dump($aDatetime);
 // var_dump($aRms);
 // echo join($aDatetime, ",");
 // print_r($aRms);
@@ -47,7 +60,11 @@ var_dump($aDatetime);
                 x: -20
             },
             xAxis: {
-            	type: 'datetime',
+                type: 'datetime',
+                dateTimeLabelFormats: { // don't display the dummy year
+                    month: '%e. %b',
+                    year: '%b'
+                }
             },
             yAxis: {
                 title: {
@@ -70,9 +87,13 @@ var_dump($aDatetime);
             },
             series: [{
                 name: 'Tokyo',
-                data: [<?php echo join($aRms, ",");?>],
-            	pointStart: <?php echo $aDatetime[0];?>
+                // data: [<?php echo join($aRms, ",");?>]
+                data: [<?php echo join($aTime, ",");?>]
+            	// pointStart: <?php echo $aDatetime[0];?>
+                
             }]
         });
     });
+
+    console.log(Date.UTC(1985,1,22));
 </script>
