@@ -266,6 +266,10 @@ h2{
     background-color: #FFFDC2;
 }
 
+.alert-disconnected{
+    background-color: #B3D5F5;
+}
+
 .calibrate{
     background-color: #F2F2F2;
 }

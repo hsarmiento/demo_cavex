@@ -11,9 +11,6 @@
 	    $oModel->Select($query_chart);
 	    header("Location: overview.php?");  
 	}
-
-	// $query_form_gauge = "SELECT * from grafico_rms order by id desc limit 1;";
-	// $aFormGauge = $oModel->Select($query_form_gauge);
 	
 	$query_radios = "SELECT id from radios where estado = 1 order by id asc;";
 	$aRadios = $oModel->Select($query_radios);
@@ -254,23 +251,23 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 	              		if($("#msg1").attr('class') == 'overview-msg calibrate'  || $("#msg1").attr('class') == 'overview-msg alert-warning' || $("#msg1").attr('class') == 'overview-msg alert-error' || $("#msg1").attr('class') == 'overview-msg alert-success'){
 	              			$("#msg1").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-disconnected");	
 	              			$('#msg1').fadeOut(100);
-              				$('#msg1').text("DESCONECTADO").fadeIn(1000);
+              				$('#msg1').text("Disconnected").fadeIn(1000);
               			}	
 		              }else if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
-		              	if($("#msg1").attr('class') == 'overview-msg calibrate'  || $("#msg1").attr('class') == 'overview-msg alert-warning' || $("#msg1").attr('class') == 'overview-msg alert-error'){
-	              			$("#msg1").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
+		              	if($("#msg1").attr('class') == 'overview-msg calibrate'  || $("#msg1").attr('class') == 'overview-msg alert-warning' || $("#msg1").attr('class') == 'overview-msg alert-error' || $("#msg1").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg1").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").removeClass("alert-disconnected").addClass("alert-success");	
 	              			$('#msg1').fadeOut(100);
               				$('#msg1').text("Ideal").fadeIn(1000);
               			}
 		              }else if(y_data > <?=$aParametros[0]['rms_semi_ropping']?> && y_data < <?=$aParametros[0]['rms_ropping']?>){
-	              		if($("#msg1").attr('class') == 'overview-msg calibrate'  || $("#msg1").attr('class') == 'overview-msg alert-error' || $("#msg1").attr('class') == 'overview-msg alert-success'){
-	              			$("#msg1").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").addClass("alert-warning");	
+	              		if($("#msg1").attr('class') == 'overview-msg calibrate'  || $("#msg1").attr('class') == 'overview-msg alert-error' || $("#msg1").attr('class') == 'overview-msg alert-success' || $("#msg1").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg1").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").removeClass("alert-disconnected").addClass("alert-warning");	
 	              			$('#msg1').fadeOut(100);
               				$('#msg1').text("Semiropping").fadeIn(1000);
               			}     		
 		              }else if(y_data > <?=$aParametros[0]['rms_ropping']?>){
-	              		if($("#msg1").attr('class') == 'overview-msg calibrate'  || $("#msg1").attr('class') == 'overview-msg alert-warning' || $("#msg1").attr('class') == 'overview-msg alert-success'){
-	              			$("#msg1").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-error");	
+	              		if($("#msg1").attr('class') == 'overview-msg calibrate'  || $("#msg1").attr('class') == 'overview-msg alert-warning' || $("#msg1").attr('class') == 'overview-msg alert-success' || $("#msg1").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg1").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").removeClass("alert-disconnected").addClass("alert-error");	
 	              			$('#msg1').fadeOut(100);
               				$('#msg1').text("Ropping").fadeIn(1000);
               			}
@@ -416,23 +413,23 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 	              		if($("#msg2").attr('class') == 'overview-msg calibrate'  || $("#msg2").attr('class') == 'overview-msg alert-warning' || $("#msg2").attr('class') == 'overview-msg alert-error' || $("#msg2").attr('class') == 'overview-msg alert-success'){
 	              			$("#msg2").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-disconnected");	
 	              			$('#msg2').fadeOut(100);
-              				$('#msg2').text("DESCONECTADO").fadeIn(1000);
+              				$('#msg2').text("Disconnected").fadeIn(1000);
               			}	
 		              }else if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
-		              	if($("#msg2").attr('class') == 'overview-msg calibrate'  || $("#msg2").attr('class') == 'overview-msg alert-warning' || $("#msg2").attr('class') == 'overview-msg alert-error'){
-	              			$("#msg2").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
+		              	if($("#msg2").attr('class') == 'overview-msg calibrate'  || $("#msg2").attr('class') == 'overview-msg alert-warning' || $("#msg2").attr('class') == 'overview-msg alert-error' || $("#msg2").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg2").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").removeClass("alert-disconnected").addClass("alert-success");	
 	              			$('#msg2').fadeOut(100);
               				$('#msg2').text("Ideal").fadeIn(1000);
               			}
 		              }else if(y_data > <?=$aParametros[0]['rms_semi_ropping']?> && y_data < <?=$aParametros[0]['rms_ropping']?>){
-	              		if($("#msg2").attr('class') == 'overview-msg calibrate'  || $("#msg2").attr('class') == 'overview-msg alert-error' || $("#msg2").attr('class') == 'overview-msg alert-success'){
-	              			$("#msg2").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").addClass("alert-warning");	
+	              		if($("#msg2").attr('class') == 'overview-msg calibrate'  || $("#msg2").attr('class') == 'overview-msg alert-error' || $("#msg2").attr('class') == 'overview-msg alert-success' || $("#msg2").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg2").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").removeClass("alert-disconnected").addClass("alert-warning");	
 	              			$('#msg2').fadeOut(100);
               				$('#msg2').text("Semiropping").fadeIn(1000);
               			}     		
 		              }else if(y_data > <?=$aParametros[0]['rms_ropping']?>){
-	              		if($("#msg2").attr('class') == 'overview-msg calibrate'  || $("#msg2").attr('class') == 'overview-msg alert-warning' || $("#msg2").attr('class') == 'overview-msg alert-success'){
-	              			$("#msg2").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-error");	
+	              		if($("#msg2").attr('class') == 'overview-msg calibrate'  || $("#msg2").attr('class') == 'overview-msg alert-warning' || $("#msg2").attr('class') == 'overview-msg alert-success' || $("#msg2").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg2").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").removeClass("alert-disconnected").addClass("alert-error");	
 	              			$('#msg2').fadeOut(100);
               				$('#msg2').text("Ropping").fadeIn(1000);
               			}
@@ -570,23 +567,23 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 	              		if($("#msg3").attr('class') == 'overview-msg calibrate'  || $("#msg3").attr('class') == 'overview-msg alert-warning' || $("#msg3").attr('class') == 'overview-msg alert-error' || $("#msg3").attr('class') == 'overview-msg alert-success'){
 	              			$("#msg3").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-disconnected");	
 	              			$('#msg3').fadeOut(100);
-              				$('#msg3').text("DESCONECTADO").fadeIn(1000);
+              				$('#msg3').text("Disconnected").fadeIn(1000);
               			}	
 		              }else if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
-		              	if($("#msg3").attr('class') == 'overview-msg calibrate'  || $("#msg3").attr('class') == 'overview-msg alert-warning' || $("#msg3").attr('class') == 'overview-msg alert-error'){
-	              			$("#msg3").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
+		              	if($("#msg3").attr('class') == 'overview-msg calibrate'  || $("#msg3").attr('class') == 'overview-msg alert-warning' || $("#msg3").attr('class') == 'overview-msg alert-error' || $("#msg3").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg3").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").removeClass("alert-disconnected").addClass("alert-success");	
 	              			$('#msg3').fadeOut(100);
               				$('#msg3').text("Ideal").fadeIn(1000);
               			}
 		              }else if(y_data > <?=$aParametros[0]['rms_semi_ropping']?> && y_data < <?=$aParametros[0]['rms_ropping']?>){
-	              		if($("#msg3").attr('class') == 'overview-msg calibrate'  || $("#msg3").attr('class') == 'overview-msg alert-error' || $("#msg3").attr('class') == 'overview-msg alert-success'){
-	              			$("#msg3").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").addClass("alert-warning");	
+	              		if($("#msg3").attr('class') == 'overview-msg calibrate'  || $("#msg3").attr('class') == 'overview-msg alert-error' || $("#msg3").attr('class') == 'overview-msg alert-success' || $("#msg3").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg3").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").removeClass("alert-disconnected").addClass("alert-warning");	
 	              			$('#msg3').fadeOut(100);
               				$('#msg3').text("Semiropping").fadeIn(1000);
               			}     		
 		              }else if(y_data > <?=$aParametros[0]['rms_ropping']?>){
-	              		if($("#msg3").attr('class') == 'overview-msg calibrate'  || $("#msg3").attr('class') == 'overview-msg alert-warning' || $("#msg3").attr('class') == 'overview-msg alert-success'){
-	              			$("#msg3").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-error");	
+	              		if($("#msg3").attr('class') == 'overview-msg calibrate'  || $("#msg3").attr('class') == 'overview-msg alert-warning' || $("#msg3").attr('class') == 'overview-msg alert-success' || $("#msg3").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg3").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").removeClass("alert-disconnected").addClass("alert-error");	
 	              			$('#msg3').fadeOut(100);
               				$('#msg3').text("Ropping").fadeIn(1000);
               			}
@@ -726,32 +723,32 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		                 y_data = dataJson[i].value;                         
 		              }
 
-
-	              	if(y_data == -1){
+		              if(y_data == -1){
 	              		if($("#msg4").attr('class') == 'overview-msg calibrate'  || $("#msg4").attr('class') == 'overview-msg alert-warning' || $("#msg4").attr('class') == 'overview-msg alert-error' || $("#msg4").attr('class') == 'overview-msg alert-success'){
 	              			$("#msg4").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-disconnected");	
 	              			$('#msg4').fadeOut(100);
-              				$('#msg4').text("DESCONECTADO").fadeIn(1000);
-              			}	
+	          				$('#msg4').text("Disconnected").fadeIn(1000);
+	          			}	
 		              }else if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
-		              	if($("#msg4").attr('class') == 'overview-msg calibrate'  || $("#msg4").attr('class') == 'overview-msg alert-warning' || $("#msg4").attr('class') == 'overview-msg alert-error'){
-	              			$("#msg4").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
+		              	if($("#msg4").attr('class') == 'overview-msg calibrate'  || $("#msg4").attr('class') == 'overview-msg alert-warning' || $("#msg4").attr('class') == 'overview-msg alert-error' || $("#msg4").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg4").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").removeClass("alert-disconnected").addClass("alert-success");	
 	              			$('#msg4').fadeOut(100);
-              				$('#msg4').text("Ideal").fadeIn(1000);
-              			}
+	          				$('#msg4').text("Ideal").fadeIn(1000);
+	          			}
 		              }else if(y_data > <?=$aParametros[0]['rms_semi_ropping']?> && y_data < <?=$aParametros[0]['rms_ropping']?>){
-	              		if($("#msg4").attr('class') == 'overview-msg calibrate'  || $("#msg4").attr('class') == 'overview-msg alert-error' || $("#msg4").attr('class') == 'overview-msg alert-success'){
-	              			$("#msg4").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").addClass("alert-warning");	
+	              		if($("#msg4").attr('class') == 'overview-msg calibrate'  || $("#msg4").attr('class') == 'overview-msg alert-error' || $("#msg4").attr('class') == 'overview-msg alert-success' || $("#msg4").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg4").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").removeClass("alert-disconnected").addClass("alert-warning");	
 	              			$('#msg4').fadeOut(100);
-              				$('#msg4').text("Semiropping").fadeIn(1000);
-              			}     		
+	          				$('#msg4').text("Semiropping").fadeIn(1000);
+	          			}     		
 		              }else if(y_data > <?=$aParametros[0]['rms_ropping']?>){
-	              		if($("#msg4").attr('class') == 'overview-msg calibrate'  || $("#msg4").attr('class') == 'overview-msg alert-warning' || $("#msg4").attr('class') == 'overview-msg alert-success'){
-	              			$("#msg4").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-error");	
+	              		if($("#msg4").attr('class') == 'overview-msg calibrate'  || $("#msg4").attr('class') == 'overview-msg alert-warning' || $("#msg4").attr('class') == 'overview-msg alert-success' || $("#msg4").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg4").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").removeClass("alert-disconnected").addClass("alert-error");	
 	              			$('#msg4').fadeOut(100);
-              				$('#msg4').text("Ropping").fadeIn(1000);
-              			}
+	          				$('#msg4').text("Ropping").fadeIn(1000);
+	          			}
 		              }
+	              	
 
 		              var point = chart.series[0].points[0],
 		                  newVal,
@@ -888,28 +885,27 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		                 y_data = dataJson[i].value;                         
 		              }
 
-
-	              	if(y_data == -1){
+		              if(y_data == -1){
 	              		if($("#msg5").attr('class') == 'overview-msg calibrate'  || $("#msg5").attr('class') == 'overview-msg alert-warning' || $("#msg5").attr('class') == 'overview-msg alert-error' || $("#msg5").attr('class') == 'overview-msg alert-success'){
 	              			$("#msg5").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-disconnected");	
 	              			$('#msg5').fadeOut(100);
-              				$('#msg5').text("DESCONECTADO").fadeIn(1000);
+              				$('#msg5').text("Disconnected").fadeIn(1000);
               			}	
 		              }else if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
-		              	if($("#msg5").attr('class') == 'overview-msg calibrate'  || $("#msg5").attr('class') == 'overview-msg alert-warning' || $("#msg5").attr('class') == 'overview-msg alert-error'){
-	              			$("#msg5").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
+		              	if($("#msg5").attr('class') == 'overview-msg calibrate'  || $("#msg5").attr('class') == 'overview-msg alert-warning' || $("#msg5").attr('class') == 'overview-msg alert-error' || $("#msg5").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg5").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").removeClass("alert-disconnected").addClass("alert-success");	
 	              			$('#msg5').fadeOut(100);
               				$('#msg5').text("Ideal").fadeIn(1000);
               			}
 		              }else if(y_data > <?=$aParametros[0]['rms_semi_ropping']?> && y_data < <?=$aParametros[0]['rms_ropping']?>){
-	              		if($("#msg5").attr('class') == 'overview-msg calibrate'  || $("#msg5").attr('class') == 'overview-msg alert-error' || $("#msg5").attr('class') == 'overview-msg alert-success'){
-	              			$("#msg5").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").addClass("alert-warning");	
+	              		if($("#msg5").attr('class') == 'overview-msg calibrate'  || $("#msg5").attr('class') == 'overview-msg alert-error' || $("#msg5").attr('class') == 'overview-msg alert-success' || $("#msg5").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg5").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").removeClass("alert-disconnected").addClass("alert-warning");	
 	              			$('#msg5').fadeOut(100);
               				$('#msg5').text("Semiropping").fadeIn(1000);
               			}     		
 		              }else if(y_data > <?=$aParametros[0]['rms_ropping']?>){
-	              		if($("#msg5").attr('class') == 'overview-msg calibrate'  || $("#msg5").attr('class') == 'overview-msg alert-warning' || $("#msg5").attr('class') == 'overview-msg alert-success'){
-	              			$("#msg5").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-error");	
+	              		if($("#msg5").attr('class') == 'overview-msg calibrate'  || $("#msg5").attr('class') == 'overview-msg alert-warning' || $("#msg5").attr('class') == 'overview-msg alert-success' || $("#msg5").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg5").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").removeClass("alert-disconnected").addClass("alert-error");	
 	              			$('#msg5').fadeOut(100);
               				$('#msg5').text("Ropping").fadeIn(1000);
               			}
@@ -1053,23 +1049,23 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 	              		if($("#msg6").attr('class') == 'overview-msg calibrate'  || $("#msg6").attr('class') == 'overview-msg alert-warning' || $("#msg6").attr('class') == 'overview-msg alert-error' || $("#msg6").attr('class') == 'overview-msg alert-success'){
 	              			$("#msg6").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-disconnected");	
 	              			$('#msg6').fadeOut(100);
-              				$('#msg6').text("DESCONECTADO").fadeIn(1000);
+              				$('#msg6').text("Disconnected").fadeIn(1000);
               			}	
 		              }else if(y_data < <?=$aParametros[0]['rms_semi_ropping']?>){
-		              	if($("#msg6").attr('class') == 'overview-msg calibrate'  || $("#msg6").attr('class') == 'overview-msg alert-warning' || $("#msg6").attr('class') == 'overview-msg alert-error'){
-	              			$("#msg6").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").addClass("alert-success");	
+		              	if($("#msg6").attr('class') == 'overview-msg calibrate'  || $("#msg6").attr('class') == 'overview-msg alert-warning' || $("#msg6").attr('class') == 'overview-msg alert-error' || $("#msg6").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg6").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-error").removeClass("alert-disconnected").addClass("alert-success");	
 	              			$('#msg6').fadeOut(100);
               				$('#msg6').text("Ideal").fadeIn(1000);
               			}
 		              }else if(y_data > <?=$aParametros[0]['rms_semi_ropping']?> && y_data < <?=$aParametros[0]['rms_ropping']?>){
-	              		if($("#msg6").attr('class') == 'overview-msg calibrate'  || $("#msg6").attr('class') == 'overview-msg alert-error' || $("#msg6").attr('class') == 'overview-msg alert-success'){
-	              			$("#msg6").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").addClass("alert-warning");	
+	              		if($("#msg6").attr('class') == 'overview-msg calibrate'  || $("#msg6").attr('class') == 'overview-msg alert-error' || $("#msg6").attr('class') == 'overview-msg alert-success' || $("#msg6").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg6").removeClass("calibrate").removeClass("alert-error").removeClass("alert-success").removeClass("alert-disconnected").addClass("alert-warning");	
 	              			$('#msg6').fadeOut(100);
               				$('#msg6').text("Semiropping").fadeIn(1000);
               			}     		
 		              }else if(y_data > <?=$aParametros[0]['rms_ropping']?>){
-	              		if($("#msg6").attr('class') == 'overview-msg calibrate'  || $("#msg6").attr('class') == 'overview-msg alert-warning' || $("#msg6").attr('class') == 'overview-msg alert-success'){
-	              			$("#msg6").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").addClass("alert-error");	
+	              		if($("#msg6").attr('class') == 'overview-msg calibrate'  || $("#msg6").attr('class') == 'overview-msg alert-warning' || $("#msg6").attr('class') == 'overview-msg alert-success' || $("#msg6").attr('class') == 'overview-msg alert-disconnected'){
+	              			$("#msg6").removeClass("calibrate").removeClass("alert-warning").removeClass("alert-success").removeClass("alert-disconnected").addClass("alert-error");	
 	              			$('#msg6').fadeOut(100);
               				$('#msg6').text("Ropping").fadeIn(1000);
               			}

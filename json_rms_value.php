@@ -11,9 +11,11 @@ $query = "SELECT valor, fecha_hora FROM rms where radio_id = ".$radio_id." and T
 $aRms = $oModel->Select($query);
 if(empty($aRms)){
 	$valor = -1;
-	$query_update = "UPDATE radios set estado = -1 where id = ".$radio_id.";";
+	$query_update = "UPDATE radios set estado = 0 where id = ".$radio_id.";";
 	$oModel->Select($query_update);
 }else{
+	$query_update = "UPDATE radios set estado = 1 where id = ".$radio_id.";";
+	$oModel->Select($query_update);
 	foreach ($aRms as $rms) {
 		$valor= $rms['valor'];
 	}	
