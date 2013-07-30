@@ -10,16 +10,25 @@ $query = "SELECT id,username,nombres,apellidos,telefono, cargo, estado_online FR
 $aUsers = $oModel->Select($query);
 
 if($_GET['save_user'] == 'true'){
-	$is_save_user = true;
+	$is_save = true;
+}
+
+if($_GET['update_user'] == 'true'){
+	$is_update = true;
 }
 
 ?>
 
 
 <div class="container container-body">
-	<?php if($is_save_user === true) { ?>
-		<div class="alert alert-success" style="text-align:center;">
-	    	User saved
+	<?php if($is_save === true) { ?>
+		<div class="alert alert-success msg-action" >
+	    	Saved user
+	  	</div>
+	<?php } ?>
+	<?php if($is_update === true) { ?>
+		<div class="alert alert-success msg-action" >
+	    	Updated user
 	  	</div>
 	<?php } ?>
 	<h2>Users Management</h2>
@@ -71,30 +80,30 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 ?>
 
 <script type="text/javascript">
-	$('#number_users').tooltip({'trigger':'hover', 'title': 'Enter only digits', 'placement':'right'});
-	$('#save_user_online_form').validate({
-		rules:{
-			number_users:{
-				required: true,
-				digits: true
-			}
-		},
-		messages:{
-			number_users:{
-				required: "Field required",
-				digits: "Please enter only digits"
-			}
-		},
-  		errorElement: "div",
-        wrapper: "div",  // a wrapper around the error message
-        errorPlacement: function(error, element) {
-            offset = element.offset();
-            error.insertBefore(element)
-            error.addClass('error_wrapper');  // add a class to the wrapper
-            error.css('position', 'absolute');
-            error.css('left', offset.left + element.outerWidth());
-            error.css('top', offset.top);
-        }
-	});
+	// $('#number_users').tooltip({'trigger':'hover', 'title': 'Enter only digits', 'placement':'right'});
+	// $('#save_user_online_form').validate({
+	// 	rules:{
+	// 		number_users:{
+	// 			required: true,
+	// 			digits: true
+	// 		}
+	// 	},
+	// 	messages:{
+	// 		number_users:{
+	// 			required: "Field required",
+	// 			digits: "Please enter only digits"
+	// 		}
+	// 	},
+ //  		errorElement: "div",
+ //        wrapper: "div",  // a wrapper around the error message
+ //        errorPlacement: function(error, element) {
+ //            offset = element.offset();
+ //            error.insertBefore(element)
+ //            error.addClass('error_wrapper');  // add a class to the wrapper
+ //            error.css('position', 'absolute');
+ //            error.css('left', offset.left + element.outerWidth());
+ //            error.css('top', offset.top);
+ //        }
+	// });
 
 </script>

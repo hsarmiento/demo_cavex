@@ -9,54 +9,41 @@ $oLogin->IsLogged("admin");
 $n_radio = $_GET['n_radio'];
 $radio_id = $_GET['radio_id'];
 
-echo $n_radio;
-echo $radio_id;
 
 if(empty($n_radio) || empty($radio_id)){
 	header("Location: home.php");
 }else{
+	$form = $_POST;
+	if($form['edit_radio'] == 'Save'){
+		if(!empty($form['mac1']) && !empty($form['mac2']) && !empty($form['mac3']) && !empty($form['mac4'])){
+			$MAC = $form['mac1'].$form['mac2'].$form['mac3'].$form['mac4'];
+			$oRadio = new BSModel();
+			$query_update_radio = "UPDATE radios set mac = '".$MAC."' where id = ".$radio_id.";";
+			$oRadio->Select($query_update_radio);
+			header("Location: radios.php?update_radio=true");
+		}
+	}
 	$oModel = new BSModel();
-
 	$query_radio = "SELECT * from radios where id = ".$radio_id.";";
-	$aUsers = $oModel->Select($query);
+	$aRadio = $oModel->Select($query_radio);
 }
-
-$is_save = false;
-
-// $form = $_POST;
-// if(!empty($form['save_radio'])){
-// 	if(!empty($form['mac1']) && !empty($form['mac2']) && !empty($form['mac3']) && !empty($form['mac4']) && !empty($form['mac5']) && !empty($form['mac6'])){
-// 		$MAC = $form['mac1'].":".$form['mac2'].":".$form['mac3'].":".$form['mac4'].":".$form['mac5'].":".$form['mac6'];
-// 		$oRadio = new BSModel();
-// 		$query_new_radio = "INSERT INTO radios(mac)values('".$MAC."');";
-// 		echo $query_new_radio;
-// 		$oRadio->Select($query_new_radio);
-// 		header("Location: radios.php?save_radio=true");
-// 	}
-// }
-
 
 ?>
 
 
 <div class="container container-body">
-	<?php if($is_save == true){ ?>
-		<div class="alert alert-success" id="success">
-		    Edit radio
-		</div>
-	<?php } ?>
 	<h2>Edit radio <?=$n_radio?></h2>
 	<div class="calibration-radio span7 offset2">
 		<div class="span6 form-div-radio">
-			<form class="form-inline" id="add_radio_form" method="post" action="add_radio.php" enctype="multipart/form-data">
-			  <label for="mac1"><strong>Mac address</strong></label>
-			  <input type="text" class="input-mini span1" id="mac1" name="mac1"><b>:</b>
-			  <input type="text" class="input-mini span1" id="mac2" name="mac2"><b>:</b>
-			  <input type="text" class="input-mini span1" id="mac3" name="mac3"><b>:</b>
-			  <input type="text" class="input-mini span1" id="mac4" name="mac4"><b>:</b>
-			  <input type="text" class="input-mini span1" id="mac5" name="mac5"><b>:</b>
-			  <input type="text" class="input-mini span1" id="mac6" name="mac6">
-			  <input type="submit" class="btn btn-primary" id="save-radio" name="save_radio" value="Save">
+			<form class="form-inline" name="edit_radio" id="edit_radio_form" method="post" action="edit_radio.php?n_radio=<?=$n_radio?>&radio_id=<?=$radio_id?>" enctype="multipart/form-data">
+			 <?php foreach ($aRadio as $radio) { ?>
+		 	 	<label for="mac1"><strong>Mac address</strong></label>
+			  	<input type="text" class="input-mini span1" id="mac1" name="mac1" maxlength="4" value="<?=substr($radio['mac'], 0,4)?>"><b>:</b>
+			  	<input type="text" class="input-mini span1" id="mac2" name="mac2" maxlength="4" value="<?=substr($radio['mac'], 4,4)?>"><b>:</b>
+			  	<input type="text" class="input-mini span1" id="mac3" name="mac3" maxlength="4" value="<?=substr($radio['mac'], 8,4)?>"><b>:</b>
+			  	<input type="text" class="input-mini span1" id="mac4" name="mac4" maxlength="4" value="<?=substr($radio['mac'], 12,4)?>">
+			  	<input type="submit" class="btn btn-primary" id="save-radio" name="edit_radio" value="Save">
+			 <?php }?> 		 
 			</form>
 		</div>
 	</div>	

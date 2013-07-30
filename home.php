@@ -12,7 +12,7 @@ $save_password = $_GET['save_password'];
 
 <div class="container container-body">
 	<?php if($save_password === 'true') { ?>
-		<div class="alert alert-success" style="text-align:center;">
+		<div class="alert alert-success msg-action" style="text-align:center;">
 	    	Successful change password
 	  	</div>
 	<?php } ?>
@@ -51,16 +51,6 @@ $save_password = $_GET['save_password'];
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 
 ?>
-
-<script type="text/javascript">
-// $(document).ready(function(){
-// 	$.ajaxSetup({cache:false});
-// 	setInterval(function(){
-// 		$('#divRefresh').load('count.php');},1000);
-// });	
-
-</script>
-
 
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');

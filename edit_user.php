@@ -37,7 +37,7 @@ if(!empty($form)){
 
   $is_update = $oModel->Update('usuarios', $aAttributes, array('id' => $form['user_id']));
   if($is_update){
-    header("Location: users.php");
+    header("Location: users.php?update_user=true");
   }
 }
 

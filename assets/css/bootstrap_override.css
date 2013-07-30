@@ -815,3 +815,10 @@ input[type="text"].error{
 #rms_save_gauge_settings{
     margin-left: 30px;
 }
+
+
+.msg-action{
+    font-size: 18px;
+    padding: 20px;
+    text-align: center;
+}

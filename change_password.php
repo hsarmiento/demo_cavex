@@ -40,7 +40,7 @@ if((empty($user_id) || $user_id != $_SESSION['user_id']) && ($error = 'false')){
 
 <div class="container container-body">
 	<?php if($error === 'true') { ?>
-		<div class="alert alert-error" style="text-align:center;">
+		<div class="alert alert-error msg-action" style="text-align:center;">
 	    	Incorrect current password
 	  	</div>
 	<?php } ?>

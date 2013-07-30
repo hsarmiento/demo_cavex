@@ -12,7 +12,7 @@ $query_radios = "SELECT radios.id as radio_id, radios.mac as mac, radios.estado 
 $aRadios = $oModel->Select($query_radios);
 
 $is_save = $_GET['save_radio'];
-// print_r($aRadios);
+$is_update = $_GET['update_radio'];
 
 ?>
 
@@ -20,8 +20,13 @@ $is_save = $_GET['save_radio'];
 
 <div class="container container-body">
 	<?php if($is_save == 'true'){ ?>
-		<div class="alert alert-success" id="success">
+		<div class="alert alert-success msg-action" id="success">
 		    Saved radio
+		</div>
+	<?php } ?>
+	<?php if($is_update == 'true'){ ?>
+		<div class="alert alert-success msg-action" id="success">
+		    Updated radio
 		</div>
 	<?php } ?>
 	<h2>Radios</h2>
@@ -69,11 +74,11 @@ $is_save = $_GET['save_radio'];
 				      	</td>	
 				      <td>
 				      		<div class="edit_div">
-				      			<a href="edit_radio.php?radio_id=<?=$radio['id']?>&n_radio=<?=$i?>">
+				      			<a href="edit_radio.php?radio_id=<?=$radio['radio_id']?>&n_radio=<?=$i?>">
 									<img src="assets/img/Text-Edit-icon.png" alt="edit user" width="25" height="25" title="edit user">
 								</a>
 				      		</div>					
-							<a href="delete_radio.php?radio_id=<?=$radio['id']?>" onclick="return confirm('Are you ABSOLUTELY sure?')"><img src="assets/img/DeleteRed.png" alt="delete user" width="25" height="25" title="delete user"></a>
+							<a href="delete_radio.php?radio_id=<?=$radio['radio_id']?>" onclick="return confirm('Are you ABSOLUTELY sure?')"><img src="assets/img/DeleteRed.png" alt="delete user" width="25" height="25" title="delete user"></a>
 			      	  </td>
 				    </tr>
 				    <?php $i = $i + 1;?>
