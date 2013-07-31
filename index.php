@@ -1,7 +1,5 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
-// require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
-// require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 
 require_once($aRoutes['paths']['config'].'bs_model.php');
 require_once($aRoutes['paths']['config'].'bs_login.php');
@@ -35,6 +33,7 @@ $msg = $oLogin->Login();
 			    <div id="bar-two"></div>
 			    <div id="bar-three"></div>
 			    <div id="date-nav"><?=date('F /d/Y')?></div>
+			    <div class="logo_weir"><img src="assets/img/WeirMinerals.png"></div>
 			</div>
 			<div id="sub-nav">
 				<div id="middle-sub-nav"></div>
@@ -42,7 +41,6 @@ $msg = $oLogin->Login();
 			<div class="menu">
 			</div>	
 		</header>
-
 
 		<div class="container container-body">
 			<?php if($msg == -1) { ?>
@@ -55,8 +53,7 @@ $msg = $oLogin->Login();
 			    	System is full. Try later
 			  	</div>
 			<?php } ?>
-			<div class="container-login">
-						
+			<div class="container-login">				
 			  <div class="login">
 			    <h1>Login to Cavex Control System</h1>
 			    <form method="post" action="">
@@ -70,7 +67,6 @@ $msg = $oLogin->Login();
 			  </div>
 			</div>
 		</div>
-
 
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');

@@ -200,6 +200,7 @@
     padding: 11px 80px !important;
     font-size: 20px;
     width: 330px;
+    margin-bottom: 10px;
 }
 
 .btn-XL{
@@ -207,10 +208,21 @@
     font-size: 24px;
 }
 
+.btn-sub{
+    width: 150px;
+    margin-right: 25px;
+    margin-bottom: 10px;
+    font-size: 14px !important;
+}
+
 
 .btn-primary{
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#1E1A95), to(#0044cc));
     font-size: 16px;
+}
+
+.caret-body{
+    margin-left: 10px !important;
 }
 
 h2{
