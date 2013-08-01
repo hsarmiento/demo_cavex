@@ -35,7 +35,7 @@ $save_password = $_GET['save_password'];
 			  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/demo_cavex/overview.php'">Overview</button>
 			</p>
 			<p>
-			  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/demo_cavex/alarmas_events.php'">Alarms & Events</button>
+			  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/demo_cavex/alarms_events.php'">Alarms & Events</button>
 			</p>
 			<p>
 			  <button class="btn btn-L btn-primary" type="button" data-toggle="collapse" data-target="#user_collapse">User accounts<b class="caret caret-body"></b></button>

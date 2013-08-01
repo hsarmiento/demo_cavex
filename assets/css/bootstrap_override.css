@@ -834,3 +834,24 @@ input[type="text"].error{
     padding: 20px;
     text-align: center;
 }
+
+.checkbox-color{
+    background-color: #f5f5f5;
+    border: 1px solid #b0b0b0;
+    border-radius: 3px 3px 3px 3px;
+}
+.single-checkbox{
+    padding: 15px;
+    max-width: 100px;
+    min-width: 50px;
+    /*max-width: 200px;*/
+    margin-right: 20px;
+    margin-left: 10px;
+    display: inline-block;
+    /*padding-right: 200px;*/
+}
+
+#save-filter{
+    margin-top: -15px;
+}
+
