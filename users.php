@@ -78,32 +78,3 @@ if($_GET['update_user'] == 'true'){
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 
 ?>
-
-<script type="text/javascript">
-	// $('#number_users').tooltip({'trigger':'hover', 'title': 'Enter only digits', 'placement':'right'});
-	// $('#save_user_online_form').validate({
-	// 	rules:{
-	// 		number_users:{
-	// 			required: true,
-	// 			digits: true
-	// 		}
-	// 	},
-	// 	messages:{
-	// 		number_users:{
-	// 			required: "Field required",
-	// 			digits: "Please enter only digits"
-	// 		}
-	// 	},
- //  		errorElement: "div",
- //        wrapper: "div",  // a wrapper around the error message
- //        errorPlacement: function(error, element) {
- //            offset = element.offset();
- //            error.insertBefore(element)
- //            error.addClass('error_wrapper');  // add a class to the wrapper
- //            error.css('position', 'absolute');
- //            error.css('left', offset.left + element.outerWidth());
- //            error.css('top', offset.top);
- //        }
-	// });
-
-</script>

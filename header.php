@@ -49,7 +49,7 @@ $oLogin->ExistAnySession();
 					  </li>
 					  <?php } ?>				  
 					  <li><a href="/demo_cavex/overview.php">Overview</a></li>
-					  <li><a href="/demo_cavex/alarmas_events.php">Alarms & events</a></li>
+					  <li><a href="/demo_cavex/alarms_events.php">Alarms & events</a></li>
 					  <?php if($_SESSION['usertype'] == 1){?>
 						  <li class="dropdown">
 						  	<a class="dropdown-toggle" data-toggle="dropdown" href="#">User accounts <b class="caret"></b></a>
