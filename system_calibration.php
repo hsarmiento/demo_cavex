@@ -48,9 +48,9 @@ $aRadios = $oRadios->Select($query_radios);
 				    	<div class="span9 data-container">	
 							<div class="controls controls-row">
 							    <label class="span2 offset1">Current rms value</label>
-							    <label class="span2 offset1" for="radio[<?=$i?>][rms_normal]" >Normal rms value</label>
-							    <label class="span2 offset1" for="radio[<?=$i?>][rms_max_normal]">Max rms  normal value(%)</label>
-							     <label class="span2 offset1" for="radio[<?=$i?>][rms_ropping]">Ropping rms value(%)</label>
+							    <label class="span2 offset1" for="radio[<?=$i?>][rms_normal]" >Ideal rms value</label>
+							    <label class="span2 offset1" for="radio[<?=$i?>][rms_max_normal]">Max ideal rms value(%)</label>
+							     <label class="span2 offset1" for="radio[<?=$i?>][rms_ropping]">Min ropping rms value(%)</label>
 							</div>
 							<div class="controls controls-row">
 							    <div id="rms_calibration<?=$i?>" class="current-value" ></div>
@@ -64,9 +64,9 @@ $aRadios = $oRadios->Select($query_radios);
 				    	<div class="span9 data-container">
 							<div class="controls controls-row">
 							    <label class="span2 offset1" ><span><strong>Current SD value</strong></span></label>
-							    <label class="span2 offset1" for="radio[<?=$i?>][sd_normal]">Normal SD value</label>
-							    <label class="span2 offset1" for="radio[<?=$i?>][sd_max_normal]">Max SD normal </br>value(%)</label>
-							     <label class="span2 offset1" for="radio[<?=$i?>][sd_ropping]">Ropping SD value(%)</label>
+							    <label class="span2 offset1" for="radio[<?=$i?>][sd_normal]">Ideal SD value</label>
+							    <label class="span2 offset1" for="radio[<?=$i?>][sd_max_normal]">Max ideal SD </br>value(%)</label>
+							     <label class="span2 offset1" for="radio[<?=$i?>][sd_ropping]">Min ropping SD value(%)</label>
 							</div>
 							<div class="controls controls-row">
 							    <div id="sd_calibration<?=$i?>" class="current-value" ></div>
