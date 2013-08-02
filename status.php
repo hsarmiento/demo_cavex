@@ -16,16 +16,20 @@ if(empty($n_radio)){
 
 $form = $_POST;
 if($form['rms_save_chart_settings'] == 'Save'){
-    $oModel = new BSModel();
-    $query_chart = "INSERT INTO grafico_rms(valor_minimo, valor_maximo)values(".$form['rms_min_chart'].", ".$form['rms_max_chart'].");";
-    $oModel->Select($query_chart);
-    header("Location: status.php?radio_id=$radio_id&n_radio=$n_radio");  
+  $oModel = new BSModel();
+  $query_chart = "INSERT INTO grafico_rms(valor_minimo, valor_maximo)values(".$form['rms_min_chart'].", ".$form['rms_max_chart'].");";
+  $oModel->Select($query_chart);
+  $query_event = "INSERT INTO eventos_alarmas(tipo)values(7);";
+  $oModel->Select($query_event);
+  header("Location: status.php?radio_id=$radio_id&n_radio=$n_radio");  
 }
 
 if($form['sd_save_chart_settings'] == 'Save'){
   $oModel = new BSModel();
   $query_chart = "INSERT INTO grafico_sd(valor_minimo, valor_maximo)values(".$form['sd_min_chart'].", ".$form['sd_max_chart'].");";
   $oModel->Select($query_chart);
+  $query_event = "INSERT INTO eventos_alarmas(tipo)values(11);";
+  $oModel->Select($query_event);
   header("Location: status.php?radio_id=$radio_id&n_radio=$n_radio"); 
 }
 
@@ -77,9 +81,6 @@ $sd_ropping = ($sd)*(1+$aParametros[0]['sd_ropping_porcentaje']/100);
       <div class="span3">
         <div id="gauge_rms" class="gauge-status"></div>
         <div class="span3 form-chart">
-<!--           <div class="alert alert-warning">
-            Warning! Hydrocyclone
-          </div> -->
           <h4>RMS chart configuration</h4>
           <form  id="rms_set_chart" method="post" name="rms_set_chart" action="status.php?radio_id=<?=$radio_id?>&n_radio=<?=$n_radio?>" enctype="multipart/form-data">
             <div class="controls controls-row">

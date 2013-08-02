@@ -1,14 +1,11 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
-// require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 require_once($aRoutes['paths']['config'].'bs_model.php');
 require_once($aRoutes['paths']['config'].'bs_crypt.php');
 $oLogin = new BSLogin();
 $oLogin->IsLogged("admin");
-
 $is_save = 0;
-
 $form = $_POST;
 
 if(!empty($form)){
@@ -17,6 +14,8 @@ if(!empty($form)){
 	$pass = $crypt->GetCryptPassword($form['password'], $form['rut']);
 	$query_new_user = "INSERT INTO usuarios(username,password,nombres,apellidos,email,telefono,rut,permisos,cargo)VALUES('".$form['username']."','".$pass."','".$form['name']."','".$form['last_name']."', '".$form['email']."', '".$form['phone']."', '".$form['rut']."', 0, '".$form['charge']."');";
 	$oUser->Select($query_new_user);
+  $query_event = "INSERT INTO eventos_alarmas(tipo)values(5);";
+  $oUser->Select($query_event);
 	header("Location: users.php?save_user=true");
 }
 

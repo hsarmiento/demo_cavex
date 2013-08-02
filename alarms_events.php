@@ -6,25 +6,20 @@ $oLogin = new BSLogin();
 $oLogin->IsLogged("admin","supervisor");
 $checked_all = 'checked="checked"';
 $filter_form = $_POST;
-// print_r($filter_form);
 if($filter_form['save-filter'] == 'Filter'){
-
-	// $query = "SELECT * from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where fecha_hora >= '".$filter_form['from_date']."' and fecha_hora <= '".$filter_form['to_date']."';";
-	// echo $query;
 	if($filter_form['all'] == 'on' || (empty($filter_form['all']) && empty($filter_form['hyd']) && empty($filter_form['rad']) && empty($filter_form['user']) && empty($filter_form['sys']))){
 		if(!empty($filter_form['from_date']) and !empty($filter_form['to_date'])){
-			$query = "SELECT * from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where fecha_hora >= '".$filter_form['from_date']."' and fecha_hora <= '".$filter_form['to_date']."' order by fecha_hora desc;";
+			$query = "SELECT radios.radio_id, radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where fecha_hora >= '".$filter_form['from_date']."' and fecha_hora <= '".$filter_form['to_date']."' order by fecha_hora desc;";
 		}else{
-			$query = "SELECT * from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id order by fecha_hora desc;";
+			$query = "SELECT radios.radio_id, radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id order by fecha_hora desc;";
 		}
-		// echo $query;
 		$oModel = new BSModel();
 		$aEvents = $oModel->Select($query);
 	}else{
 		if(!empty($filter_form['from_date']) and !empty($filter_form['to_date'])){
-			$query = "SELECT * from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where fecha_hora >= '".$filter_form['from_date']."' and fecha_hora <= '".$filter_form['to_date']."' and ( ";
+			$query = "SELECT radios.radio_id, radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where fecha_hora >= '".$filter_form['from_date']."' and fecha_hora <= '".$filter_form['to_date']."' and ( ";
 		}else{
-			$query = "SELECT * from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where ";
+			$query = "SELECT radios.radio_id, radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where ";
 		}
 
 		$checked_all = "";
@@ -53,7 +48,7 @@ if($filter_form['save-filter'] == 'Filter'){
 			$checked_user = "checked = 'checked'";
 		}
 		if($filter_form['sys'] == 'on'){
-			$status_sys = 'tipo = 6 or tipo = 7';
+			$status_sys = 'tipo = 6 or tipo = 7 or tipo = 11';
 			if($len_query == strlen($query)){
 				$query = $query.$status_sys;
 			}else{
@@ -68,14 +63,13 @@ if($filter_form['save-filter'] == 'Filter'){
 			}else{
 				$query = $query.' order by fecha_hora desc;';
 			}		
-			// echo $query;
 			$oModel = new BSModel();
 			$aEvents = $oModel->Select($query);
 		}
 	}
 }else{
 	$oModel = new BSModel();
-	$query = "SELECT * from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id order by fecha_hora desc;";
+	$query = "SELECT radios.id as radio_id, radios.mac as mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id order by fecha_hora desc;";
 	$aEvents = $oModel->Select($query);
 }
 
@@ -121,10 +115,6 @@ if($filter_form['save-filter'] == 'Filter'){
 		   		<div class="single-checkbox">
 		      		<input class="btn btn-primary" type="submit" name="save-filter" id="save-filter" value="Filter"> 
 		   		</div>
-		   		<!-- <label for="from">From</label>
-				<input type="text" id="from_date" name="from_date" />
-				<label for="to">to</label>
-				<input type="text" id="to_date" name="to_date" /> -->
   			</div>
 		</form>
   		<table class="table table-hover table-bordered">
@@ -139,7 +129,7 @@ if($filter_form['save-filter'] == 'Filter'){
 					<tr>
 					  <?php
 					  	if($value['tipo'] == 1){
-				  			$text = 'Detected new radio ';
+				  			$text = 'Detected new radio (MAC '.$value['mac'].')';
 					  	}elseif($value['tipo'] == 2){
 				  			$text = 'Hydrocyclon (MAC '.$value['mac'].') is ropping';
 					  	}elseif($value['tipo'] == 3){
@@ -151,13 +141,19 @@ if($filter_form['save-filter'] == 'Filter'){
 					  	}elseif($value['tipo'] == 6){
 					  		$text = 'System calibration saved';
 					  	}elseif($value['tipo'] == 7){
-					  		$text = 'Chart calibration saved';
+					  		$text = 'RMS chart calibration saved';
 					  	}elseif($value['tipo'] == 8){
-					  		$text = 'New radio added';
+					  		if(!empty($value['radio_id'])){
+					  			$text = 'New radio (MAC '.$value['mac'].') added';
+					  		}else{
+					  			$text = 'New radio added';
+					  		}					  		
 					  	}elseif($value['tipo'] == 9){
 					  		$text = 'Radio (MAC '.$value['mac'].') disconnected';
 					  	}elseif($value['tipo'] == 10){
-					  		$text = 'Radio (MAC '.$value['mac'].') removed';
+					  		$text = 'Radio removed';
+					  	}elseif($value['tipo'] == 11){
+					  		$text = 'SD chart calibration saved';
 					  	}
 
 					  ?>

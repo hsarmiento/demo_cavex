@@ -9,6 +9,8 @@
 	    $oModel = new BSModel();
 	    $query_chart = "INSERT INTO grafico_rms(valor_minimo, valor_maximo)values(".$form['rms_min_chart'].", ".$form['rms_max_chart'].");";
 	    $oModel->Select($query_chart);
+	    $query_event = "INSERT INTO eventos_alarmas(tipo)values(7);";
+	    $oModel->Select($query_event);
 	    header("Location: overview.php?");  
 	}
 	

@@ -18,6 +18,11 @@ if(!empty($form['save_radio'])){
 			$query_new_radio = "INSERT INTO radios(mac)values('".$MAC."');";
 			$oRadio->Select($query_new_radio);	
 		}
+		$query_radio = "SELECT * from radios where mac = '".$MAC."';";
+		$aRadio = $oRadio->Select($query_radio);
+		$oModel = new BSModel();
+		$query_event = "INSERT INTO eventos_alarmas(radio_id,tipo)values(".$aRadio[0]['id'].",8);";
+	    $oModel->Select($query_event);
 		header("Location: radios.php?save_radio=true");
 	}			
 }

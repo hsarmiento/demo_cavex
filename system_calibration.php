@@ -10,8 +10,9 @@ if(!empty($_POST['save'])){
 	$oParametros = new BSModel();
 	foreach ($form as $value) {
 		$query_save = "INSERT INTO parametros(rms_normal,rms_max_normal_porcentaje,rms_ropping_porcentaje, sd_normal, sd_max_normal_porcentaje, sd_ropping_porcentaje,radio_id)values(".$value['rms_normal'].",".$value['rms_max_normal'].", ".$value['rms_ropping'].", ".$value['sd_normal'].", ".$value['sd_max_normal'].", ".$value['sd_ropping'].", ".$value['radio_id'].") on duplicate key update rms_normal=".$value['rms_normal'].", rms_max_normal_porcentaje=".$value['rms_max_normal'].", rms_ropping_porcentaje=".$value['rms_ropping'].", sd_normal=".$value['sd_normal'].", sd_max_normal_porcentaje=".$value['sd_max_normal'].", sd_ropping_porcentaje=".$value['sd_ropping'].";";
-		// echo $query_save;
 		$oParametros->Select($query_save);
+		$query_event = "INSERT INTO eventos_alarmas(tipo)values(6);";
+		$oParametros->Select($query_event);
 		$save = true;
 	}
 }

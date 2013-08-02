@@ -15,6 +15,8 @@ $is_delete = $oModel->Destroy('radios',array('id' => $id));
 
 if($is_delete===true){
 	header('Location: radios.php');
+	$query_event = "INSERT INTO eventos_alarmas(radio_id,tipo)values(".$id.",10);";
+    $oModel->Select($query_event);
 }else{
 	header('Location: radios.php');
 }
