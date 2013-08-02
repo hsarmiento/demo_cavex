@@ -92,7 +92,9 @@ $aRadios = $oRadios->Select($query_radios);
 	</div>
 	<div id="wrapper-help">
 		<div id="container-help">
-			<div id="chart-help"></div>
+			<div id="chart-help">
+				<img src="assets/img/grafico_referencial3.png">
+			</div>
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus elit ligula, faucibus quis nisl vitae, porttitor aliquet odio. Fusce fringilla orci sapien, et mollis dolor dictum sit amet. Ut magna massa, mattis quis lectus in, elementum volutpat nulla. Aliquam tempor aliquam sem, id ultricies dui auctor quis. Etiam rhoncus risus imperdiet leo tincidunt, vitae consectetur lectus eleifend. Nunc ut sollicitudin felis, id cursus risus. Vestibulum fringilla arcu molestie tempor sodales. Integer vehicula metus ut erat sodales, sit amet egestas odio auc
 			</p>

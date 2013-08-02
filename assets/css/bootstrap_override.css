@@ -18,10 +18,6 @@
     margin-bottom: 10px;
 }
 
-/*.container-calibration{
-    margin-bottom: 1000px !important;
-}
-*/
 /* HEADER */
 
 #nav-header {
@@ -768,7 +764,14 @@ input[type="text"].error{
     margin: 10px auto;
     height: 50%;
     width: 80%;
-    border: blue solid 2px;
+    background-color: white;
+    border: #b0b0b0 solid 1px;
+}
+
+#chart-help img{
+    height: 160px;
+    width: 460px;
+
 }
 
 
@@ -867,7 +870,7 @@ input[type="text"].error{
 }
 
 
-/*#to_date{
-    width: 50px;
-}*/
+.table thead th{
+    font-size: 16px;
+}
 

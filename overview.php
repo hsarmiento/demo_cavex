@@ -14,7 +14,7 @@
 	    header("Location: overview.php?");  
 	}
 	
-	$query_radios = "SELECT id from radios where estado = 1 order by id asc;";
+	$query_radios = "SELECT id,mac from radios where estado = 1 order by id asc;";
 	$aRadios = $oModel->Select($query_radios);
 	$aRms = array();
 	$aParametros = array();
@@ -22,7 +22,8 @@
 		$query_rms = "SELECT valor from rms where radio_id = ".$radios['id']." order by id asc;";
 		$rms = $oModel->Select($query_rms);
 		$aRms[] = array('radio_id' => $radios['id'],
-						'valor' => $rms[0]['valor']
+						'valor' => $rms[0]['valor'],
+						'mac' => $radios['mac']
 					);
 		$query_parametros = "SELECT * from parametros where radio_id = ".$radios['id'].";";
 		$par = $oModel->Select($query_parametros);
