@@ -18,7 +18,7 @@ if(!empty($_POST['save'])){
 }
 
 $oRadios = new BSModel();
-$query_radios = "select radios.id as radio_id, radios.mac as mac, parametros.rms_normal as rms, 
+$query_radios = "select radios.id as radio_id, radios.identificador as identificador, radios.mac as mac, parametros.rms_normal as rms, 
 parametros.rms_max_normal_porcentaje as rms_max_normal,
 parametros.rms_ropping_porcentaje as rms_ropping, 
 parametros.sd_normal as sd_normal, parametros.sd_max_normal_porcentaje as sd_max_normal, 
@@ -43,7 +43,7 @@ $aRadios = $oRadios->Select($query_radios);
 		  	  	<?php foreach ($aRadios as $i=>$radio) { ?>
 		  	  		<input type="hidden" value="<?=$radio['radio_id']?>" name="radio[<?=$i?>][radio_id]">
 		  	  		<div class="span11 offset1 calibration-radio">
-				    	<span style="font-size:18px;"><strong>Radio <?=$i+1?>, MAC: <?=$radio['mac']?></strong></span></br></br>
+				    	<span style="font-size:18px;"><strong>Identifier: <?=$radio['identificador']?></strong></span></br></br>
 				    	<div class="span1 data-type"><strong>RMS</strong></div>
 				    	<div class="span9 data-container">	
 							<div class="controls controls-row">

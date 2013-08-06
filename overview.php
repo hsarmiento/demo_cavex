@@ -14,7 +14,7 @@
 	    header("Location: overview.php?");  
 	}
 	
-	$query_radios = "SELECT id,mac from radios where estado = 1 order by id asc;";
+	$query_radios = "SELECT id,mac,identificador from radios where estado = 1 order by id asc;";
 	$aRadios = $oModel->Select($query_radios);
 	$aRms = array();
 	$aParametros = array();
@@ -23,7 +23,8 @@
 		$rms = $oModel->Select($query_rms);
 		$aRms[] = array('radio_id' => $radios['id'],
 						'valor' => $rms[0]['valor'],
-						'mac' => $radios['mac']
+						'mac' => $radios['mac'],
+						'identificador' => $radios['identificador']
 					);
 		$query_parametros = "SELECT * from parametros where radio_id = ".$radios['id'].";";
 		$par = $oModel->Select($query_parametros);
@@ -43,6 +44,7 @@
 	$gauge_minimo = $aLimiteGauge[0]['valor_minimo'];
 	$gauge_maximo = $aLimiteGauge[0]['valor_maximo'];
 
+	// print_r($aRms);
 ?>
 
 <div class="container container-body contenedor">
@@ -148,7 +150,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Hydrocyclone 1'
+		            text: '<?=$aRms[0]["identificador"]?>'
 		        },
 		        
 		        pane: {
@@ -309,7 +311,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Hydrocyclone 2'
+		            text: '<?=$aRms[1]["identificador"]?>'
 		        },
 		        
 		        pane: {
@@ -466,7 +468,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Hydrocyclone 3'
+		            text: '<?=$aRms[2]["identificador"]?>'
 		        },
 		        
 		        pane: {
@@ -626,7 +628,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Hydrocyclone 4'
+		            text: '<?=$aRms[3]["identificador"]?>'
 		        },
 		        
 		        pane: {
@@ -787,7 +789,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Hydrocyclone 5'
+		            text: '<?=$aRms[4]["identificador"]?>'
 		        },
 		        
 		        pane: {
@@ -948,7 +950,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
 		          enabled: false
 		        },
 		        title: {
-		            text: 'Hydrocyclone 6'
+		            text: '<?=$aRms[5]["identificador"]?>'
 		        },
 		        
 		        pane: {

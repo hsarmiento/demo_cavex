@@ -9,17 +9,17 @@ $filter_form = $_POST;
 if($filter_form['save-filter'] == 'Filter'){
 	if($filter_form['all'] == 'on' || (empty($filter_form['all']) && empty($filter_form['hyd']) && empty($filter_form['rad']) && empty($filter_form['user']) && empty($filter_form['sys']))){
 		if(!empty($filter_form['from_date']) and !empty($filter_form['to_date'])){
-			$query = "SELECT radios.radio_id, radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where fecha_hora >= '".$filter_form['from_date']."' and fecha_hora <= '".$filter_form['to_date']."' order by fecha_hora desc;";
+			$query = "SELECT radios.radio_id, radios.identificador as identificador,radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where fecha_hora >= '".$filter_form['from_date']."' and fecha_hora <= '".$filter_form['to_date']."' order by fecha_hora desc;";
 		}else{
-			$query = "SELECT radios.radio_id, radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id order by fecha_hora desc;";
+			$query = "SELECT radios.radio_id, radios.identificador as identificador,radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id order by fecha_hora desc;";
 		}
 		$oModel = new BSModel();
 		$aEvents = $oModel->Select($query);
 	}else{
 		if(!empty($filter_form['from_date']) and !empty($filter_form['to_date'])){
-			$query = "SELECT radios.radio_id, radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where fecha_hora >= '".$filter_form['from_date']."' and fecha_hora <= '".$filter_form['to_date']."' and ( ";
+			$query = "SELECT radios.radio_id, radios.identificador as identificador,radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where fecha_hora >= '".$filter_form['from_date']."' and fecha_hora <= '".$filter_form['to_date']."' and ( ";
 		}else{
-			$query = "SELECT radios.radio_id, radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where ";
+			$query = "SELECT radios.radio_id, radios.identificador as identificador,radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where ";
 		}
 
 		$checked_all = "";
@@ -69,7 +69,7 @@ if($filter_form['save-filter'] == 'Filter'){
 	}
 }else{
 	$oModel = new BSModel();
-	$query = "SELECT radios.id as radio_id, radios.mac as mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id order by fecha_hora desc;";
+	$query = "SELECT radios.id as radio_id, radios.identificador as identificador, radios.mac as mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id order by fecha_hora desc;";
 	$aEvents = $oModel->Select($query);
 }
 
@@ -129,13 +129,13 @@ if($filter_form['save-filter'] == 'Filter'){
 					<tr>
 					  <?php
 					  	if($value['tipo'] == 1){
-				  			$text = 'Detected new radio (MAC '.$value['mac'].')';
+				  			$text = 'Detected new radio (Identifier: '.$value['identificador'].')';
 					  	}elseif($value['tipo'] == 2){
-				  			$text = 'Hydrocyclon (MAC '.$value['mac'].') is ropping';
+				  			$text = 'Hydrocyclon (Identifier: '.$value['identificador'].') is ropping';
 					  	}elseif($value['tipo'] == 3){
-					  		$text = 'Hydrocyclon (MAC '.$value['mac'].') is ideal';
+					  		$text = 'Hydrocyclon (Identifier: '.$value['identificador'].') is ideal';
 					  	}elseif($value['tipo'] == 4){
-					  		$text = 'Hydrocyclon (MAC '.$value['mac'].') is semiropping';
+					  		$text = 'Hydrocyclon (Identifier: '.$value['identificador'].') is semiropping';
 					  	}elseif($value['tipo'] == 5){
 					  		$text = 'New user added';
 					  	}elseif($value['tipo'] == 6){
@@ -144,12 +144,12 @@ if($filter_form['save-filter'] == 'Filter'){
 					  		$text = 'RMS chart calibration saved';
 					  	}elseif($value['tipo'] == 8){
 					  		if(!empty($value['radio_id'])){
-					  			$text = 'New radio (MAC '.$value['mac'].') added';
+					  			$text = 'New radio (Identifier: '.$value['identificador'].') added';
 					  		}else{
 					  			$text = 'New radio added';
 					  		}					  		
 					  	}elseif($value['tipo'] == 9){
-					  		$text = 'Radio (MAC '.$value['mac'].') disconnected';
+					  		$text = 'Radio (Identifier: '.$value['identificador'].') disconnected';
 					  	}elseif($value['tipo'] == 10){
 					  		$text = 'Radio removed';
 					  	}elseif($value['tipo'] == 11){
