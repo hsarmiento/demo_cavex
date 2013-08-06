@@ -874,3 +874,7 @@ input[type="text"].error{
     font-size: 16px;
 }
 
+#identifier{
+    margin-left: 25px;
+    width: 138px !important;
+}

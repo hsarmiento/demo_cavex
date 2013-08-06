@@ -8,7 +8,7 @@ $oLogin = new BSLogin();
 $oLogin->IsLogged("admin");
 
 $oModel = new BSModel();
-$query_radios = "SELECT radios.id as radio_id, radios.mac as mac, radios.estado as estado, bateria_radio.conectada as bateria_conectada, bateria_radio.conectada as estado_bateria, bateria_radio.carga as carga from radios left join bateria_radio on radios.id = bateria_radio.radio_id order by radios.id asc;";
+$query_radios = "SELECT radios.id as radio_id, radios.mac as mac, radios.estado as estado, bateria_radio.conectada as bateria_conectada, bateria_radio.conectada as estado_bateria, bateria_radio.carga as carga, radios.identificador as identificador from radios left join bateria_radio on radios.id = bateria_radio.radio_id order by radios.id asc;";
 $aRadios = $oModel->Select($query_radios);
 
 $is_save = $_GET['save_radio'];
@@ -34,6 +34,7 @@ $is_update = $_GET['update_radio'];
   		<table class="table table-hover table-bordered span9 center-table">
 			<thead>
 				<tr>
+				  <th>Identifier</th>
 			      <th>MAC address</th>
 			      <th>Status</th>
 			      <th>Battery</th>
@@ -45,6 +46,7 @@ $is_update = $_GET['update_radio'];
 				<?php $i = 1;?>
 				<?php foreach ($aRadios as $radio) { ?>
 					<tr>
+					  <td><?=$radio['identificador']?></td>
 				      <td><?=$radio['mac']?></td>
 				      <?php if($radio['estado'] == 0){ ?>
 							<td><span style="color:red;">Disconnected</span></td>

@@ -12,10 +12,10 @@ if(!empty($form['save_radio'])){
 		$MAC = $form['mac1'].$form['mac2'].$form['mac3'].$form['mac4'];
 		$oRadio = new BSModel();
 		if($form['insert_update'] == 'update'){
-			$query_new_radio = "UPDATE radios set estado = 1 where mac = '".$MAC."';";
+			$query_new_radio = "UPDATE radios set estado = 1, identificador = '".$form['identifier']."' where mac = '".$MAC."';";
 			$oRadio->Select($query_new_radio);
 		}else{
-			$query_new_radio = "INSERT INTO radios(mac)values('".$MAC."');";
+			$query_new_radio = "INSERT INTO radios(mac,identificador)values('".$MAC."', '".$form['identifier']."');";
 			$oRadio->Select($query_new_radio);	
 		}
 		$query_radio = "SELECT * from radios where mac = '".$MAC."';";
@@ -52,16 +52,51 @@ $aRadios = $oRadio->Select($query_empty_radios);
 			  <?php if(count($aRadios) > 0){ ?>
 			  	<input type="hidden" name="insert_update" value="update">
 			  <?php } ?>
-			  <label for="mac1"><strong>Mac address</strong></label>
-			  <input type="text" class="input-mini span1" id="mac1" name="mac1" maxlength="4"><b>:</b>
-			  <input type="text" class="input-mini span1" id="mac2" name="mac2" maxlength="4"><b>:</b>
-			  <input type="text" class="input-mini span1" id="mac3" name="mac3" maxlength="4"><b>:</b>
-			  <input type="text" class="input-mini span1" id="mac4" name="mac4" maxlength="4">
+			  <p>
+			  	  <label for="mac1"><strong>Mac address</strong></label>
+				  <input type="text" class="input-mini span1 required" id="mac1" name="mac1" maxlength="4"><b>:</b>
+				  <input type="text" class="input-mini span1 required" id="mac2" name="mac2" maxlength="4"><b>:</b>
+				  <input type="text" class="input-mini span1 required" id="mac3" name="mac3" maxlength="4"><b>:</b>
+				  <input type="text" class="input-mini span1 required" id="mac4" name="mac4" maxlength="4">
+			  </p>
+			  <p>
+			  	  <label for="identifier"><strong>Identifier</strong></label>	
+			  	  <input type="text" class="span2 required" id="identifier" name="identifier" title="Use letters or numbers">
+			  </p>
+			  
 			  <input type="submit" class="btn btn-primary" id="save-radio" name="save_radio" value="Save">
+			  
 			</form>
 		</div>
 	</div>	
 </div>
+
+<script type="text/javascript">
+  $(function() {
+	    $("#identifier").tooltip({
+	      track: true
+	    });
+  });
+
+  $("#mac1, #mac2, #mac3, #mac4, #identifier").blur(function(){
+		$(this).valid();
+	});
+
+  $('#add_radio_form').validate({
+  		invalidHandler: function(form){
+				alert('Red inputs are empty'); // for demo
+            	return false; // for demo
+			},
+	        highlight: function(element, errorClass, validClass) {
+			    $(element).addClass(errorClass).removeClass(validClass);
+			  },
+			 unhighlight: function(element, errorClass, validClass) {
+			    $(element).removeClass(errorClass).addClass(validClass);
+			  },
+			  errorPlacement: function(error, element) {      
+        	}
+  });
+</script>
 
 
 <?php 
