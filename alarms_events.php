@@ -9,17 +9,17 @@ $filter_form = $_POST;
 if($filter_form['save-filter'] == 'Filter'){
 	if($filter_form['all'] == 'on' || (empty($filter_form['all']) && empty($filter_form['hyd']) && empty($filter_form['rad']) && empty($filter_form['user']) && empty($filter_form['sys']))){
 		if(!empty($filter_form['from_date']) and !empty($filter_form['to_date'])){
-			$query = "SELECT radios.radio_id, radios.identificador as identificador,radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where fecha_hora >= '".$filter_form['from_date']."' and fecha_hora <= '".$filter_form['to_date']."' order by fecha_hora desc;";
+			$query = "SELECT radios.id as radio_id, radios.identificador as identificador,radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where fecha_hora >= date_sub('".$filter_form['from_date']."', interval 1 day) and fecha_hora <= date_add('".$filter_form['to_date']."', interval 1 day) order by fecha_hora desc;";
 		}else{
-			$query = "SELECT radios.radio_id, radios.identificador as identificador,radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id order by fecha_hora desc;";
+			$query = "SELECT radios.id as radio_id, radios.identificador as identificador,radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id order by fecha_hora desc;";
 		}
 		$oModel = new BSModel();
 		$aEvents = $oModel->Select($query);
 	}else{
 		if(!empty($filter_form['from_date']) and !empty($filter_form['to_date'])){
-			$query = "SELECT radios.radio_id, radios.identificador as identificador,radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where fecha_hora >= '".$filter_form['from_date']."' and fecha_hora <= '".$filter_form['to_date']."' and ( ";
+			$query = "SELECT radios.id as radio_id, radios.identificador as identificador,radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where fecha_hora >= date_sub('".$filter_form['from_date']."', interval 1 day) and fecha_hora <= date_add('".$filter_form['to_date']."', interval 1 day) and ( ";
 		}else{
-			$query = "SELECT radios.radio_id, radios.identificador as identificador,radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where ";
+			$query = "SELECT radios.id as radio_id, radios.identificador as identificador,radios.mac, eventos_alarmas.tipo as tipo, eventos_alarmas.fecha_hora as fecha_hora from eventos_alarmas left join radios on eventos_alarmas.radio_id = radios.id where ";
 		}
 
 		$checked_all = "";
@@ -157,9 +157,15 @@ if($filter_form['save-filter'] == 'Filter'){
 					  	}
 
 					  ?>
-				      <td><?=$text?></td>
+				      <td><?=$text?></td>							      	
 				      <?php $datetime = strtotime($value['fecha_hora']);?>
-				      <td><?=date("l m/d/Y H:i:s", $datetime);?></td>
+				      <td>
+						<?php if($value['tipo'] == 2 || $value['tipo'] == 4){ ?>
+							<a href="historical_status.php?radio_id=<?=$value['radio_id']?>&datetime=<?=date("Y/m/d H:i:s", $datetime)?>&type=<?=$value['tipo']?>"><?=date("l Y/m/d H:i:s", $datetime);?></a>
+						<?php }else{ ?>
+							<?=date("l Y/m/d H:i:s", $datetime);?>
+						<?php } ?>
+				      </td>
 				    </tr>
 				<?php } ?>
 		  </tbody>

@@ -15,7 +15,7 @@ if(!empty($form['save_radio'])){
 			$query_new_radio = "UPDATE radios set estado = 1, identificador = '".$form['identifier']."' where mac = '".$MAC."';";
 			$oRadio->Select($query_new_radio);
 		}else{
-			$query_new_radio = "INSERT INTO radios(mac,identificador)values('".$MAC."', '".$form['identifier']."');";
+			$query_new_radio = "INSERT INTO radios(mac,identificador,estado)values('".$MAC."', '".$form['identifier']."',1);";
 			$oRadio->Select($query_new_radio);	
 		}
 		$query_radio = "SELECT * from radios where mac = '".$MAC."';";

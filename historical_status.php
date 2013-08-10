@@ -3,54 +3,40 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
 require_once($aRoutes['paths']['config'].'bs_model.php');
 
+
+$radio_id = $_GET['radio_id'];
+$datetime = $_GET['datetime'];
+$type = $_GET['type'];
 $oModel = new BSModel();
-$query_rms = "SELECT valor, fecha_hora from rms where radio_id = 5  order by fecha_hora asc limit 3000;";
-echo $query_rms;
+$query_radio = "select * from radios where id = ".$radio_id.";";
+$aRadio  = $oModel->Select($query_radio);
+if($type == '2'){
+    $title = 'Chart for radio identifier: '.$aRadio[0]['identificador']." .Status is Ropping";
+}elseif($type == '4'){
+    $title = 'Chart for radio identifier: '.$aRadio[0]['identificador']." .Status is Semi Ropping";
+}
+
+
+$oModel = new BSModel();
+$query_rms = "SELECT valor, fecha_hora from rms where radio_id = ".$radio_id." and date_sub('".$datetime."',interval 5 minute) < fecha_hora and date_add('".$datetime."',interval 5 minute) > fecha_hora order by fecha_hora asc limit 10000;";
 $aResult = $oModel->Select($query_rms);
 
-// print_r($aResult);
 
 $aRms = array();
-// $aDatetime = array();
 $aTime = array();
 foreach ($aResult as $value) {
 	$aRms[] = $value['valor']/1;
-    // $aTime[] = "[".$value['valor']."]";
-    echo strtotime($value['fecha_hora']);
-    echo '<br>';
-    echo date("Y", strtotime($value['fecha_hora']));
-     echo '<br>';
-     echo date("m", strtotime($value['fecha_hora']));
-     echo '<br>';
-     echo date("d", strtotime($value['fecha_hora']));
-     echo '<br>';
-
     $aTime[] = "[".(mktime(date("H", strtotime($value['fecha_hora']))-4, date("i", strtotime($value['fecha_hora'])), date("s", strtotime($value['fecha_hora'])), date("m", strtotime($value['fecha_hora'])), date("d", strtotime($value['fecha_hora'])), date("Y", strtotime($value['fecha_hora'])))*1000).",".$value['valor']."]";
-	// $aDatetime[] = date("Y", strtotime($value['fecha_hora']));
 }
-// echo mktime(10,10,10,10+1,10,2013);
-// echo count($aTime);
-// print_r($aRms);
-// echo join($aTime, ",");
-
-// print_r($aTime);
-// print_r($aDatetime);
-// echo mktime(0, 0, 0, 1, 22, 1985)*1000;
-
-// $aData = "[Date.UTC(1970,  9, 27),0]";
-// echo $aDatetime[0];
-// var_dump($aDatetime);
-// var_dump($aRms);
-// echo join($aDatetime, ",");
-// print_r($aRms);
-// echo $aRms[0]['valor'];
-
-
 
 
 ?>
 
-<div id="container"></div>
+<div class="container container-body contenedor">   
+    <div class="span11">
+        <div id="container"></div>
+    </div>
+</div>
 
 
 <script type="text/javascript" src="<? echo $aRoutes['paths']['js']?>highcharts.js"></script>
@@ -64,12 +50,18 @@ foreach ($aResult as $value) {
 	$(function () {
         $('#container').highcharts({
             title: {
-                text: 'Monthly Average Temperature',
+                text: '<?=$title?>',
                 x: -20 //center
             },
             subtitle: {
-                text: 'Source: WorldClimate.com',
+                text: '<?=$datetime?>',
                 x: -20
+            },
+            exporting: {
+                  enabled: false
+            },
+            credits:{
+                enabled: false
             },
             xAxis: {
                 type: 'datetime',
@@ -79,8 +71,9 @@ foreach ($aResult as $value) {
                 }
             },
             yAxis: {
+
                 title: {
-                    text: 'Temperature (°C)'
+                    text: 'RMS value'
                 },
                 plotLines: [{
                     value: 0,
@@ -89,23 +82,22 @@ foreach ($aResult as $value) {
                 }]
             },
             tooltip: {
-                valueSuffix: '°C'
+                valueSuffix: ''
             },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+            plotOptions: {
+                series: {
+                    marker: {
+                        enabled: true,
+                        symbol: 'circle',
+                        radius: 2
+                    }
+                }
             },
             series: [{
-                name: 'Tokyo',
-                // data: [<?php echo join($aRms, ",");?>]
+                name: 'rms',
                 data: [<?php echo join($aTime, ",");?>]
-            	// pointStart: <?php echo $aDatetime[0];?>
                 
             }]
         });
     });
-    var seconds = new Date(2013, 10, 10, 10, 10, 10, 0).getTime() / 1000;
-    console.log(seconds);
 </script>

@@ -80,12 +80,21 @@
     color: white;
 }
 
-#date-nav{
+#enterprise-nav{
     position: absolute;
     margin-left: 620px;
     padding-top: 20px;
     color:white;
     font-size: 24px;
+    font-weight: bold;
+}
+
+#date-nav{
+    position: absolute;
+    margin-left: 1200px;
+    padding-top: 20px;
+    color:white;
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -877,4 +886,12 @@ input[type="text"].error{
 #identifier{
     margin-left: 25px;
     width: 138px !important;
+}
+
+#status-reader{
+    position: absolute;
+    right: 0px;
+    top: 105px;
+    padding-left: 30px;
+    padding-right: 30px;
 }

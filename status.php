@@ -42,6 +42,8 @@ $query_grafico_rms = "SELECT * FROM grafico_rms order by id desc limit 1;";
 $aGraficoRms = $oModel->Select($query_grafico_rms);
 $query_grafico_sd = "SELECT * FROM grafico_sd order by id desc limit 1;";
 $aGraficoSD = $oModel->Select($query_grafico_sd);
+$query_radio = "SELECT * from radios where id = ".$radio_id.";";
+$aRadio = $oModel->Select($query_radio);
 
 if(empty($aGraficoRms)){
   $aGraficoRms= array();
@@ -66,15 +68,15 @@ $sd_ropping = ($sd)*(1+$aParametros[0]['sd_ropping_porcentaje']/100);
 ?>
 
 <div class="container container-body contenedor">		
-	<h2>Hydrocyclone <?=$n_radio?> Status</h2>
+	<h2><?=$aRadio[0]['identificador']?> Status</h2>
   <div class="alert alert-success" id="normal" style="display:none">
-    Hydrocyclon <?=$n_radio?> working in normal conditions
+    <?=$aRadio[0]['identificador']?> working in normal conditions
   </div>
   <div class="alert alert-warning" id="semiropping" style="display:none">
-    Warning! Hydrocyclon <?=$n_radio?> is semi roping
+    Warning! <?=$aRadio[0]['identificador']?> is semi roping
   </div>
   <div class="alert alert-error" id="ropping" style="display:none">
-    Warning! Hydrocyclone <?=$n_radio?> is roping
+    Warning! <?=$aRadio[0]['identificador']?> is roping
   </div>  
   <div class="row status-chart">
       <h3>R.M.S</h3>

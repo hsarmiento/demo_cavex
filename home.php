@@ -8,6 +8,17 @@ $oLogin->IsLogged("admin","supervisor");
 
 $save_password = $_GET['save_password'];
 
+$query_reader = "SELECT * from estado_lector order by fecha_hora desc limit 1;";
+$oModel = new BSModel();
+$aReader= $oModel->Select($query_reader);
+if($aReader[0]['estado'] == 1){
+	$class = 'btn-success reader-running';
+	$text = 'Reader running';
+}elseif($aReader[0]['estado'] == 0){
+	$class = 'btn-info reader-stop';
+	$text = 'Reader stopped';
+}
+
 ?>
 
 <div class="container container-body">
@@ -21,6 +32,10 @@ $save_password = $_GET['save_password'];
 		<div class="span6 menu-buttons">
 			</br>
 			</br>
+
+			<?php if($_SESSION['usertype'] == 1){?>
+				<a class="btn btn-default <?=$class?>" id="status-reader" href="#"><?=$text?></a>
+			<?php } ?>
 			<?php if($_SESSION['usertype'] == 1){?>
 				<p>
 				  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/demo_cavex/system_calibration.php'">System Calibration</button>
@@ -37,17 +52,44 @@ $save_password = $_GET['save_password'];
 			<p>
 			  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/demo_cavex/alarms_events.php'">Alarms & Events</button>
 			</p>
-			<p>
-			  <button class="btn btn-L btn-primary" type="button" data-toggle="collapse" data-target="#user_collapse">User accounts<b class="caret caret-body"></b></button>
-				<div id="user_collapse" class="collapse">
-				  	<button class="btn btn-sub btn-primary" type="button" onclick="window.location.href='/demo_cavex/create_user.php'">Create user</button>
-				  	<button class="btn btn-sub btn-primary" type="button" onclick="window.location.href='/demo_cavex/users.php'">View users</button>
-			  	</div>
-			</p>
+			<?php if($_SESSION['usertype'] == 1){?>
+				<p>
+				  <button class="btn btn-L btn-primary" type="button" data-toggle="collapse" data-target="#user_collapse">User accounts<b class="caret caret-body"></b></button>
+					<div id="user_collapse" class="collapse">
+					  	<button class="btn btn-sub btn-primary" type="button" onclick="window.location.href='/demo_cavex/create_user.php'">Create user</button>
+					  	<button class="btn btn-sub btn-primary" type="button" onclick="window.location.href='/demo_cavex/users.php'">View users</button>
+				  	</div>
+				</p>
+			<?php } ?>
 			</br>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$("#status-reader").click(function(){
+		if($(this).attr('class') == 'btn btn-default btn-success reader-running'){
+			$.ajax({
+				url: 'update_reader_status.php?current_status=1',
+				success: function(){
+					$('#status-reader').removeClass("btn-success").removeClass("reader-running").addClass("btn-info").addClass("reader-stop");
+					$('#status-reader').text("Reader stopped");
+				}
+			});
+		}else if($(this).attr('class') == 'btn btn-default btn-info reader-stop'){
+			$.ajax({
+				url: 'update_reader_status.php?current_status=0',
+				success: function(){
+					$('#status-reader').removeClass("btn-info").removeClass("reader-stop").addClass("btn-success").addClass("reader-running");	
+					$('#status-reader').text("Reader running");
+				}
+			});
+		}
+	});
+
+
+</script>
+
 
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');

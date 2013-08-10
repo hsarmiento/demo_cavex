@@ -32,6 +32,7 @@ $msg = $oLogin->Login();
 			    <div id="title-nav"><a href="/demo_cavex">Cavex Control System</a></div>
 			    <div id="bar-two"></div>
 			    <div id="bar-three"></div>
+			    <div id="enterprise-nav">Cavex Escondida</div>
 			    <div id="date-nav"><?=date('F /d/Y')?></div>
 			    <div class="logo_weir"><img src="assets/img/WeirMinerals.png"></div>
 			</div>
