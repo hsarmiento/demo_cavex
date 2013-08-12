@@ -8,16 +8,16 @@ $oLogin->IsLogged("admin","supervisor");
 
 $save_password = $_GET['save_password'];
 
-$query_reader = "SELECT * from estado_lector order by fecha_hora desc limit 1;";
-$oModel = new BSModel();
-$aReader= $oModel->Select($query_reader);
-if($aReader[0]['estado'] == 1){
-	$class = 'btn-success reader-running';
-	$text = 'Reader running';
-}elseif($aReader[0]['estado'] == 0){
-	$class = 'btn-info reader-stop';
-	$text = 'Reader stopped';
-}
+// $query_reader = "SELECT * from estado_lector order by fecha_hora desc limit 1;";
+// $oModel = new BSModel();
+// $aReader= $oModel->Select($query_reader);
+// if($aReader[0]['estado'] == 1){
+// 	$class = 'btn-success reader-running';
+// 	$text = 'Reader running';
+// }elseif($aReader[0]['estado'] == 0){
+// 	$class = 'btn-info reader-stop';
+// 	$text = 'Reader stopped';
+// }
 
 ?>
 
@@ -34,7 +34,8 @@ if($aReader[0]['estado'] == 1){
 			</br>
 
 			<?php if($_SESSION['usertype'] == 1){?>
-				<a class="btn btn-default <?=$class?>" id="status-reader" href="#"><?=$text?></a>
+				<!-- <a class="btn btn-default <?=$class?>" id="status-reader" href="#"><?=$text?></a> -->
+				<a class="btn btn-default btn-info" id="status-reader" href="reboot_system.php" onclick="return confirm('Are you ABSOLUTELY sure?')">Reboot system</a>
 			<?php } ?>
 			<?php if($_SESSION['usertype'] == 1){?>
 				<p>

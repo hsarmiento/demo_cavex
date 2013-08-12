@@ -92,12 +92,26 @@ $aRadios = $oRadios->Select($query_radios);
 	</div>
 	<div id="wrapper-help">
 		<div id="container-help">
+			<h3>How to configure</h3>
 			<div id="chart-help">
 				<img src="assets/img/grafico_referencial3.png">
 			</div>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus elit ligula, faucibus quis nisl vitae, porttitor aliquet odio. Fusce fringilla orci sapien, et mollis dolor dictum sit amet. Ut magna massa, mattis quis lectus in, elementum volutpat nulla. Aliquam tempor aliquam sem, id ultricies dui auctor quis. Etiam rhoncus risus imperdiet leo tincidunt, vitae consectetur lectus eleifend. Nunc ut sollicitudin felis, id cursus risus. Vestibulum fringilla arcu molestie tempor sodales. Integer vehicula metus ut erat sodales, sit amet egestas odio auc
-			</p>
+			<div class="text-help">
+				<p class="p1">1)I<b>deal RMS/SD value</b>: it must be relative equal to "Current RMS/SD value". It will determinate de working spaces of each state (Idea, Semi-roping or roping), e.g.</p>
+				<p class="p1"><span class="Apple-tab-span">	</span>A. Current RMS value: 38.4589</p>
+				<p class="p1"><span class="Apple-tab-span">	</span>B. Ideal RMS value: <b>38.459</b> (not exactly equal to A)</p>
+				<p class="p2"><br></p>
+				<p class="p1">2)<b>Max Ideal RMS value(%)</b>: It determinate perceptually max deviation accepted value for "Ideal RMS value", e.g.</p>
+				<p class="p1"><span class="Apple-tab-span">	</span>A. Ideal RMS value: <b>38.459</b></p>
+				<p class="p1"><span class="Apple-tab-span">	</span>B. Max ideal RMS value (%): <b>2%</b></p>
+				<p class="p1"><span class="Apple-tab-span">	</span>C. Then the max accepted value will be "<b>Ideal RMS value</b>" <b>*</b> "<b>Max ideal RMS value(%)</b>"= <b>38.459</b>*<b>1.02</b> = 39.22818</p>
+				<p class="p2"><br></p>
+				<p class="p1">3)<b>Min roping RMS/SD value</b>: It determinate perceptually min deviation for "roping condition", should be greater than "<b>Max Ideal RMS/SD value</b>", it will determinate the semi-roping zone too, e.g.</p>
+				<p class="p1"><span class="Apple-tab-span">	</span>A. Ideal RMS value: <b>38.459</b></p>
+				<p class="p1"><span class="Apple-tab-span">	</span>B. Min roping RMS value (%): <b>5%</b></p>
+				<p class="p1"><span class="Apple-tab-span">	</span>C. Then de min value for roping condition is: "<b>Ideal RMS value</b>" * "<b>Min roping RMS value(%)</b>"= <b>38.459</b>*<b>1.05</b> = 40.38195</p>
+				<p class="p1"><span class="Apple-tab-span">	</span>D. The semi-roping zone will be determinate between "<b>Max ideal RMS value</b>" and "<b>Min roping RMS value</b>" = 39.22818 &lt; S-R &lt;= 40.38195.</p>
+			</div>
 		</div>	
 	</div>
 </div>
