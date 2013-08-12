@@ -1,6 +1,6 @@
 <?php 
-	require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/cavex_control_system/'.'routes.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/cavex_control_system/'.'header.php');
 	require_once($aRoutes['paths']['config'].'bs_model.php');
 	$oModel = new BSModel();
 
@@ -108,7 +108,7 @@
 </div>
 
 <?php 
-require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/cavex_control_system/'.'footer.php');
 
 ?>
 

@@ -2,7 +2,7 @@
 // require_once('/var/www'.'/demo_cavex/'.'routes.php');
 // require_once('/var/www'.'/demo_cavex/'.'header.php');
 // require_once($aRoutes['paths']['config'].'st_functions_generals.php');
-require_once('/var/www/demo_cavex/config/bs_model.php');
+require_once('/var/www/cavex_control_system/config/bs_model.php');
 
 
 

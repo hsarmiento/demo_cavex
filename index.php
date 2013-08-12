@@ -1,5 +1,5 @@
 <?php 
-require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/cavex_control_system/'.'routes.php');
 
 require_once($aRoutes['paths']['config'].'bs_model.php');
 require_once($aRoutes['paths']['config'].'bs_login.php');
@@ -29,7 +29,7 @@ $msg = $oLogin->Login();
 		<header>
 			<div id="nav-header">
 			    <div id="bar-one"></div>
-			    <div id="title-nav"><a href="/demo_cavex">Cavex Control System</a></div>
+			    <div id="title-nav"><a href="/cavex_control_system">Cavex Control System</a></div>
 			    <div id="bar-two"></div>
 			    <div id="bar-three"></div>
 			    <div id="enterprise-nav">Cavex Escondida</div>
@@ -70,6 +70,6 @@ $msg = $oLogin->Login();
 		</div>
 
 <?php 
-require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/cavex_control_system/'.'footer.php');
 
 ?>

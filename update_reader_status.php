@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/cavex_control_system/'.'routes.php');
 require_once($aRoutes['paths']['config'].'bs_model.php');
 
 $current_status = $_GET['current_status'];
