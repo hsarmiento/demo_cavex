@@ -1,5 +1,5 @@
 <?php 
-require_once('/var/www/demo_cavex/config/bs_model.php');
+require_once('/var/www/cavex_control_system/config/bs_model.php');
 $user_id = $_GET['user_id'];
 
 $oLogUsuario = new BSModel();

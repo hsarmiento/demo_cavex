@@ -53,7 +53,7 @@ class BSLogin
 				$_SESSION['user_id'] = $aUser[0]['id'];
 				$_SESSION['usertype'] = $aUser[0]['permisos'];
 
-				require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'log_entry_website.php');
+				require_once($_SERVER['DOCUMENT_ROOT'].'/cavex_control_system/'.'log_entry_website.php');
 				header('Location: home.php');
 			}
 			else

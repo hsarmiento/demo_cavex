@@ -1,7 +1,7 @@
 
 <?php 
-require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/cavex_control_system/'.'routes.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/cavex_control_system/'.'header.php');
 require_once($aRoutes['paths']['config'].'bs_model.php');
 
 $radio_id = $_GET['radio_id'];
@@ -682,6 +682,6 @@ $sd_ropping = ($sd)*(1+$aParametros[0]['sd_ropping_porcentaje']/100);
 
 
 <?php 
-require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/cavex_control_system/'.'footer.php');
 
 ?>

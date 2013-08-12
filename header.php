@@ -25,7 +25,7 @@ $oLogin->ExistAnySession();
 		<header>
 			<div id="nav-header">
 			    <div id="bar-one"></div>
-			    <div id="title-nav"><a href="/demo_cavex">Cavex Control System</a></div>
+			    <div id="title-nav"><a href="/cavex_control_system">Cavex Control System</a></div>
 			    <div id="bar-two"></div>
 			    <div id="bar-three"></div>
 			    <div id="enterprise-nav">Cavex Escondida</div>
@@ -38,19 +38,19 @@ $oLogin->ExistAnySession();
 			<div class="menu">
 				<div class="pull-center">
 					<ul class="nav nav-pills">
-					  <li><a href="/demo_cavex/home.php">Home</a></li>
+					  <li><a href="/cavex_control_system/home.php">Home</a></li>
 					  <?php if($_SESSION['usertype'] == 1){?>
-						<li><a href="/demo_cavex/system_calibration.php">System calibration</a></li>
+						<li><a href="/cavex_control_system/system_calibration.php">System calibration</a></li>
 					  	<li class="dropdown">
 						  	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Radios<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="/demo_cavex/add_radio.php">Add radio</a></li>
-								<li><a href="/demo_cavex/radios.php">View radios</a></li>
+								<li><a href="/cavex_control_system/add_radio.php">Add radio</a></li>
+								<li><a href="/cavex_control_system/radios.php">View radios</a></li>
 						  	</ul> 
 					  </li>
 					  <?php } ?>				  
-					  <li><a href="/demo_cavex/overview.php">Overview</a></li>
-					  <li><a href="/demo_cavex/alarms_events.php">Alarms & events</a></li>
+					  <li><a href="/cavex_control_system/overview.php">Overview</a></li>
+					  <li><a href="/cavex_control_system/alarms_events.php">Alarms & events</a></li>
 					  <?php if($_SESSION['usertype'] == 1){?>
 						  <li class="dropdown">
 						  	<a class="dropdown-toggle" data-toggle="dropdown" href="#">User accounts <b class="caret"></b></a>
@@ -64,7 +64,7 @@ $oLogin->ExistAnySession();
 					  	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><?=$_SESSION['username']?><b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="change_password.php?user_id=<?=$_SESSION['user_id']?>">Change Password</a></li>
-							<li><a href="/demo_cavex/logout.php">Logout</a></li>
+							<li><a href="/cavex_control_system/logout.php">Logout</a></li>
 					  	</ul> 
 					  </li>
 					</ul>

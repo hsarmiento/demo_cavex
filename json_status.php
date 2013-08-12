@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/cavex_control_system/'.'routes.php');
 require_once($aRoutes['paths']['config'].'st_model.php');
 $oModel = new STModel();
 $query = "SELECT * FROM rms order by id desc limit 1;";

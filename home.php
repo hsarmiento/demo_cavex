@@ -1,6 +1,6 @@
 <?php 
-require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'routes.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'header.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/cavex_control_system/'.'routes.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/cavex_control_system/'.'header.php');
 // require_once($aRoutes['paths']['config'].'st_functions_generals.php');
 require_once($aRoutes['paths']['config'].'bs_model.php');
 $oLogin = new BSLogin();
@@ -38,26 +38,26 @@ if($aReader[0]['estado'] == 1){
 			<?php } ?>
 			<?php if($_SESSION['usertype'] == 1){?>
 				<p>
-				  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/demo_cavex/system_calibration.php'">System Calibration</button>
+				  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/cavex_control_system/system_calibration.php'">System Calibration</button>
 				</p>
 					<button class="btn btn-L btn-primary" type="button" data-toggle="collapse" data-target="#radio_collapse">Radios<b class="caret caret-body"></b></button>
 					<div id="radio_collapse" class="collapse" style="margin-bottom:10px">
-					  	<button class="btn btn-sub btn-primary" type="button" onclick="window.location.href='/demo_cavex/add_radio.php'">Add radio</button>
-				  		<button class="btn btn-sub btn-primary" type="button" onclick="window.location.href='/demo_cavex/radios.php'">View radios</button>
+					  	<button class="btn btn-sub btn-primary" type="button" onclick="window.location.href='/cavex_control_system/add_radio.php'">Add radio</button>
+				  		<button class="btn btn-sub btn-primary" type="button" onclick="window.location.href='/cavex_control_system/radios.php'">View radios</button>
 				  	</div>	
 			<?php } ?>
 			<p>
-			  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/demo_cavex/overview.php'">Overview</button>
+			  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/cavex_control_system/overview.php'">Overview</button>
 			</p>
 			<p>
-			  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/demo_cavex/alarms_events.php'">Alarms & Events</button>
+			  <button class="btn btn-L btn-primary" type="button" onclick="window.location.href='/cavex_control_system/alarms_events.php'">Alarms & Events</button>
 			</p>
 			<?php if($_SESSION['usertype'] == 1){?>
 				<p>
 				  <button class="btn btn-L btn-primary" type="button" data-toggle="collapse" data-target="#user_collapse">User accounts<b class="caret caret-body"></b></button>
 					<div id="user_collapse" class="collapse">
-					  	<button class="btn btn-sub btn-primary" type="button" onclick="window.location.href='/demo_cavex/create_user.php'">Create user</button>
-					  	<button class="btn btn-sub btn-primary" type="button" onclick="window.location.href='/demo_cavex/users.php'">View users</button>
+					  	<button class="btn btn-sub btn-primary" type="button" onclick="window.location.href='/cavex_control_system/create_user.php'">Create user</button>
+					  	<button class="btn btn-sub btn-primary" type="button" onclick="window.location.href='/cavex_control_system/users.php'">View users</button>
 				  	</div>
 				</p>
 			<?php } ?>
@@ -92,6 +92,6 @@ if($aReader[0]['estado'] == 1){
 
 
 <?php 
-require_once($_SERVER['DOCUMENT_ROOT'].'/demo_cavex/'.'footer.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/cavex_control_system/'.'footer.php');
 
 ?>
