@@ -39,8 +39,8 @@ class BSLogin
 				$count = $aCount[0]['count'];
 
 				$oModel = new BSModel();		
-				$aUser = $oModel->Get('usuarios', array('username' => $aPost['username']));				
-				if($aUser[0]['permisos'] == 0 and $count >= 2){
+				$aUser = $oModel->Get('usuarios', array('username' => $aPost['username']));			
+				if($aUser[0]['permisos'] == 0 && $count >= 2){
 					return -2;
 				}
 
