@@ -44,11 +44,15 @@
 	$gauge_minimo = $aLimiteGauge[0]['valor_minimo'];
 	$gauge_maximo = $aLimiteGauge[0]['valor_maximo'];
 
-	// print_r($aRms);
 ?>
 
 <div class="container container-body contenedor">
 	<h2>Overview</h2>
+	<?php if(count($aRms) == 0){ ?>
+		<div id="overview_empty" class="alert alert-warning">
+	    	There is not radios connected
+	  	</div>
+	<?php } ?>
 	<div class="hidrociclon"><img height="400" width="400" src="assets/img/Overview_2.png"></div>
 
 	<div id="gauge1" class="gauge"></div>

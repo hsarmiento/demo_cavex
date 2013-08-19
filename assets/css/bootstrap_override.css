@@ -936,3 +936,23 @@ ul.letter{
     text-align: center; 
     margin-bottom: 10px !important;
 }
+
+#empty_radios{
+    height: 50px;
+    vertical-align: middle;
+    line-height: 50px;
+    font-size: 18px;
+    text-align: center; 
+    margin-bottom: 10px !important;
+    margin-left: 100px;
+}
+
+#overview_empty{
+    vertical-align: middle;
+    /*font-size: 18px;*/
+    text-align: center; 
+    margin-bottom: 10px !important;
+    margin-top: -30px;
+
+    /*position: absolute;*/
+}

@@ -30,13 +30,14 @@ if(!empty($form['save_radio'])){
 $oRadio = new BSModel();
 $query_empty_radios = "SELECT * from radios where estado = -1;";
 $aRadiosEmpty = $oRadio->Select($query_empty_radios);
-$query_radios = "SELECT count(*) as count from radios;";
+$query_radios = "SELECT count(*) as count from radios where estado = 1 or estado = 0;";
 $aRadios = $oRadio->Select($query_radios);
+
 
 ?>
 
 <div class="container container-body">
-	<?php if(count($aRadiosEmpty) > 0 && $aRadios[0]['count'] > 6){ ?>
+	<?php if(count($aRadiosEmpty) > 0 && $aRadios[0]['count'] < 6){ ?>
 		<div id="" class="alert alert-warning" style="text-align:center">
 			<span style="font-size:18px;"><?=count($aRadiosEmpty)?> new radios detected</strong></span>
 					</br></br>

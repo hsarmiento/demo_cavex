@@ -53,7 +53,7 @@ $is_update = $_GET['update_radio'];
 				      <?php } elseif ($radio['estado'] == 1) { ?>
 				      		<td><span style="color:green">Connected</span></td>
 				      <?php }elseif ($radio['estado'] == -1) { ?>	       
-				      		<td><span style="color:blue">Please added new radio</span></td>
+				      		<td><span style="color:blue">Please add new radio</span></td>
 				      <?php }?>
 				      <td>
 				      	<?php
