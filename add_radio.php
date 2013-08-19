@@ -15,7 +15,7 @@ if(!empty($form['save_radio'])){
 			$query_new_radio = "UPDATE radios set estado = 1, identificador = '".$form['identifier']."' where mac = '".$MAC."';";
 			$oRadio->Select($query_new_radio);
 		}else{
-			$query_new_radio = "INSERT INTO radios(mac,identificador,estado)values('".$MAC."', '".$form['identifier']."',1);";
+			$query_new_radio = "INSERT INTO radios(mac,identificador,estado)values('".$MAC."', '".$form['identifier']."',0);";
 			$oRadio->Select($query_new_radio);	
 		}
 		$query_radio = "SELECT * from radios where mac = '".$MAC."';";
@@ -29,16 +29,18 @@ if(!empty($form['save_radio'])){
 
 $oRadio = new BSModel();
 $query_empty_radios = "SELECT * from radios where estado = -1;";
-$aRadios = $oRadio->Select($query_empty_radios);
+$aRadiosEmpty = $oRadio->Select($query_empty_radios);
+$query_radios = "SELECT count(*) as count from radios;";
+$aRadios = $oRadio->Select($query_radios);
 
 ?>
 
 <div class="container container-body">
-	<?php if(count($aRadios) > 0){ ?>
+	<?php if(count($aRadiosEmpty) > 0 && $aRadios[0]['count'] > 6){ ?>
 		<div id="" class="alert alert-warning" style="text-align:center">
-			<span style="font-size:18px;"><?=count($aRadios)?> new radios detected</strong></span>
+			<span style="font-size:18px;"><?=count($aRadiosEmpty)?> new radios detected</strong></span>
 					</br></br>
-			<?php foreach ($aRadios as $radio) { ?>
+			<?php foreach ($aRadiosEmpty as $radio) { ?>
 				<ul>
 					<li>MAC: <strong><?=substr($radio['mac'], 0,4).' : '.substr($radio['mac'], 4,4).' : '.substr($radio['mac'], 8,4).' : '.substr($radio['mac'], 12,4)?><strong></li>
 				</ul>
@@ -46,29 +48,35 @@ $aRadios = $oRadio->Select($query_empty_radios);
 		</div>
 	<?php } ?>
 	<h2>Add radio</h2>
-	<div class="calibration-radio span7 offset2">
-		<div class="span6 form-div-radio">
-			<form class="form-inline" id="add_radio_form" method="post" action="add_radio.php" enctype="multipart/form-data">
-			  <?php if(count($aRadios) > 0){ ?>
-			  	<input type="hidden" name="insert_update" value="update">
-			  <?php } ?>
-			  <p>
-			  	  <label for="mac1"><strong>Mac address</strong></label>
-				  <input type="text" class="input-mini span1 required" id="mac1" name="mac1" maxlength="4"><b>:</b>
-				  <input type="text" class="input-mini span1 required" id="mac2" name="mac2" maxlength="4"><b>:</b>
-				  <input type="text" class="input-mini span1 required" id="mac3" name="mac3" maxlength="4"><b>:</b>
-				  <input type="text" class="input-mini span1 required" id="mac4" name="mac4" maxlength="4">
-			  </p>
-			  <p>
-			  	  <label for="identifier"><strong>Identifier</strong></label>	
-			  	  <input type="text" class="span2 required" id="identifier" name="identifier" title="Use letters or numbers">
-			  </p>
-			  
-			  <input type="submit" class="btn btn-primary" id="save-radio" name="save_radio" value="Save">
-			  
-			</form>
+	<?php if($aRadios[0]['count'] < 6){ ?>
+		<div class="calibration-radio span7 offset2">
+			<div class="span6 form-div-radio">
+				<form class="form-inline" id="add_radio_form" method="post" action="add_radio.php" enctype="multipart/form-data">
+				  <?php if(count($aRadiosEmpty) > 0){ ?>
+				  	<input type="hidden" name="insert_update" value="update">
+				  <?php } ?>
+				  <p>
+				  	  <label for="mac1"><strong>Mac address</strong></label>
+					  <input type="text" class="input-mini span1 required" id="mac1" name="mac1" maxlength="4"><b>:</b>
+					  <input type="text" class="input-mini span1 required" id="mac2" name="mac2" maxlength="4"><b>:</b>
+					  <input type="text" class="input-mini span1 required" id="mac3" name="mac3" maxlength="4"><b>:</b>
+					  <input type="text" class="input-mini span1 required" id="mac4" name="mac4" maxlength="4">
+				  </p>
+				  <p>
+				  	  <label for="identifier"><strong>Identifier</strong></label>	
+				  	  <input type="text" class="span2 required" id="identifier" name="identifier" title="Use letters or numbers">
+				  </p>
+				  
+				  <input type="submit" class="btn btn-primary" id="save-radio" name="save_radio" value="Save">
+				  
+				</form>
+			</div>
+		</div>	
+	<?php }else{ ?>
+		<div id="limit_radios" class="alert alert-warning" >
+			You have 6 radios, to add a new radio. Please contact your provider.
 		</div>
-	</div>	
+	<?php } ?>
 </div>
 
 <script type="text/javascript">
