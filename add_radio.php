@@ -39,11 +39,11 @@ $aRadios = $oRadio->Select($query_radios);
 <div class="container container-body">
 	<?php if(count($aRadiosEmpty) > 0 && $aRadios[0]['count'] < 6){ ?>
 		<div id="" class="alert alert-warning" style="text-align:center">
-			<span style="font-size:18px;"><?=count($aRadiosEmpty)?> new radios detected</strong></span>
+			<span style="font-size:18px;"><strong><?=count($aRadiosEmpty)?> new radios detected</strong></span>
 					</br></br>
 			<?php foreach ($aRadiosEmpty as $radio) { ?>
 				<ul>
-					<li>MAC: <strong><?=substr($radio['mac'], 0,4).' : '.substr($radio['mac'], 4,4).' : '.substr($radio['mac'], 8,4).' : '.substr($radio['mac'], 12,4)?><strong></li>
+					<li>MAC: <strong><?=substr($radio['mac'], 0,4).' : '.substr($radio['mac'], 4,4).' : '.substr($radio['mac'], 8,4).' : '.substr($radio['mac'], 12,4)?></strong></li>
 				</ul>
 		<?php } ?>
 		</div>
